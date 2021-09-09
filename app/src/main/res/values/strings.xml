@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">AndroidMovieMiniProject</string>
+    <string name="app_name">MOVAP</string>
+
+    <string name="home">Home</string>
+    <string name="watch_later">Watch Later</string>
+    <string name="logout">Logout</string>
 </resources>
