@@ -1,13 +1,15 @@
-package com.example.androidmovieminiproject;
+package com.example.androidmovieminiproject.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.androidmovieminiproject.fragments.HomeFragment;
+import com.example.androidmovieminiproject.R;
+import com.example.androidmovieminiproject.fragments.WatchLaterFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
