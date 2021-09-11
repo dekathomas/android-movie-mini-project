@@ -67,10 +67,10 @@
             <ToggleButton
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:background="@drawable/favourite_toogle_selector"
                 android:layout_alignParentEnd="true"
-                android:textOn=""
-                android:textOff=""/>
+                android:background="@drawable/favourite_toogle_selector"
+                android:textOff=""
+                android:textOn="" />
         </RelativeLayout>
 
         <LinearLayout
