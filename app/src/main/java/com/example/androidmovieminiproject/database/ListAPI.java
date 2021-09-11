@@ -1,8 +1,8 @@
 package com.example.androidmovieminiproject.database;
 
 public class ListAPI {
-    private static String JSON_URL = "https://api.themoviedb.org/3/movie/popular?api_key=c14e24f2d5dbc36cecb8a98e82a9a3d6";
-    public static String BASEURL = "http://api.themoviedb.org/3/";
+//    private static String JSON_URL = "https://api.themoviedb.org/3/movie/popular?api_key=c14e24f2d5dbc36cecb8a98e82a9a3d6";
+    public static String BASE_URL = "http://api.themoviedb.org/3/";
     public static String APIKEY = "api_key=c14e24f2d5dbc36cecb8a98e82a9a3d6";
     public static String LANGUAGE = "&language=en-US";
     public static String SEARCH_MOVIE = "search/movie?";
@@ -18,4 +18,6 @@ public class ListAPI {
     public static String REALESE_DATE = "&primary_release_date.lte=";
     public static String MOVIE_VIDEO = "movie/{id}/videos?";
     public static String TV_VIDEO = "tv/{id}/videos?";
+
+    public static String ACCESS_TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhN2QzMTM0ZDY5OTgwNWYyZTc0N2QzMTM4Y2UzNzk4MiIsInN1YiI6IjVkMWYzZmI2OTRkOGE4MDQ5YTNlMTEzZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QZ8VWxJx3DBo-0Wtbptrn2zKfGNwGv1tqz6BQjUU1CE";
 }
