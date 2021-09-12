@@ -3,22 +3,45 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+
         <entry key="..\:/Users/silve/Documents/AndroidStudioProjects/GIT/android-movie-mini-project/app/src/main/res/layout/activity_login.xml" value="0.3875" />
         <entry key="..\:/Users/silve/Documents/AndroidStudioProjects/GIT/android-movie-mini-project/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/silve/Documents/AndroidStudioProjects/GIT/android-movie-mini-project/app/src/main/res/layout/fragment_home.xml" value="0.22381711855396066" />
         <entry key="..\:/Users/silve/Documents/AndroidStudioProjects/GIT/android-movie-mini-project/app/src/main/res/layout/fragment_watch_later.xml" value="0.3828125" />
         <entry key="..\:/Users/silve/Documents/AndroidStudioProjects/GIT/android-movie-mini-project/app/src/main/res/layout/list_item_film.xml" value="0.3875" />
+        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/drawable-anydpi/ic_heart.xml" value="0.2203125" />
+        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/drawable-v24/ic_heart.xml" value="1.2083333333333333" />
+        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/drawable-xhdpi/ic_heart.xml" value="0.33046875" />
+        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/drawable/favourite_toogle_selector.xml" value="0.2203125" />
+        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/drawable/ic_arrow_back.xml" value="0.2203125" />
+        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/drawable/ic_heart.xml" value="0.2203125" />
+        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/drawable/ic_heart_off.xml" value="0.2203125" />
+        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/drawable/ic_heart_outline.xml" value="0.2203125" />
+        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/drawable/ic_search.xml" value="0.2203125" />
+        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/drawable/ic_times.xml" value="0.2203125" />
+        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/drawable/input_field_style.xml" value="0.2203125" />
+
         <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/drawable/menu_item_state.xml" value="0.2203125" />
-        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/layout/activity_login.xml" value="0.22" />
-        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/layout/activity_detail_movie.xml" value="0.22" />
+        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/layout/activity_login.xml" value="0.2" />
+        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/layout/activity_main.xml" value="0.16" />
+        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/layout/activity_search.xml" value="1.0" />
         <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/layout/bottom_menu.xml" value="0.20416666666666666" />
-        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/layout/fragment_home.xml" value="0.20416666666666666" />
+        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/layout/film_detail.xml" value="0.16" />
+        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/layout/film_search_detail.xml" value="0.25" />
+        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/layout/fragment_favourite.xml" value="0.14" />
+        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/layout/fragment_home.xml" value="0.22" />
+        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/layout/fragment_movie.xml" value="0.33" />
+        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/layout/fragment_profile.xml" value="0.18" />
+        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/layout/fragment_tv.xml" value="0.1" />
         <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/layout/fragment_watch_later.xml" value="0.20416666666666666" />
+        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/layout/input_text_style.xml" value="0.2028985507246377" />
+        <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/layout/list_item_film.xml" value="0.20416666666666666" />
         <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/menu/bottom_menu.xml" value="0.5" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

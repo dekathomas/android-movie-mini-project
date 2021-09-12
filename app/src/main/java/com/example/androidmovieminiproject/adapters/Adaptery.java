@@ -1,6 +1,6 @@
 package com.example.androidmovieminiproject.adapters;
+
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +32,7 @@ public class Adaptery extends RecyclerView.Adapter<Adaptery.MyViewHolder> {
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v;
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        v = inflater.inflate(R.layout.list_item_film, parent, false);
+        v = inflater.inflate(R.layout.film_detail, parent, false);
 
         return new MyViewHolder(v);
     }
@@ -67,8 +67,8 @@ public class Adaptery extends RecyclerView.Adapter<Adaptery.MyViewHolder> {
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            id = itemView.findViewById(R.id.id_txt);
-            name = itemView.findViewById(R.id.name_txt);
+            /*id = itemView.findViewById(R.id.id_txt);
+            name = itemView.findViewById(R.id.name_txt);*/
             img = itemView.findViewById(R.id.imageView);
 
         }

@@ -111,15 +111,15 @@ public class HomeFragment extends Fragment {
                 e.printStackTrace();
             }
 
-            PutDataIntoRecyclerView(movieList);
+            putDataIntoRecyclerView(movieList);
 
         }
     }
 
 
-    public void PutDataIntoRecyclerView(List<MovieModelClass> movieList){
+    public void putDataIntoRecyclerView(List<MovieModelClass> movieList){
         Adaptery adaptery = new Adaptery(getActivity(), movieList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setAdapter(adaptery);
     }
 }
