@@ -55,7 +55,7 @@ public class DetailMovieActivity extends AppCompatActivity {
     }
 
     private void setContentToView() {
-        progressBar.setVisibility(View.VISIBLE);
+//        progressBar.setVisibility(View.VISIBLE);
 
         viewModel = new ViewModelProvider(this).get(MovieDetailViewModel.class);
         viewModel.findById(566525).observe(this, movieDetail -> {

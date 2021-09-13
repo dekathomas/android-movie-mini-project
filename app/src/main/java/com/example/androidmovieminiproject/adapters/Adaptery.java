@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.androidmovieminiproject.R;
-import com.example.androidmovieminiproject.model.MovieDetail.MovieDetail;
+import com.example.androidmovieminiproject.model.Movie.MovieDetail;
 import com.example.androidmovieminiproject.model.MovieModelClass;
 
 import java.util.List;
@@ -25,6 +25,7 @@ public class Adaptery extends ListAdapter<MovieDetail, Adaptery.ViewHolder> {
     private final MovieClickableCallback movieClickableCallback;
     private Context imgContext;
     private List<MovieModelClass> mData;
+
 
 
 

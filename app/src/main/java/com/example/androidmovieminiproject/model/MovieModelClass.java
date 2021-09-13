@@ -15,6 +15,7 @@ public class MovieModelClass extends AndroidViewModel {
         retrofitService = new RetrofitService();
     }
 
+
     public RetrofitService getRetrofitService(){
         return  retrofitService;
     }

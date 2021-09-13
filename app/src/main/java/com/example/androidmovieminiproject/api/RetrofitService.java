@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitService {
 
-    public TmdbApi tmdbApi;
+    public static TmdbApi tmdbApi;
 
     public RetrofitService() {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
@@ -41,7 +41,7 @@ public class RetrofitService {
                 .create(TmdbApi.class);
     }
 
-    public TmdbApi getAPI() {
+    public static TmdbApi getAPI() {
         return tmdbApi;
     }
 
