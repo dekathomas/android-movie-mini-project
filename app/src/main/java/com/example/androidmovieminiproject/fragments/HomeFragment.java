@@ -5,16 +5,24 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidmovieminiproject.R;
 import com.example.androidmovieminiproject.adapters.Adaptery;
+import com.example.androidmovieminiproject.adapters.MovieClickableCallback;
+import com.example.androidmovieminiproject.model.MovieDetail.MovieDetail;
 import com.example.androidmovieminiproject.model.MovieModelClass;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,7 +37,62 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class HomeFragment extends Fragment {
+    private MovieModelClass movieModelClass;
+
+    private RecyclerView recyclerView;
+    private Adaptery adaptery;
+
+    public static HomeFragment newInstance() {
+        return new HomeFragment();
+    }
+
+    private final MovieClickableCallback movieClickableCallback = new MovieClickableCallback() {
+        @Override
+        public void onClick(View view, MovieDetail movie) {
+            Gson gson = new Gson();
+            String userString = gson.toJson(movie);
+            Toast.makeText(requireActivity(), userString, Toast.LENGTH_SHORT).show();
+        }
+    };
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        movieModelClass = new ViewModelProvider(requireActivity()).get(MovieModelClass.class);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        recyclerView = view.findViewById(R.id.recyclerView);
+        adaptery = new Adaptery(movieClickableCallback);
+        recyclerView.setAdapter(adaptery);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        movieModelClass.getRetrofitService();
+
+    }
+
+}
+
+
+
+/*
+{
 
     @Nullable
     @Override
@@ -123,3 +186,4 @@ public class HomeFragment extends Fragment {
         recyclerView.setAdapter(adaptery);
     }
 }
+*/

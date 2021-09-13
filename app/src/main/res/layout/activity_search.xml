@@ -32,7 +32,6 @@
             android:background="@drawable/input_field_style"
             android:drawableEnd="@drawable/ic_times"
             android:hint="Search"
-            android:hintTextColor="#78909C"
             android:paddingRight="20dp"
             android:textColor="@color/white"
             android:textColorHint="@color/disabled" />
