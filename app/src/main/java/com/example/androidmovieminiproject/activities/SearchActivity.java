@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.androidmovieminiproject.R;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

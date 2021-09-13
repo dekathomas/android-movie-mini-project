@@ -20,4 +20,6 @@ public class ListAPI {
     public static String TV_VIDEO = "tv/{id}/videos?";
 
     public static String ACCESS_TOKEN = "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhN2QzMTM0ZDY5OTgwNWYyZTc0N2QzMTM4Y2UzNzk4MiIsInN1YiI6IjVkMWYzZmI2OTRkOGE4MDQ5YTNlMTEzZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QZ8VWxJx3DBo-0Wtbptrn2zKfGNwGv1tqz6BQjUU1CE";
+
+    public static String ONE_INDONESIA_BASE_URL = "https://talentpool.oneindonesia.id/api/";
 }

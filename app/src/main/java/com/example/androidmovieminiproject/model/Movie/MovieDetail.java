@@ -48,7 +48,7 @@ public class MovieDetail {
     @SerializedName("overview")
     private String description;
 
-    private List<RecommendationMovie> recommendationMovies;
+    /*private List<RecommendationMovie> recommendationMovies;
 
-    private List<RecommendationMovie> similarMovies;
+    private List<RecommendationMovie> similarMovies;*/
 }

@@ -7,25 +7,7 @@ import androidx.lifecycle.AndroidViewModel;
 
 import com.example.androidmovieminiproject.api.RetrofitService;
 
-public class MovieModelClass extends AndroidViewModel {
-    private RetrofitService retrofitService;
-
-    public MovieModelClass(@NonNull Application application) {
-        super(application);
-        retrofitService = new RetrofitService();
-    }
-
-    public RetrofitService getRetrofitService(){
-        return  retrofitService;
-    }
-
-}
-
-
-
-
-    /*
-{
+public class MovieModelClass {
 
     String id;
     String name;
@@ -64,4 +46,3 @@ public class MovieModelClass extends AndroidViewModel {
         this.img = img;
     }
 }
-*/
