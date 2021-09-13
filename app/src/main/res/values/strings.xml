@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">MOVAP</string>
+
+    <string name="first_menu">Movie</string>
+    <string name="second_menu">TV</string>
+    <string name="third_menu">Favourite</string>
+    <string name="fourth_menu">Profile</string>
+
+    <string name="popular_movie">Popular Movies</string>
+    <string name="ongoing_movie">Ongoing Movies</string>
+
+    <string name="popular_tv">Popular TV</string>
+    <string name="ongoing_tv">Ongoing TV</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Detail Page -->
+    <string name="detail_recommendation">Recommendation</string>
+    <string name="detail_similar">Similar Movies</string>
+
+    <!-- Log String -->
+    <string name="logger_retrofit">RETROFIT LOGGER</string>
+</resources>
