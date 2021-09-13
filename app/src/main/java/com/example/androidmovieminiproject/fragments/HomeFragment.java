@@ -9,12 +9,13 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidmovieminiproject.R;
 import com.example.androidmovieminiproject.adapters.Adaptery;
-import com.example.androidmovieminiproject.model.MovieModelClass;
+import com.example.androidmovieminiproject.model.MovieOverview;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,7 +48,7 @@ public class HomeFragment extends Fragment {
 
     private static String JSON_URL = "https://api.themoviedb.org/3/movie/popular?api_key=c14e24f2d5dbc36cecb8a98e82a9a3d6";
 
-    List<MovieModelClass> movieList;
+    List<MovieOverview> movieList;
     RecyclerView recyclerView;
 
 
@@ -99,7 +100,7 @@ public class HomeFragment extends Fragment {
 
                 for(int i = 0; i< jsonArray.length() ; i++){
                     JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                    MovieModelClass model = new MovieModelClass();
+                    MovieOverview model = new MovieOverview();
                     model.setId(jsonObject1.getString("vote_average"));
                     model.setName(jsonObject1.getString("title"));
                     model.setImg(jsonObject1.getString("poster_path"));
@@ -117,9 +118,10 @@ public class HomeFragment extends Fragment {
     }
 
 
-    public void putDataIntoRecyclerView(List<MovieModelClass> movieList){
+    public void putDataIntoRecyclerView(List<MovieOverview> movieList){
         Adaptery adaptery = new Adaptery(getActivity(), movieList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3, RecyclerView.VERTICAL, false));
+        // recyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setAdapter(adaptery);
     }
 }

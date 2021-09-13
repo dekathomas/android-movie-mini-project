@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
          */
         getSupportActionBar().hide();
 
-        loadFragment(new MovieFragment());
+        loadFragment(new HomeFragment());
 
         BottomNavigationView bottomMenu = findViewById(R.id.bottomMenu);
         bottomMenu.setOnNavigationItemSelectedListener(navListener);

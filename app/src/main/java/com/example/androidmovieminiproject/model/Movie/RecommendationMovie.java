@@ -1,4 +1,4 @@
-package com.example.androidmovieminiproject.model.MovieDetail;
+package com.example.androidmovieminiproject.model.Movie;
 
 import com.google.gson.annotations.SerializedName;
 

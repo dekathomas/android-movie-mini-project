@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.androidmovieminiproject.R;
-import com.example.androidmovieminiproject.model.MovieModelClass;
+import com.example.androidmovieminiproject.model.MovieOverview;
 
 import java.util.List;
 
@@ -20,9 +20,9 @@ public class Adaptery extends RecyclerView.Adapter<Adaptery.MyViewHolder> {
 
 
     private Context mContext;
-    private List<MovieModelClass> mData;
+    private List<MovieOverview> mData;
 
-    public Adaptery(Context mContext, List<MovieModelClass> mData) {
+    public Adaptery(Context mContext, List<MovieOverview> mData) {
         this.mContext = mContext;
         this.mData = mData;
     }
@@ -39,8 +39,8 @@ public class Adaptery extends RecyclerView.Adapter<Adaptery.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.id.setText(mData.get(position).getId());
-        holder.name.setText(mData.get(position).getName());
+        /*holder.id.setText(mData.get(position).getId());
+        holder.name.setText(mData.get(position).getName());*/
 
         //use glide lib for display
         Glide.with(mContext)
