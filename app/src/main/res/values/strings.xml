@@ -17,6 +17,8 @@
     <!-- Detail Page -->
     <string name="detail_recommendation">Recommendation</string>
     <string name="detail_similar">Similar Movies</string>
+    <string name="detail_website">Homepage</string>
+    <string name="detail_imdb">IMDB</string>
 
     <!-- Log String -->
     <string name="logger_retrofit">RETROFIT LOGGER</string>
