@@ -30,20 +30,31 @@ public class DetailMovieActivity extends AppCompatActivity {
     private TextView releaseDate;
     private TextView genre;
     private TextView rating;
-    private TextView websiteUrl;
-    private TextView imdbId;
     private TextView description;
+    private String websiteUrl;
+    private String imdbId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_movie);
         getSupportActionBar().hide();
-
-        setInitialValue();
     }
 
-    private void setInitialValue() {
+    @Override
+    protected void onStart() {
+        super.onStart();
+        posterUrl = findViewById(R.id.movieDetailBackdrop);
+        movieName = findViewById(R.id.movieDetailName);
+        releaseDate = findViewById(R.id.movieDetailReleaseDate);
+        genre = findViewById(R.id.movieDetailGenre);
+        rating = findViewById(R.id.movieDetailRating);
+        description = findViewById(R.id.movieDetailDescription);
+
+        setContentToView();
+    }
+
+    private void setContentToView() {
         progressBar.setVisibility(View.VISIBLE);
 
         viewModel = new ViewModelProvider(this).get(MovieDetailViewModel.class);
@@ -57,13 +68,10 @@ public class DetailMovieActivity extends AppCompatActivity {
     }
 
     private void setMovieDetailToView(MovieDetail movieDetail) {
-        /*posterUrl = findViewById(R.id.movieDetailBackdrop);
-        movieName = findViewById(R.id.movieDetailName)
-        releaseDate = findViewById(R.id.movieDetailReleaseDate)
-        genre = findViewById(R.id.movieDetailGenre)
-        rating = findViewById(R.id.movieDetailRating)
-        websiteUrl = findViewById(R.id.)
-        imdbId = findViewById(R.id.)
-        description = findViewById(R.id.)*/
+        movieName.setText(movieDetail.getMovieName());
+        releaseDate.setText(movieDetail.getReleaseDate());
+        genre.setText(movieDetail.getGenre());
+        rating.setText(movieDetail.getRating().toString());
+        description.setText(movieDetail.getDescription());
     }
 }
