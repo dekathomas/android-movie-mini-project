@@ -51,6 +51,7 @@ public class HomeFragment extends Fragment {
 
 
     private MovieModelClass movieModelClass;
+    private RetrofitService retrofitService;
 
     private final MovieClickableCallback movieClickableCallback = new MovieClickableCallback() {
         @Override
@@ -76,7 +77,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        movieModelClass.getRetrofitService()
+        retrofitService
                 .getAPI()
                 .getMovies(ListAPI.CATEGORY, ListAPI.APIKEY, ListAPI.LANGUAGE, ListAPI.PAGE)
                 .enqueue(new Callback<List<MovieDetail>>() {

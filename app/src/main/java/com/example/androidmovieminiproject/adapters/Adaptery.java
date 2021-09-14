@@ -24,6 +24,7 @@ public class Adaptery extends ListAdapter<MovieDetail, Adaptery.ViewHolder> {
 
     private final MovieClickableCallback movieClickableCallback;
     private Context imgContext;
+    private Context
     private List<MovieModelClass> mData;
 
 
@@ -51,7 +52,6 @@ public class Adaptery extends ListAdapter<MovieDetail, Adaptery.ViewHolder> {
         TextView movieDesc;
         ImageView movieImage;
 
-
         @Override
         public void onClick(View view) {
             int position = getAbsoluteAdapterPosition();
@@ -78,6 +78,7 @@ public class Adaptery extends ListAdapter<MovieDetail, Adaptery.ViewHolder> {
         Adaptery.ViewHolder viewHolder = new Adaptery.ViewHolder(view);
         return viewHolder;
     }
+
     @Override
     public void onBindViewHolder(@NonNull Adaptery.ViewHolder holder, int position) {
         Glide.with(imgContext)
