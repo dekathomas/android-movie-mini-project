@@ -5,7 +5,7 @@ import android.app.Application;
 import androidx.lifecycle.LiveData;
 
 import com.example.androidmovieminiproject.api.RetrofitService;
-import com.example.androidmovieminiproject.dao.MovieDetailDao;
+import com.example.androidmovieminiproject.dao.MovieDao;
 import com.example.androidmovieminiproject.database.AppDatabase;
 import com.example.androidmovieminiproject.model.Movie.MovieDetail;
 
@@ -14,18 +14,18 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MovieDetailRepository {
-    private MovieDetailDao movieDetailDao;
+    private MovieDao movieDao;
     private LiveData<MovieDetail> movieDetail;
     private RetrofitService retrofit;
 
     public MovieDetailRepository(Application application) {
         AppDatabase database = AppDatabase.getInstance(application);
-        movieDetailDao = database.movieDetailDao();
+        movieDao = database.movieDetailDao();
         retrofit = new RetrofitService();
     }
 
     public void findById(int id, requestCallback callback) {
-        movieDetail = movieDetailDao.findById(id);
+        movieDetail = movieDao.findById(id);
 
         if (movieDetail.getValue() == null) {
             retrofit.getAPI()
@@ -50,7 +50,7 @@ public class MovieDetailRepository {
         AppDatabase.executorService.execute(new Runnable() {
             @Override
             public void run() {
-                movieDetailDao.insert(movieDetail);
+                movieDao.insert(movieDetail);
             }
         });
     }
@@ -59,7 +59,7 @@ public class MovieDetailRepository {
         AppDatabase.executorService.execute(new Runnable() {
             @Override
             public void run() {
-                movieDetailDao.update(movieDetail);
+                movieDao.update(movieDetail);
             }
         });
     }
@@ -68,7 +68,7 @@ public class MovieDetailRepository {
         AppDatabase.executorService.execute(new Runnable() {
             @Override
             public void run() {
-                movieDetailDao.delete(movieDetail);
+                movieDao.delete(movieDetail);
             }
         });
     }

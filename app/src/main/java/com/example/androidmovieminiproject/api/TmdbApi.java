@@ -1,6 +1,7 @@
 package com.example.androidmovieminiproject.api;
 
 import com.example.androidmovieminiproject.model.Movie.MovieDetail;
+import com.example.androidmovieminiproject.model.TV.TvPopularList;
 import com.example.androidmovieminiproject.model.User.UserLogin;
 
 import java.util.List;
@@ -25,5 +26,8 @@ public interface TmdbApi {
             @Query("language") String sLanguage,
             @Query("page") int sPage
     );
+
+    @GET("tv/{category}?api_key=c14e24f2d5dbc36cecb8a98e82a9a3d6")
+    Call<TvPopularList> getTvList(@Path("category") String category, @Query("page") int page);
 
 }

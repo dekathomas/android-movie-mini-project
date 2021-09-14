@@ -10,7 +10,7 @@ import androidx.room.Update;
 import com.example.androidmovieminiproject.model.Movie.MovieDetail;
 
 @Dao
-public interface MovieDetailDao {
+public interface MovieDao {
 
     @Query("SELECT * FROM movie_detail WHERE id = :id")
     public LiveData<MovieDetail> findById(int id);
