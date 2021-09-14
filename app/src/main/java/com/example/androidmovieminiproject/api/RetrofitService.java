@@ -10,16 +10,23 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitService {
 
     public TmdbApi tmdbApi;
+    public OneApi oneApi;
 
     public RetrofitService() {
+        HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(new Interceptor() {
+                .addInterceptor(logging)
+                .build();
+                /*.addInterceptor(new Interceptor() {
                     @Override
                     public Response intercept(Chain chain) throws IOException {
                         Request newRequest = chain.request().newBuilder()
@@ -28,7 +35,7 @@ public class RetrofitService {
                         return chain.proceed(newRequest);
                     }
                 })
-                .build();
+                .build();*/
 
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
@@ -39,10 +46,20 @@ public class RetrofitService {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
                 .create(TmdbApi.class);
+
+        oneApi = new Retrofit.Builder()
+                .baseUrl(ListAPI.ONE_INDONESIA_BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build()
+                .create(OneApi.class);
     }
 
     public TmdbApi getAPI() {
         return tmdbApi;
+    }
+
+    public OneApi getOneApi() {
+        return oneApi;
     }
 
 }

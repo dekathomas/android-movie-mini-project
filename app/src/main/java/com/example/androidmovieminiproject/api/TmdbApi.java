@@ -16,8 +16,4 @@ public interface TmdbApi {
     @GET("movie/{id}?api_key=c14e24f2d5dbc36cecb8a98e82a9a3d6")
     Call<MovieDetail> getMovieDetail(@Path("id") int id);
 
-    @FormUrlEncoded
-    @POST("user/login")
-    Call<UserLogin> login(@Field("email") String email, @Field("password") String password);
-
 }

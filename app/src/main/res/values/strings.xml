@@ -22,4 +22,10 @@
 
     <!-- Log String -->
     <string name="logger_retrofit">RETROFIT LOGGER</string>
+
+    <!-- Toast -->
+    <string name="error_general">Terjadi kesalahan pada sistem</string>
+    <string name="error_empty_field">Email dan password harus diisi</string>
+    <string name="error_wrong_auth">Email atau password salah</string>
+
 </resources>

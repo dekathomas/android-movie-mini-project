@@ -26,14 +26,20 @@ public class UserLoginRepository {
     }
 
     public void login(String email, String password, requestCallback callback) {
-        retrofit.getAPI()
+        retrofit.getOneApi()
             .login(email, password)
             .enqueue(new Callback<UserLogin>() {
                 @Override
                 public void onResponse(Call<UserLogin> call, Response<UserLogin> response) {
+                    if (response.body() == null) {
+                        callback.onSuccess(null);
+                        return;
+                    }
+
                     if (response.body().getStatus()) {
                         callback.onSuccess(response.body().getUserDetail());
-                    } else {
+                    }
+                    else {
                         callback.onSuccess(null);
                     }
                 }
