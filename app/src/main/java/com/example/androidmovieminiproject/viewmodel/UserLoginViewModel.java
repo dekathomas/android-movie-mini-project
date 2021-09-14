@@ -1,11 +1,13 @@
 package com.example.androidmovieminiproject.viewmodel;
 
 import android.app.Application;
+import android.se.omapi.Session;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.androidmovieminiproject.R;
 import com.example.androidmovieminiproject.model.User.UserDetail;
 import com.example.androidmovieminiproject.model.User.UserLogin;
 import com.example.androidmovieminiproject.repository.UserLoginRepository;
@@ -36,9 +38,17 @@ public class UserLoginViewModel extends AndroidViewModel {
 
             @Override
             public void onFailed(String message) {
-                AlertDialog.error(getApplication(), "Terjadi kesalahan dalam sistem");
+                AlertDialog.error(getApplication(), String.valueOf(R.string.error_general));
                 userDetail.setValue(null);
             }
         });
+    }
+
+    public void logout() {
+        SessionManager.getInstance().endUserSession(getApplication());
+    }
+
+    public String getUsername() {
+        return SessionManager.getInstance() .getUserName(getApplication());
     }
 }
