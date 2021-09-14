@@ -1,18 +1,21 @@
 package com.example.androidmovieminiproject.viewmodel;
 
+
 import android.app.Application;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.androidmovieminiproject.R;
 import com.example.androidmovieminiproject.model.Home.HomeDetail;
 import com.example.androidmovieminiproject.repository.HomeRepository;
+import com.example.androidmovieminiproject.utility.AlertDialog;
 
 import java.util.List;
 
-public class HomeViewModel {
-    private HomeRepository homeRepository;
+public class HomeViewModel extends AndroidViewModel {
+    private final HomeRepository homeRepository;
     public MutableLiveData<List<HomeDetail>> movieList;
 
     public HomeViewModel(@NonNull Application application) {
@@ -26,7 +29,7 @@ public class HomeViewModel {
             @Override
             public void onSuccess(List<HomeDetail> movieDetailList) {
                 if (movieDetailList.size() != 0) {
-                    movieList.setValue(moveDetailList);
+                    movieList.setValue(movieDetailList);
                 }
                 else {
                     movieList.setValue(null);

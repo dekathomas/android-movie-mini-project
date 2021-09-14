@@ -15,8 +15,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UserLoginRepository {
-    private RetrofitService retrofit;
-    private UserDetailDao userDetailDao;
+    private final RetrofitService retrofit;
+    private final UserDetailDao userDetailDao;
     private LiveData<UserDetail> userDetailLiveData;
 
     public UserLoginRepository(Application application) {

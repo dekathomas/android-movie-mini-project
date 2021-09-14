@@ -17,7 +17,7 @@ import com.example.androidmovieminiproject.model.TV.TvDetail;
 import java.util.List;
 
 public class TvAdapter extends RecyclerView.Adapter<TvAdapter.ViewHolder> {
-    private List<TvDetail> tvList;
+    private final List<TvDetail> tvList;
 
     public TvAdapter(List<TvDetail> tvList) {
         this.tvList = tvList;

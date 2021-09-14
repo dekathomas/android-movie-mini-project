@@ -13,9 +13,9 @@ import java.util.List;
 public interface TvDao {
 
     @Query("SELECT * FROM tv_detail")
-    public LiveData<List<TvDetail>> getPopularList();
+    LiveData<List<TvDetail>> getPopularList();
 
     @Insert
-    public void insert(TvDetail tvDetail);
+    void insert(TvDetail tvDetail);
 
 }

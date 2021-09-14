@@ -13,7 +13,7 @@ import com.example.androidmovieminiproject.model.Movie.MovieDetail;
 import com.example.androidmovieminiproject.repository.MovieDetailRepository;
 
 public class MovieDetailViewModel extends AndroidViewModel {
-    private MovieDetailRepository repository;
+    private final MovieDetailRepository repository;
     private MutableLiveData<MovieDetail> movieDetailLiveData;
 
     public MovieDetailViewModel(@NonNull Application application) {

@@ -14,9 +14,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MovieDetailRepository {
-    private MovieDao movieDao;
+    private final MovieDao movieDao;
     private LiveData<MovieDetail> movieDetail;
-    private RetrofitService retrofit;
+    private final RetrofitService retrofit;
 
     public MovieDetailRepository(Application application) {
         AppDatabase database = AppDatabase.getInstance(application);

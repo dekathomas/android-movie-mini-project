@@ -34,7 +34,7 @@ public class MainActivity extends BaseActivity {
         bottomMenu.setOnNavigationItemSelectedListener(navListener);
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+    private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {

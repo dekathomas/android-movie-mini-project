@@ -47,7 +47,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void initPopularRecylcerView() {
-        recyclerView = getActivity().findViewById(R.id.tvPopularRecyclerView);
+        recyclerView = getActivity().findViewById(R.id.homeFragment);
         GridLayoutManager gridLayoutManager =
                 new GridLayoutManager(getActivity().getApplicationContext(), 3);
 

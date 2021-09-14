@@ -19,11 +19,12 @@ import com.example.androidmovieminiproject.R;
 import com.example.androidmovieminiproject.model.Home.HomeDetail;
 import com.example.androidmovieminiproject.model.Movie.MovieDetail;
 import com.example.androidmovieminiproject.model.MovieModelClass;
+import com.example.androidmovieminiproject.database.ListAPI;
 
 import java.util.List;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
-    private List<HomeDetail> movieList;
+    private final List<HomeDetail> movieList;
 
     public HomeAdapter(List<HomeDetail> movieList) {
         this.movieList = movieList;

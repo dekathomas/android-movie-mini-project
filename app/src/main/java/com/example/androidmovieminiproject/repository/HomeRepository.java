@@ -3,8 +3,11 @@ package com.example.androidmovieminiproject.repository;
 import android.app.Application;
 
 import com.example.androidmovieminiproject.dao.HomeDao;
+import com.example.androidmovieminiproject.database.AppDatabase;
 import com.example.androidmovieminiproject.model.Home.HomeDetail;
 import com.example.androidmovieminiproject.model.Home.HomeMovieList;
+import com.example.androidmovieminiproject.api.RetrofitService;
+
 
 import java.util.List;
 
@@ -12,9 +15,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+
 public class HomeRepository {
 
-    private HomeDao homeDao;
+    private final HomeDao homeDao;
 
     public HomeRepository(Application application) {
         AppDatabase database = AppDatabase.getInstance(application);
@@ -26,11 +30,11 @@ public class HomeRepository {
 
         // Get data from API
         RetrofitService.getAPI()
-                .getTvList("popular", 1)
+                .getHomeMovies("popular", 1)
                 .enqueue(new Callback<HomeMovieList>() {
                     @Override
                     public void onResponse(Call<HomeMovieList> call, Response<HomeMovieList> response) {
-                        callback.onSuccess(response.body().getMovieList());
+                        callback.onSuccess(response.body().getHomeDetailList());
                     }
 
                     @Override

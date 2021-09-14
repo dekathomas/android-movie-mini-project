@@ -8,7 +8,7 @@ import androidx.lifecycle.AndroidViewModel;
 import com.example.androidmovieminiproject.api.RetrofitService;
 
 public class MovieModelClass extends AndroidViewModel {
-    private RetrofitService retrofitService;
+    private final RetrofitService retrofitService;
 
     public MovieModelClass(@NonNull Application application) {
         super(application);

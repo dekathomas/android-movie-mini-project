@@ -17,7 +17,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class TvRepository {
-    private TvDao tvDao;
+    private final TvDao tvDao;
 
     public TvRepository(Application application) {
         AppDatabase database = AppDatabase.getInstance(application);
