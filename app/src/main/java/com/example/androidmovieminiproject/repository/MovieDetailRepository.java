@@ -6,13 +6,12 @@ import androidx.lifecycle.LiveData;
 
 import com.example.androidmovieminiproject.api.RetrofitService;
 import com.example.androidmovieminiproject.dao.MovieDetailDao;
-import com.example.androidmovieminiproject.database.Database;
+import com.example.androidmovieminiproject.database.AppDatabase;
 import com.example.androidmovieminiproject.model.Movie.MovieDetail;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
 
 public class MovieDetailRepository {
     private MovieDetailDao movieDetailDao;
@@ -20,7 +19,7 @@ public class MovieDetailRepository {
     private RetrofitService retrofit;
 
     public MovieDetailRepository(Application application) {
-        Database database = Database.getInstance(application);
+        AppDatabase database = AppDatabase.getInstance(application);
         movieDetailDao = database.movieDetailDao();
         retrofit = new RetrofitService();
     }
@@ -48,7 +47,7 @@ public class MovieDetailRepository {
     }
 
     public void insert(MovieDetail movieDetail) {
-        Database.executorService.execute(new Runnable() {
+        AppDatabase.executorService.execute(new Runnable() {
             @Override
             public void run() {
                 movieDetailDao.insert(movieDetail);
@@ -57,7 +56,7 @@ public class MovieDetailRepository {
     }
 
     public void update(MovieDetail movieDetail) {
-        Database.executorService.execute(new Runnable() {
+        AppDatabase.executorService.execute(new Runnable() {
             @Override
             public void run() {
                 movieDetailDao.update(movieDetail);
@@ -66,7 +65,7 @@ public class MovieDetailRepository {
     }
 
     public void delete(MovieDetail movieDetail) {
-        Database.executorService.execute(new Runnable() {
+        AppDatabase.executorService.execute(new Runnable() {
             @Override
             public void run() {
                 movieDetailDao.delete(movieDetail);

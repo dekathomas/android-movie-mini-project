@@ -21,7 +21,7 @@ public class MovieDetailViewModel extends AndroidViewModel {
         repository = new MovieDetailRepository(application);
     }
 
-    public LiveData<MovieDetail> findById(int id) {
+    public MutableLiveData<MovieDetail> findById(int id) {
         repository.findById(id, new MovieDetailRepository.requestCallback() {
             @Override
             public void onSuccess(MovieDetail movieDetail) {
