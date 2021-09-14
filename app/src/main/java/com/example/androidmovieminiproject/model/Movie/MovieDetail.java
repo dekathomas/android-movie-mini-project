@@ -49,6 +49,5 @@ public class MovieDetail {
     private String description;
 
     /*private List<RecommendationMovie> recommendationMovies;
-
     private List<RecommendationMovie> similarMovies;*/
 }

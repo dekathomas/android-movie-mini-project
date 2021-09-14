@@ -15,8 +15,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitService {
-
-    public TmdbApi tmdbApi;
+    public static TmdbApi tmdbApi;
     public OneApi oneApi;
 
     public RetrofitService() {
@@ -54,7 +53,7 @@ public class RetrofitService {
                 .create(OneApi.class);
     }
 
-    public TmdbApi getAPI() {
+    public static TmdbApi getAPI() {
         return tmdbApi;
     }
 
