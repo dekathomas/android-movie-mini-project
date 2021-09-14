@@ -6,6 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.example.androidmovieminiproject.dao.HomeDao;
 import com.example.androidmovieminiproject.dao.MovieDao;
 import com.example.androidmovieminiproject.dao.TvDao;
 import com.example.androidmovieminiproject.dao.UserDetailDao;
@@ -26,6 +27,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract MovieDao movieDetailDao();
     public abstract UserDetailDao userDetailDao();
     public abstract TvDao tvDao();
+    public abstract HomeDao homeDao();
 
     public static final ExecutorService executorService =
             Executors.newFixedThreadPool(THREAD_INSTANCE);

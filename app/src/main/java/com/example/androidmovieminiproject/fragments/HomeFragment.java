@@ -1,54 +1,67 @@
 package com.example.androidmovieminiproject.fragments;
 
-import android.os.AsyncTask;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidmovieminiproject.R;
-import com.example.androidmovieminiproject.adapters.Adaptery;
-import com.example.androidmovieminiproject.adapters.MovieClickableCallback;
-import com.example.androidmovieminiproject.api.RetrofitService;
-import com.example.androidmovieminiproject.api.TmdbApi;
-import com.example.androidmovieminiproject.database.ListAPI;
-import com.example.androidmovieminiproject.model.Movie.MovieDetail;
-import com.example.androidmovieminiproject.model.MovieModelClass;
-import com.example.androidmovieminiproject.model.MovieOverview;
-import com.example.androidmovieminiproject.repository.MovieDetailRepository;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.gson.Gson;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import com.example.androidmovieminiproject.adapters.HomeAdapter;
+import com.example.androidmovieminiproject.viewmodel.HomeViewModel;
+import com.example.androidmovieminiproject.utility.LoadingDialog;
 
 public class HomeFragment extends Fragment {
 
+
+    private RecyclerView recyclerView;
+    private HomeAdapter homeAdapter;
+    private HomeViewModel homeViewModel;
+    private LoadingDialog loading;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_tv, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        loading = new LoadingDialog(getActivity());
+        loading.show();
+
+        initViewModel();
+        initPopularRecylcerView();
+    }
+
+    private void initViewModel() {
+        homeViewModel = new ViewModelProvider(getActivity()).get(HomeViewModel.class);
+        homeViewModel.getMovieList();
+    }
+
+    private void initPopularRecylcerView() {
+        recyclerView = getActivity().findViewById(R.id.tvPopularRecyclerView);
+        GridLayoutManager gridLayoutManager =
+                new GridLayoutManager(getActivity().getApplicationContext(), 3);
+
+        homeViewModel.movieList.observe(getActivity(), tvDetails -> {
+            homeAdapter = new HomeAdapter(homeViewModel.movieList.getValue());
+            recyclerView.setAdapter(homeAdapter);
+            recyclerView.setLayoutManager(gridLayoutManager);
+            homeAdapter.notifyDataSetChanged();
+            loading.hide();
+        });
+    }
+}
+
+/*
 
     private MovieModelClass movieModelClass;
     private RetrofitService retrofitService;
@@ -62,7 +75,7 @@ public class HomeFragment extends Fragment {
         }
     };
 
-    public Adaptery adaptery = new Adaptery(movieClickableCallback);
+    public HomeAdapter homeAdapter = new HomeAdapter(movieClickableCallback);
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -83,7 +96,7 @@ public class HomeFragment extends Fragment {
                 .enqueue(new Callback<List<MovieDetail>>() {
                     @Override
                     public void onResponse(Call<List<MovieDetail>> call, Response<List<MovieDetail>> response) {
-                        adaptery.submitList(response.body());
+                        homeAdapter.submitList(response.body());
                     }
                     @Override
                     public void onFailure(Call<List<MovieDetail>> call, Throwable t) {
