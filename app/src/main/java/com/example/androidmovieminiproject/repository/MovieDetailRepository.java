@@ -1,33 +1,42 @@
 package com.example.androidmovieminiproject.repository;
 
 import android.app.Application;
+import android.graphics.Movie;
 
 import androidx.lifecycle.LiveData;
 
 import com.example.androidmovieminiproject.api.RetrofitService;
 import com.example.androidmovieminiproject.dao.MovieDao;
+import com.example.androidmovieminiproject.dao.TvDao;
 import com.example.androidmovieminiproject.database.AppDatabase;
 import com.example.androidmovieminiproject.model.Movie.MovieDetail;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import com.example.androidmovieminiproject.model.TV.TvDetail;
 
 public class MovieDetailRepository {
-    private final MovieDao movieDao;
+    private MovieDao movieDao;
+    private TvDao tvDao;
     private LiveData<MovieDetail> movieDetail;
-    private final RetrofitService retrofit;
+    private LiveData<TvDetail> tvDetail;
+    private RetrofitService retrofit;
 
     public MovieDetailRepository(Application application) {
         AppDatabase database = AppDatabase.getInstance(application);
         movieDao = database.movieDetailDao();
+        tvDao = database.tvDao();
         retrofit = new RetrofitService();
     }
 
-    public void findById(int id, requestCallback callback) {
+    private LiveData<MovieDetail> getMovieDetail(int id, requestCallback callback) {
+        // Only get data from DB
         movieDetail = movieDao.findById(id);
 
         if (movieDetail.getValue() == null) {
+            return null;
+        }
+
+        return movieDetail;
+
+        /*if (movieDetail.getValue() == null) {
             retrofit.getAPI()
                     .getMovieDetail(566525)
                     .enqueue(new Callback<MovieDetail>() {
@@ -43,38 +52,17 @@ public class MovieDetailRepository {
                     });
         } else {
             callback.onSuccess(movieDetail.getValue());
-        }
+        }*/
     }
 
-    public void insert(MovieDetail movieDetail) {
-        AppDatabase.executorService.execute(new Runnable() {
-            @Override
-            public void run() {
-                movieDao.insert(movieDetail);
-            }
-        });
-    }
-
-    public void update(MovieDetail movieDetail) {
-        AppDatabase.executorService.execute(new Runnable() {
-            @Override
-            public void run() {
-                movieDao.update(movieDetail);
-            }
-        });
-    }
-
-    public void delete(MovieDetail movieDetail) {
-        AppDatabase.executorService.execute(new Runnable() {
-            @Override
-            public void run() {
-                movieDao.delete(movieDetail);
-            }
-        });
+    public LiveData<TvDetail> getTvDetailById(int id) {
+        return tvDao.findTvDetailById(id);
     }
 
     public interface requestCallback {
-        void onSuccess(MovieDetail movieDetail);
+        void onSuccessTv(LiveData<TvDetail> tvDetail);
+        void onSuccessMovie(MovieDetail movieDetail);
         void onFailed(String message);
+
     }
 }

@@ -1,16 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/favouriteFragment"
+<ScrollView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <TextView
+    android:background="@color/primary">
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="WatchLaterPage"
-        android:gravity="center"
-        android:textColor="#FFF"/>
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/favouriteText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/favourite_title"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            app:layout_constraintBaseline_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:id="@+id/emptyFavourite"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/favouriteText"
+            android:layout_marginTop="200dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="@string/empty_favourite"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto"
+                android:text="@string/empty_suggestion_favourite"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/favouriteEmptyButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="@color/primary"
+                android:text="@string/go_to_movie"
+                android:textAllCaps="false"
+                app:rippleColor="@color/primary"
+                android:drawableEnd="@drawable/ic_movie"/>
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/favouriteRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="@id/favouriteText"
+            tools:listitem="@layout/film_search_detail"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
