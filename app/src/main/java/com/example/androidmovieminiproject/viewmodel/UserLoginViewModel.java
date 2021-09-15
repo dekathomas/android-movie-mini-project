@@ -46,6 +46,7 @@ public class UserLoginViewModel extends AndroidViewModel {
 
     public void logout() {
         SessionManager.getInstance().endUserSession(getApplication());
+        repository.deleteAllTable();
     }
 
     public String getUsername() {
