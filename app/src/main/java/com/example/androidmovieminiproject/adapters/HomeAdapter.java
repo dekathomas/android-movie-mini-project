@@ -20,14 +20,17 @@ import com.example.androidmovieminiproject.model.Home.HomeDetail;
 import com.example.androidmovieminiproject.model.Movie.MovieDetail;
 import com.example.androidmovieminiproject.model.MovieModelClass;
 import com.example.androidmovieminiproject.database.ListAPI;
+import com.example.androidmovieminiproject.utility.RecyclerViewClick;
 
 import java.util.List;
 
 public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
     private final List<HomeDetail> movieList;
+    private RecyclerViewClick listener;
 
-    public HomeAdapter(List<HomeDetail> movieList) {
+    public HomeAdapter(List<HomeDetail> movieList, RecyclerViewClick listener) {
         this.movieList = movieList;
+        this.listener = listener;
     }
 
     @NonNull
@@ -63,7 +66,14 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageView);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    listener.onItemClick(getAbsoluteAdapterPosition());
+                }
+            });
         }
+
     }
 
 }

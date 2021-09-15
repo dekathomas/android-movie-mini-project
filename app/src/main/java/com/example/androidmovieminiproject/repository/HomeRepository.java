@@ -7,6 +7,7 @@ import com.example.androidmovieminiproject.database.AppDatabase;
 import com.example.androidmovieminiproject.model.Home.HomeDetail;
 import com.example.androidmovieminiproject.model.Home.HomeMovieList;
 import com.example.androidmovieminiproject.api.RetrofitService;
+import com.example.androidmovieminiproject.model.TV.TvDetail;
 
 
 import java.util.List;
@@ -38,6 +39,15 @@ public class HomeRepository {
                     callback.onFailed(t.getMessage());
                 }
             });
+    }
+
+    public void insertHomeDetail(HomeDetail homeDetail) {
+        AppDatabase.executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                homeDao.insert(homeDetail);
+            }
+        });
     }
 
     public interface requestCallback {

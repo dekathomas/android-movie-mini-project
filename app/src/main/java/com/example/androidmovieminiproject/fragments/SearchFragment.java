@@ -30,8 +30,8 @@ public class SearchFragment extends Fragment {
         View root = inflater.inflate(R.layout.activity_search, viewGroup, false);
         RecyclerView recyclerView = root.findViewById(R.id.filmSearchRecylerView);
 
-        HomeAdapter homeAdapter = new HomeAdapter();
-        recyclerView.setAdapter(homeAdapter);
+//        HomeAdapter homeAdapter = new HomeAdapter();
+//        recyclerView.setAdapter(homeAdapter);
 
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
