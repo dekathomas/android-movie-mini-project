@@ -22,8 +22,8 @@ public interface TmdbApi {
 
     @GET("movie/{category}?api_key=c14e24f2d5dbc36cecb8a98e82a9a3d6")
     Call<HomeMovieList> getHomeMovies(
-            @Path("category") String sCategory,
-            @Query("page") int sPage
+            @Path("category") String sCategory
+//            ,@Query("page") int sPage
     );
 
     @GET("tv/{category}?api_key=c14e24f2d5dbc36cecb8a98e82a9a3d6")

@@ -7,6 +7,8 @@ import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Entity(tableName = "home_detail")
@@ -26,14 +28,6 @@ public class HomeDetail {
     @SerializedName("name")
     private String name;
 
-    @SerializedName("number_of_episodes")
-    @ColumnInfo(name = "number_of_episodes")
-    private Integer numberOfEpisodes;
-
-    @SerializedName("number_of_seasons")
-    @ColumnInfo(name = "number_of_seasons")
-    private Integer numberOfSeasons;
-
     @SerializedName("overview")
     private String overview;
 
@@ -44,4 +38,28 @@ public class HomeDetail {
     @SerializedName("vote_average")
     @ColumnInfo(name = "vote_average")
     private Double voteAverage;
+
+    @SerializedName("adult")
+    public Boolean adult;
+
+    @SerializedName("original_language")
+    public String originalLanguage;
+
+    @SerializedName("original_title")
+    public String originalTitle;
+
+    @SerializedName("popularity")
+    public Double popularity;
+
+    @SerializedName("release_date")
+    public String releaseDate;
+
+    @SerializedName("title")
+    public String title;
+
+    @SerializedName("video")
+    public Boolean video;
+
+    @SerializedName("vote_count")
+    public Integer voteCount;
 }

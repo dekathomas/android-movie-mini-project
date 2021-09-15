@@ -30,7 +30,7 @@ public class HomeRepository {
 
         // Get data from API
         RetrofitService.getAPI()
-                .getHomeMovies("popular", 1)
+                .getHomeMovies("popular")
                 .enqueue(new Callback<HomeMovieList>() {
                     @Override
                     public void onResponse(Call<HomeMovieList> call, Response<HomeMovieList> response) {

@@ -28,7 +28,7 @@ public class HomeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_tv, container, false);
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
     @Override
@@ -47,11 +47,11 @@ public class HomeFragment extends Fragment {
     }
 
     private void initPopularRecylcerView() {
-        recyclerView = getActivity().findViewById(R.id.homeFragment);
+        recyclerView = getActivity().findViewById(R.id.homeRecyclerView);
         GridLayoutManager gridLayoutManager =
                 new GridLayoutManager(getActivity().getApplicationContext(), 3);
 
-        homeViewModel.movieList.observe(getActivity(), tvDetails -> {
+        homeViewModel.movieList.observe(getActivity(), homeDetails -> {
             homeAdapter = new HomeAdapter(homeViewModel.movieList.getValue());
             recyclerView.setAdapter(homeAdapter);
             recyclerView.setLayoutManager(gridLayoutManager);
