@@ -1,16 +1,18 @@
 <resources>
     <string name="app_name">MOVAP</string>
 
+    <!-- Menu -->
     <string name="first_menu">Movie</string>
     <string name="second_menu">TV</string>
     <string name="third_menu">Favourite</string>
     <string name="fourth_menu">Profile</string>
 
+    <!-- Menu Title -->
     <string name="popular_movie">Popular Movies</string>
     <string name="ongoing_movie">Ongoing Movies</string>
-
     <string name="popular_tv">Popular TV</string>
     <string name="ongoing_tv">Ongoing TV</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
@@ -20,6 +22,12 @@
     <string name="detail_website">Homepage</string>
     <string name="detail_imdb">IMDB</string>
 
+    <!-- Favourite Page -->
+    <string name="favourite_title">Favourite</string>
+    <string name="empty_favourite">You do not have favourites</string>
+    <string name="empty_suggestion_favourite">Go check our movie list</string>
+    <string name="go_to_movie">Go To Movie Page</string>
+
     <!-- Log String -->
     <string name="logger_retrofit">RETROFIT LOGGER</string>
 
@@ -27,5 +35,9 @@
     <string name="error_general">Terjadi kesalahan pada sistem</string>
     <string name="error_empty_field">Email dan password harus diisi</string>
     <string name="error_wrong_auth">Email atau password salah</string>
+
+    <!-- Intent -->
+    <string name="detail_item_id">Detail Item Id</string>
+    <string name="detail_item_type">Detail Item Type</string>
 
 </resources>

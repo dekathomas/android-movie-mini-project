@@ -1,193 +1,276 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.DetailMovieActivity"
-    android:background="@color/primary">
+    android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/movieDetailBackdrop"
+        android:layout_height="match_parent"
+        tools:context=".activities.DetailMovieActivity"
+        android:background="@color/primary">
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="235dp"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="0dp"
-            android:src="@drawable/background" />
+            android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/movieDetailBackdrop"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="25dp">
+            <ImageView
+                android:id="@+id/movieDetailBackdrop"
+                android:layout_width="match_parent"
+                android:layout_height="235dp"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="0dp"
+                android:src="@drawable/background" />
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/movieDetailBackdrop"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="35dp">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     tools:layout_editor_absoluteX="1dp"
                     tools:layout_editor_absoluteY="236dp">
+
                     <TextView
                         android:id="@+id/movieDetailName"
-                        android:layout_width="300sp"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/roboto_bold"
-                        android:textSize="24dp"
-                        android:text="Movie Name Movie Name Movie Name" />
-                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <TextView
-                            android:id="@+id/movieDetailReleaseDate"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/disabled"
-                            android:fontFamily="@font/roboto"
-                            android:textSize="14dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:text="23 Januari 2021" />
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="Movie Name Movie Name Movie Name"
+                        android:textColor="@color/white"
+                        android:textSize="24dp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="10dp"/>
+
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="3"
+                    android:rowCount="1">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_columnWeight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/disabled"
-                            android:layout_gravity="center"
-                            android:layout_marginRight="5dp"
-                            android:layout_marginLeft="5dp"
-                            android:text="|"/>
+                            android:fontFamily="@font/roboto"
+                            android:textSize="14sp"
+                            android:text="Language" />
                         <TextView
-                            android:id="@+id/movieDetailGenre"
-                            android:layout_width="match_parent"
+                            android:id="@+id/movieDetailLanguage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/roboto"
+                            android:textSize="18sp"
+                            android:text="en" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_columnWeight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/disabled"
                             android:fontFamily="@font/roboto"
-                            android:textSize="14dp"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginBottom="5dp"
-                            android:text="Animasi" />
+                            android:textSize="14sp"
+                            android:text="Popularity" />
+                        <TextView
+                            android:id="@+id/movieDetailPopularity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/roboto"
+                            android:textSize="18sp"
+                            android:text="1000" />
                     </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_columnWeight="1"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/disabled"
+                            android:fontFamily="@font/roboto"
+                            android:textSize="14sp"
+                            android:text="Rating" />
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:id="@+id/movieDetailRating"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/white"
+                                android:fontFamily="@font/roboto"
+                                android:textSize="18sp"
+                                android:text="Rating" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text=" / "
+                                android:textColor="@color/white"
+                                android:textSize="18sp"/>
+                            <TextView
+                                android:id="@+id/movieDetailVoteCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="count"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </GridLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/white"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="15dp"/>
+<!--    TODO ini mungkin gaada karna di list gaada urlnya,
+kalau cukup waktu coba tanya mentor bisa pake detail gak-->
+                <!--<LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="25dp"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/homepageButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#24253C"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/detail_website"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+                    <Button
+                        android:id="@+id/imdbButton"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#24253C"
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/detail_imdb"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="12sp" />
+                </LinearLayout>-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
                     <TextView
-                        android:id="@+id/movieDetailRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Description"
+                        android:fontFamily="@font/roboto_bold"
+                        android:textSize="16dp"
+                        android:textColor="@color/white"/>
+                    <TextView
+                        android:id="@+id/movieDetailDescription"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
+                        android:text="Lorem ipsum dolor sit amet"
                         android:fontFamily="@font/roboto"
-                        android:textSize="14dp"
-                        android:text="8.6" />
+                        android:textColor="@color/white"
+                        android:layout_marginTop="5dp"/>
                 </LinearLayout>
 
-                <ToggleButton
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentEnd="true"
-                    android:background="@drawable/favourite_toogle_selector"
-                    android:textOff=""
-                    android:textOn="" />
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                android:layout_marginBottom="25dp"
-                android:orientation="horizontal">
-
-                <Button
-                    android:id="@+id/homepageButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#24253C"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/detail_website"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-                <Button
-                    android:id="@+id/imdbButton"
-                    android:layout_marginLeft="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="#24253C"
-                    android:fontFamily="@font/roboto"
-                    android:text="@string/detail_imdb"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Description"
-                    android:fontFamily="@font/roboto_bold"
-                    android:textSize="16dp"
-                    android:textColor="@color/white"/>
-                <TextView
-                    android:id="@+id/movieDetailDescription"
+<!--                TODO kalau waktu cukup, gaskan-->
+                <!--<LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Lorem ipsum dolor sit amet"
-                    android:fontFamily="@font/roboto"
-                    android:textColor="@color/white"
-                    android:layout_marginTop="5dp"/>
-            </LinearLayout>
+                    android:orientation="vertical"
+                    android:layout_marginTop="30dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/detail_recommendation"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/roboto_bold"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/movieDetailRecommendationRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="30dp">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/detail_recommendation"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="5dp"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/roboto_bold"/>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/movieDetailRecommendationRecyclerView"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginTop="30dp">
-                <TextView
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/detail_similar"
-                    android:textSize="16sp"
-                    android:layout_marginBottom="5dp"
-                    android:textColor="@color/white"
-                    android:fontFamily="@font/roboto_bold"/>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/movieDetailSimilarRecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:orientation="vertical"
+                    android:layout_marginTop="30dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/detail_similar"
+                        android:textSize="16sp"
+                        android:layout_marginBottom="5dp"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/roboto_bold"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/movieDetailSimilarRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>-->
             </LinearLayout>
-        </LinearLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+            <include
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="-25dp"
+                app:layout_constraintBottom_toBottomOf="@+id/movieDetailBackdrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                layout="@layout/component_favourite_toggle"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+<!--    TODO kalau sempet waktu cari tau bisa back gmna-->
+    <!--<RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include
+            layout="@layout/component_button_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>-->
+</androidx.constraintlayout.widget.ConstraintLayout>
+

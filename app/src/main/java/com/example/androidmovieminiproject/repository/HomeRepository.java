@@ -15,9 +15,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
 public class HomeRepository {
-
     private final HomeDao homeDao;
 
     public HomeRepository(Application application) {
@@ -26,22 +24,20 @@ public class HomeRepository {
     }
 
     public void getMovieList(requestCallback callback) {
-        // Get data from db
+        RetrofitService retrofitService = new RetrofitService();
+        retrofitService.getAPI()
+            .getHomeMovies("popular")
+            .enqueue(new Callback<HomeMovieList>() {
+                @Override
+                public void onResponse(Call<HomeMovieList> call, Response<HomeMovieList> response) {
+                    callback.onSuccess(response.body().getHomeDetailList());
+                }
 
-        // Get data from API
-        RetrofitService.getAPI()
-                .getHomeMovies("popular")
-                .enqueue(new Callback<HomeMovieList>() {
-                    @Override
-                    public void onResponse(Call<HomeMovieList> call, Response<HomeMovieList> response) {
-                        callback.onSuccess(response.body().getHomeDetailList());
-                    }
-
-                    @Override
-                    public void onFailure(Call<HomeMovieList> call, Throwable t) {
-                        callback.onFailed(t.getMessage());
-                    }
-                });
+                @Override
+                public void onFailure(Call<HomeMovieList> call, Throwable t) {
+                    callback.onFailed(t.getMessage());
+                }
+            });
     }
 
     public interface requestCallback {
