@@ -1,5 +1,6 @@
 package com.example.androidmovieminiproject.adapters;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,15 +16,21 @@ import com.example.androidmovieminiproject.database.ListAPI;
 import com.example.androidmovieminiproject.model.TV.TvDetail;
 import com.example.androidmovieminiproject.utility.RecyclerViewClick;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class TvAdapter extends RecyclerView.Adapter<TvAdapter.ViewHolder> {
     private List<TvDetail> tvList;
     private RecyclerViewClick listener;
+    private ArrayList<TvDetail> tvListCopy;
 
     public TvAdapter(List<TvDetail> tvList, RecyclerViewClick listener) {
         this.tvList = tvList;
+        this.tvListCopy = new ArrayList<>();
+        tvListCopy.addAll(tvList);
         this.listener = listener;
+
     }
 
     @NonNull
@@ -67,6 +74,23 @@ public class TvAdapter extends RecyclerView.Adapter<TvAdapter.ViewHolder> {
                 }
             });
         }
+    }
+
+    public void filter(CharSequence charSequence){
+        ArrayList<TvDetail> tempList= new ArrayList<>();
+        if (!TextUtils.isEmpty(charSequence)){
+            for (TvDetail tvDetail : tvList){
+                if(tvDetail.getName().toLowerCase().contains(charSequence)){
+                    tempList.add(tvDetail);
+                }
+            }
+        } else {
+            tempList.addAll(tvListCopy);
+        }
+        tvList.clear();
+        tvList.addAll(tempList);
+        notifyDataSetChanged();
+        tempList.clear();
     }
 
 }

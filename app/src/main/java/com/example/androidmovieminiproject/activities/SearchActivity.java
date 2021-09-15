@@ -6,17 +6,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.androidmovieminiproject.R;
+import com.example.androidmovieminiproject.adapters.TvAdapter;
+import com.example.androidmovieminiproject.model.TV.TvDetail;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class SearchActivity extends BaseActivity {
     private EditText inputSearchText;
     private ImageView clearSearch;
     private ImageView backButton;
     private String searchType;
+    private TvAdapter tvAdapter;
+    private List<TvDetail> tvList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +61,7 @@ public class SearchActivity extends BaseActivity {
         }
     }
 
-    private void setEventListener() {
+    public void setEventListener() {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,7 +77,9 @@ public class SearchActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                String textSearch = inputSearchText.getText().toString();
+                Log.d("TAGhere", textSearch);
+                tvAdapter.filter(charSequence);
             }
 
             @Override
@@ -75,6 +88,7 @@ public class SearchActivity extends BaseActivity {
             }
         });
     }
+
 
     @Override
     public void onBackPressed() {
