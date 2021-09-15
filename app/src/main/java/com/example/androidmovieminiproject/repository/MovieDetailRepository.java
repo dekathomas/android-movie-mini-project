@@ -29,7 +29,7 @@ public class MovieDetailRepository {
     private LiveData<MovieDetail> getMovieDetail(int id, requestCallback callback) {
         // Only get data from DB
         movieDetail = movieDao.findById(id);
-
+        // TODO check this one, i think its alway null
         if (movieDetail.getValue() == null) {
             return null;
         }

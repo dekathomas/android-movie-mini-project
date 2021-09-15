@@ -23,7 +23,7 @@ import java.util.concurrent.Executors;
 @Database(entities = {
         MovieDetail.class, UserDetail.class, TvDetail.class,
         Favourite.class, HomeDetail.class
-}, version = 3, exportSchema = false)
+}, version = 4, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     public static AppDatabase instance;
     private static final int THREAD_INSTANCE = 4;
