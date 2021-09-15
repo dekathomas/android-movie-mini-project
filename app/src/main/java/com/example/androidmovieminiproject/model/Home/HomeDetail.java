@@ -37,7 +37,7 @@ public class HomeDetail {
 
     @SerializedName("vote_average")
     @ColumnInfo(name = "vote_average")
-    private Double voteAverage;
+    private String voteAverage;
 
     @SerializedName("adult")
     public Boolean adult;
@@ -49,7 +49,7 @@ public class HomeDetail {
     public String originalTitle;
 
     @SerializedName("popularity")
-    public Double popularity;
+    public String popularity;
 
     @SerializedName("release_date")
     public String releaseDate;
@@ -61,5 +61,5 @@ public class HomeDetail {
     public Boolean video;
 
     @SerializedName("vote_count")
-    public Integer voteCount;
+    public String voteCount;
 }

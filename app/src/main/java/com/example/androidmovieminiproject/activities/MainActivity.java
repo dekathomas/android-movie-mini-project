@@ -42,7 +42,7 @@ public class MainActivity extends BaseActivity {
 
                     switch (item.getItemId()) {
                         case R.id.firstMenuButton:
-                            selectedFragment = new MovieFragment();
+                            selectedFragment = new HomeFragment();
                             break;
                         case R.id.secondMenuButton:
                             selectedFragment = new TvFragment();

@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.example.androidmovieminiproject.R;
 import com.example.androidmovieminiproject.database.ListAPI;
 import com.example.androidmovieminiproject.model.Favourite;
+import com.example.androidmovieminiproject.model.Home.HomeDetail;
 import com.example.androidmovieminiproject.model.Movie.MovieDetail;
 import com.example.androidmovieminiproject.model.TV.TvDetail;
 import com.example.androidmovieminiproject.utility.AlertDialog;
@@ -78,6 +79,8 @@ public class DetailMovieActivity extends BaseActivity {
 
         if (type.equalsIgnoreCase("tv")) {
             getTvDetail(id);
+        } else if (type.equalsIgnoreCase("home")) {
+            getHomeDetail(id);
         }
     }
 
@@ -91,6 +94,16 @@ public class DetailMovieActivity extends BaseActivity {
             });
     }
 
+    private void getHomeDetail(int id) {
+        viewModel.findHomeDetailById(id, "home")
+                .observe(this, homeDetail -> {
+                    if (homeDetail != null) {
+                        favourite = setFavouriteFromHomeDetail(homeDetail);
+                        setHomeDetail(homeDetail);
+                    }
+                });
+    }
+
     private Favourite setFavouriteFromTvDetail(TvDetail tvDetail) {
         Favourite favourite = new Favourite();
         favourite.setItemId(tvDetail.getId());
@@ -99,6 +112,17 @@ public class DetailMovieActivity extends BaseActivity {
         favourite.setPosterUrl(tvDetail.getPosterPath());
         favourite.setVoteAverage(tvDetail.getVoteAverage());
         favourite.setVoteCount(tvDetail.getVoteCount());
+        return favourite;
+    }
+
+    private Favourite setFavouriteFromHomeDetail(HomeDetail homeDetail) {
+        Favourite favourite = new Favourite();
+        favourite.setItemId(homeDetail.getId());
+        favourite.setBackdropUrl(homeDetail.getBackdropPath());
+        favourite.setName(homeDetail.getName());
+        favourite.setPosterUrl(homeDetail.getPosterPath());
+        favourite.setVoteAverage(homeDetail.getVoteAverage());
+        favourite.setVoteCount(homeDetail.getVoteCount());
         return favourite;
     }
 
@@ -123,6 +147,31 @@ public class DetailMovieActivity extends BaseActivity {
 
         loading.hide();
     }
+
+
+    private void setHomeDetail(HomeDetail homeDetail) {
+        String posterUrl = ListAPI.URL_ORIGINAL_IMAGE.concat(homeDetail.getBackdropPath());
+        Glide.with(this)
+                .load(posterUrl)
+                .centerCrop()
+                .error(R.drawable.default_image)
+                .placeholder(R.drawable.default_image)
+                .fallback(R.drawable.default_image)
+                .into(poster);
+
+        name.setText(homeDetail.getName());
+        language.setText(homeDetail.getOriginalLanguage());
+        popularity.setText(homeDetail.getPopularity());
+        voteAverage.setText(homeDetail.getVoteAverage());
+        voteCount.setText(homeDetail.getVoteCount());
+        overview.setText(homeDetail.getOverview());
+
+        checkIsFavourite();
+
+        loading.hide();
+    }
+
+
 
     private void checkIsFavourite() {
         favouriteViewModel.getAll()

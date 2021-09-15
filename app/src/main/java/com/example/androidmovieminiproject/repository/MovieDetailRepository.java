@@ -2,19 +2,23 @@ package com.example.androidmovieminiproject.repository;
 
 import android.app.Application;
 import android.graphics.Movie;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
 import com.example.androidmovieminiproject.api.RetrofitService;
+import com.example.androidmovieminiproject.dao.HomeDao;
 import com.example.androidmovieminiproject.dao.MovieDao;
 import com.example.androidmovieminiproject.dao.TvDao;
 import com.example.androidmovieminiproject.database.AppDatabase;
+import com.example.androidmovieminiproject.model.Home.HomeDetail;
 import com.example.androidmovieminiproject.model.Movie.MovieDetail;
 import com.example.androidmovieminiproject.model.TV.TvDetail;
 
 public class MovieDetailRepository {
     private MovieDao movieDao;
     private TvDao tvDao;
+    private HomeDao homeDao;
     private LiveData<MovieDetail> movieDetail;
     private LiveData<TvDetail> tvDetail;
     private RetrofitService retrofit;
@@ -57,6 +61,10 @@ public class MovieDetailRepository {
 
     public LiveData<TvDetail> getTvDetailById(int id) {
         return tvDao.findTvDetailById(id);
+    }
+
+    public LiveData<HomeDetail> getHomeDetailById(int id) {
+        return homeDao.findHomeDetailById(id);
     }
 
     public interface requestCallback {

@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.androidmovieminiproject.R;
 import com.example.androidmovieminiproject.model.Home.HomeDetail;
+import com.example.androidmovieminiproject.model.TV.TvDetail;
 import com.example.androidmovieminiproject.repository.HomeRepository;
 import com.example.androidmovieminiproject.utility.AlertDialog;
 
@@ -42,6 +43,18 @@ public class HomeViewModel extends AndroidViewModel {
                 movieList.setValue(null);
             }
         });
+    }
+
+    public HomeDetail getHome(int position) {
+        if (movieList.getValue().size() == 0) {
+            return null;
+        }
+
+        return movieList.getValue().get(position);
+    }
+
+    public void insertHomeDetail(HomeDetail homeDetail) {
+        homeRepository.insertHomeDetail(homeDetail);
     }
 
 }
