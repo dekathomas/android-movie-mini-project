@@ -31,7 +31,8 @@ public class TvRepository {
     }
 
     public void getAllPopularTv(requestCallback callback) {
-        RetrofitService.getAPI()
+        RetrofitService retrofitService = new RetrofitService();
+        retrofitService.getAPI()
             .getTvList("popular", 1)
             .enqueue(new Callback<TvPopularList>() {
                 @Override
