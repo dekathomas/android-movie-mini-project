@@ -16,25 +16,46 @@
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/backFromSearchButton"
-            android:layout_width="40dp"
-            android:layout_height="fill_parent"
+            android:id="@+id/searchBackPage"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
             android:backgroundTint="@color/primary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:srcCompat="@drawable/ic_arrow_back" />
 
-        <EditText
-            android:id="@+id/searchInput"
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/input_field_style"
-            android:drawableEnd="@drawable/ic_times"
-            android:hint="Search"
-            android:paddingRight="20dp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/disabled" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_weight="90"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/searchInput"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/input_field_style"
+                android:hint="@string/search_placeholder"
+                android:paddingLeft="20dp"
+                android:paddingRight="30dp"
+                android:textColor="@color/white"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:textColorHint="@color/disabled" />
+            <ImageButton
+                android:id="@+id/searchClearText"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/ic_times" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

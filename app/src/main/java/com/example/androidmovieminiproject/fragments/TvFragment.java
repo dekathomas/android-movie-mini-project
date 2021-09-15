@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -16,6 +17,7 @@ import android.view.ViewGroup;
 
 import com.example.androidmovieminiproject.R;
 import com.example.androidmovieminiproject.activities.DetailMovieActivity;
+import com.example.androidmovieminiproject.activities.SearchActivity;
 import com.example.androidmovieminiproject.adapters.TvAdapter;
 import com.example.androidmovieminiproject.model.TV.TvDetail;
 import com.example.androidmovieminiproject.utility.AlertDialog;
@@ -30,6 +32,7 @@ public class TvFragment extends Fragment implements RecyclerViewClick {
     private TvAdapter tvAdapter;
     private TvViewModel tvViewModel;
     private LoadingDialog loading;
+    private ConstraintLayout componentSearch;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -39,20 +42,27 @@ public class TvFragment extends Fragment implements RecyclerViewClick {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        loading = new LoadingDialog(getActivity());
-        loading.show();
 
+        initVariables();
         initViewModel();
         initPopularRecylcerView();
+        setSearchListener();
+    }
+
+    private void initVariables() {
+        componentSearch = getActivity().findViewById(R.id.componentSearchBox);
+        tvViewModel = new ViewModelProvider(getActivity()).get(TvViewModel.class);
+        recyclerView = getActivity().findViewById(R.id.tvPopularRecyclerView);
+        loading = new LoadingDialog(getActivity());
+
+        loading.show();
     }
 
     private void initViewModel() {
-        tvViewModel = new ViewModelProvider(getActivity()).get(TvViewModel.class);
         tvViewModel.getAllTvPopular();
     }
 
     private void initPopularRecylcerView() {
-        recyclerView = getActivity().findViewById(R.id.tvPopularRecyclerView);
         GridLayoutManager gridLayoutManager =
                 new GridLayoutManager(getActivity().getApplicationContext(), 3);
 
@@ -84,5 +94,16 @@ public class TvFragment extends Fragment implements RecyclerViewClick {
         intent.putExtra(String.valueOf(R.string.detail_item_id), tvId);
         intent.putExtra(String.valueOf(R.string.detail_item_type), "tv");
         startActivity(intent);
+    }
+
+    private void setSearchListener() {
+        componentSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), SearchActivity.class);
+                intent.putExtra(String.valueOf(R.string.search_type), "tv");
+                startActivity(intent);
+            }
+        });
     }
 }
