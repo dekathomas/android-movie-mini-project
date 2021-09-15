@@ -18,10 +18,4 @@ public interface MovieDao {
     @Insert
     public void insert(MovieDetail movieDetail);
 
-    @Update
-    public void update(MovieDetail movieDetail);
-
-    @Delete
-    public void delete(MovieDetail movieDetail);
-
 }

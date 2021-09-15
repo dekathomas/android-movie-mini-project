@@ -10,6 +10,7 @@ import com.example.androidmovieminiproject.database.AppDatabase;
 import com.example.androidmovieminiproject.model.TV.TvDetail;
 import com.example.androidmovieminiproject.model.TV.TvPopularList;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -24,10 +25,12 @@ public class TvRepository {
         tvDao = database.tvDao();
     }
 
-    public void getAllPopularTv(requestCallback callback) {
-        // Get data from db
+    public interface requestCallback {
+        void onSuccess(List<TvDetail> tvDetail);
+        void onFailed(String message);
+    }
 
-        // Get data from API
+    public void getAllPopularTv(requestCallback callback) {
         RetrofitService.getAPI()
             .getTvList("popular", 1)
             .enqueue(new Callback<TvPopularList>() {
@@ -43,8 +46,12 @@ public class TvRepository {
             });
     }
 
-    public interface requestCallback {
-        void onSuccess(List<TvDetail> tvDetail);
-        void onFailed(String message);
+    public void insertTvDetail(TvDetail tvDetail) {
+        AppDatabase.executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                tvDao.insert(tvDetail);
+            }
+        });
     }
 }

@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,17 +13,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.androidmovieminiproject.R;
 import com.example.androidmovieminiproject.database.ListAPI;
-import com.example.androidmovieminiproject.model.TV.TvDetail;
+import com.example.androidmovieminiproject.model.Favourite;
 import com.example.androidmovieminiproject.utility.RecyclerViewClick;
 
 import java.util.List;
 
-public class TvAdapter extends RecyclerView.Adapter<TvAdapter.ViewHolder> {
-    private List<TvDetail> tvList;
+public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.ViewHolder> {
+    private List<Favourite> favouriteList;
     private RecyclerViewClick listener;
 
-    public TvAdapter(List<TvDetail> tvList, RecyclerViewClick listener) {
-        this.tvList = tvList;
+    public FavouriteAdapter(List<Favourite> favouriteList, RecyclerViewClick listener) {
+        this.favouriteList = favouriteList;
         this.listener = listener;
     }
 
@@ -30,14 +31,14 @@ public class TvAdapter extends RecyclerView.Adapter<TvAdapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.film_detail, parent, false);
+                .inflate(R.layout.film_search_detail, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        TvDetail tvDetail = tvList.get(position);
-        String posterUrl = ListAPI.URL_ORIGINAL_IMAGE.concat(tvDetail.getPosterPath());
+        Favourite favourite = favouriteList.get(position);
+        String posterUrl = ListAPI.URL_ORIGINAL_IMAGE.concat(favourite.getPosterUrl());
 
         Glide.with(holder.itemView)
                 .load(posterUrl)
@@ -45,22 +46,36 @@ public class TvAdapter extends RecyclerView.Adapter<TvAdapter.ViewHolder> {
                 .error(R.drawable.default_image)
                 .placeholder(R.drawable.default_image)
                 .fallback(R.drawable.default_image)
-                .into(holder.imageView);
+                .into(holder.backdrop);
+
+        holder.name.setText(favourite.getName());
+        holder.voteAverage.setText(favourite.getVoteAverage());
+        holder.voteCount.setText(favourite.getVoteCount());
     }
 
     @Override
     public int getItemCount() {
-        return tvList.size();
+        return favouriteList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView imageView;
+        private ImageView backdrop;
+        private TextView name;
+        private TextView voteAverage;
+        private TextView voteCount;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imageView = itemView.findViewById(R.id.imageView);
+            backdrop = itemView.findViewById(R.id.searchMovieImage);
+            name = itemView.findViewById(R.id.searchMovieName);
+            voteAverage = itemView.findViewById(R.id.searchMovieVoteAverage);
+            voteCount = itemView.findViewById(R.id.searchMovieCount);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+            openDetailPage(itemView);
+        }
+
+        private void openDetailPage(View view) {
+            view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     listener.onItemClick(getAbsoluteAdapterPosition());
