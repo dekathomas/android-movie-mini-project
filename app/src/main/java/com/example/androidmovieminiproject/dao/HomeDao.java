@@ -12,8 +12,8 @@ import java.util.List;
 @Dao
 public interface HomeDao {
     @Query("SELECT * FROM home_detail")
-    LiveData<List<HomeDetail>> getMovieList();
+    public LiveData<List<HomeDetail>> getMovieList();
 
     @Insert
-    void insert(HomeDetail homeDetail);
+    public void insert(HomeDetail homeDetail);
 }
