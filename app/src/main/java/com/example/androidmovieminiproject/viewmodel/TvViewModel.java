@@ -16,7 +16,7 @@ import com.example.androidmovieminiproject.utility.RecyclerViewClick;
 import java.util.List;
 
 public class TvViewModel extends AndroidViewModel {
-    private TvRepository tvRepository;
+    private final TvRepository tvRepository;
     public MutableLiveData<List<TvDetail>> tvList;
 
     public TvViewModel(@NonNull Application application) {

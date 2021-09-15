@@ -13,9 +13,14 @@ import com.example.androidmovieminiproject.model.Movie.MovieDetail;
 public interface MovieDao {
 
     @Query("SELECT * FROM movie_detail WHERE id = :id")
-    public LiveData<MovieDetail> findById(int id);
+    LiveData<MovieDetail> findById(int id);
 
     @Insert
-    public void insert(MovieDetail movieDetail);
+    void insert(MovieDetail movieDetail);
 
+    @Update
+    void update(MovieDetail movieDetail);
+
+    @Delete
+    void delete(MovieDetail movieDetail);
 }

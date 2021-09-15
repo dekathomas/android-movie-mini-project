@@ -8,7 +8,7 @@ import android.view.LayoutInflater;
 import com.example.androidmovieminiproject.R;
 
 public class LoadingDialog {
-    private Activity activity;
+    private final Activity activity;
     private ProgressDialog dialog;
 
     public LoadingDialog(Activity activity) {

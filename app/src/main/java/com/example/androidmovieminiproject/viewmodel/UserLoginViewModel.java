@@ -15,7 +15,7 @@ import com.example.androidmovieminiproject.security.SessionManager;
 import com.example.androidmovieminiproject.utility.AlertDialog;
 
 public class UserLoginViewModel extends AndroidViewModel {
-    private UserLoginRepository repository;
+    private final UserLoginRepository repository;
     public MutableLiveData<UserDetail> userDetail = new MutableLiveData<>();
 
     public UserLoginViewModel(@NonNull Application application) {

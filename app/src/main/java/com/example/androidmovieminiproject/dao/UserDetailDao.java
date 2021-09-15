@@ -12,6 +12,6 @@ import com.example.androidmovieminiproject.model.User.UserDetail;
 public interface UserDetailDao {
 
     @Insert
-    public void insert(UserDetail userDetail);
+    void insert(UserDetail userDetail);
 
 }

@@ -6,6 +6,8 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.example.androidmovieminiproject.dao.HomeDao;
+import com.example.androidmovieminiproject.model.Home.HomeDetail;
 import com.example.androidmovieminiproject.dao.FavouriteDao;
 import com.example.androidmovieminiproject.dao.MovieDao;
 import com.example.androidmovieminiproject.dao.TvDao;
@@ -20,7 +22,7 @@ import java.util.concurrent.Executors;
 
 @Database(entities = {
         MovieDetail.class, UserDetail.class, TvDetail.class,
-        Favourite.class
+        Favourite.class, HomeDetail.class
 }, version = 3, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     public static AppDatabase instance;
@@ -29,6 +31,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract MovieDao movieDetailDao();
     public abstract UserDetailDao userDetailDao();
     public abstract TvDao tvDao();
+    public abstract HomeDao homeDao();
     public abstract FavouriteDao favouriteDao();
 
     public static final ExecutorService executorService =
