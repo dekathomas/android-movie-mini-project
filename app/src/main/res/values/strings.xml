@@ -39,5 +39,11 @@
     <!-- Intent -->
     <string name="detail_item_id">Detail Item Id</string>
     <string name="detail_item_type">Detail Item Type</string>
+    <string name="search_type">Search Type</string>
+
+    <!-- Search -->
+    <string name="search_placeholder">Search your favourite film</string>
+    <string name="search_placeholder_tv">Search your favourite TV series</string>
+    <string name="search_placeholder_movie">Search your favourite movie</string>
 
 </resources>

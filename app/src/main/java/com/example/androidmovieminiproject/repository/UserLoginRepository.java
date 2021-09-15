@@ -52,6 +52,15 @@ public class UserLoginRepository {
 
     }
 
+    public void deleteAllTable() {
+        AppDatabase.executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase.deleteALlTables();
+            }
+        });
+    }
+
     public interface requestCallback {
         void onSuccess(UserDetail userDetail);
         void onFailed(String message);
