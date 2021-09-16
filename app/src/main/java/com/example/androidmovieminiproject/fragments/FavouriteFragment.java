@@ -22,6 +22,7 @@ import com.example.androidmovieminiproject.model.Favourite;
 import com.example.androidmovieminiproject.utility.LoadingDialog;
 import com.example.androidmovieminiproject.utility.RecyclerViewClick;
 import com.example.androidmovieminiproject.viewmodel.FavouriteViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,10 +118,13 @@ public class FavouriteFragment extends Fragment implements RecyclerViewClick {
         favouriteEmptyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frameLayout, new MovieFragment())
-                .commitNow();
+                gotoMoviePage();
             }
         });
+    }
+
+    private void gotoMoviePage() {
+        BottomNavigationView bottomMenu = getActivity().findViewById(R.id.bottomMenu);
+        bottomMenu.setSelectedItemId(R.id.firstMenuButton);
     }
 }

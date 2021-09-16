@@ -16,7 +16,7 @@ import com.example.androidmovieminiproject.model.Favourite;
 import com.example.androidmovieminiproject.model.Movie.MovieDetail;
 import com.example.androidmovieminiproject.model.TV.TvDetail;
 import com.example.androidmovieminiproject.utility.LoadingDialog;
-import com.example.androidmovieminiproject.utility.Properties;
+import com.example.androidmovieminiproject.utility.AppProperties;
 import com.example.androidmovieminiproject.viewmodel.FavouriteViewModel;
 import com.example.androidmovieminiproject.viewmodel.FilmDetailViewModel;
 
@@ -109,7 +109,7 @@ public class DetailMovieActivity extends BaseActivity {
         favourite.setPosterUrl(tvDetail.getPosterPath());
         favourite.setVoteAverage(tvDetail.getVoteAverage());
         favourite.setVoteCount(tvDetail.getVoteCount());
-        favourite.setType(Properties.tv);
+        favourite.setType(AppProperties.tv);
         return favourite;
     }
 
@@ -121,7 +121,7 @@ public class DetailMovieActivity extends BaseActivity {
         favourite.setPosterUrl(movieDetail.getPosterPath());
         favourite.setVoteAverage(movieDetail.getVoteAverage());
         favourite.setVoteCount(movieDetail.getVoteCount());
-        favourite.setType(Properties.movie);
+        favourite.setType(AppProperties.movie);
         return favourite;
     }
 

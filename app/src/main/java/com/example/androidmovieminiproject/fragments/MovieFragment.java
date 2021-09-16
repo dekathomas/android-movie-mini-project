@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -16,8 +17,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidmovieminiproject.R;
 import com.example.androidmovieminiproject.activities.DetailMovieActivity;
+import com.example.androidmovieminiproject.activities.SearchActivity;
 import com.example.androidmovieminiproject.adapters.MovieAdapter;
 import com.example.androidmovieminiproject.model.Movie.MovieDetail;
+import com.example.androidmovieminiproject.utility.AppProperties;
 import com.example.androidmovieminiproject.viewmodel.MovieViewModel;
 import com.example.androidmovieminiproject.utility.LoadingDialog;
 import com.example.androidmovieminiproject.utility.RecyclerViewClick;
@@ -26,12 +29,12 @@ import java.util.List;
 
 public class MovieFragment extends Fragment implements RecyclerViewClick {
 
-
     private RecyclerView popularRecyclerView;
     private RecyclerView upcomingRecyclerView;
     private MovieAdapter movieAdapter;
     private MovieViewModel movieViewModel;
     private LoadingDialog loading;
+    private ConstraintLayout componentSearch;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -41,22 +44,30 @@ public class MovieFragment extends Fragment implements RecyclerViewClick {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        loading = new LoadingDialog(getActivity());
-        loading.show();
 
+        initVariables();
         initViewModel();
         initPopularRecylcerView();
         initUpcomingRecylcerView();
+        setSearchListener();
+    }
+
+    private void initVariables() {
+        loading = new LoadingDialog(getActivity());
+        movieViewModel = new ViewModelProvider(getActivity()).get(MovieViewModel.class);
+        popularRecyclerView = getActivity().findViewById(R.id.popularMovieRecyclerView);
+        upcomingRecyclerView = getActivity().findViewById(R.id.upcomingMovieRecyclerView);
+        componentSearch = getActivity().findViewById(R.id.componentSearchBox);
+
+        loading.show();
     }
 
     private void initViewModel() {
-        movieViewModel = new ViewModelProvider(getActivity()).get(MovieViewModel.class);
         movieViewModel.getPopularMovieList();
         movieViewModel.getUpcomingMovieList();
     }
 
     private void initPopularRecylcerView() {
-        popularRecyclerView = getActivity().findViewById(R.id.popularMovieRecyclerView);
         GridLayoutManager gridLayoutManager =
                 new GridLayoutManager(getActivity().getApplicationContext(), 3);
 
@@ -72,8 +83,6 @@ public class MovieFragment extends Fragment implements RecyclerViewClick {
     }
 
     private void initUpcomingRecylcerView() {
-        // TODO film di upcoming beda coi di list sama detail
-        upcomingRecyclerView = getActivity().findViewById(R.id.upcomingMovieRecyclerView);
         GridLayoutManager gridLayoutManager =
                 new GridLayoutManager(getActivity().getApplicationContext(), 3);
 
@@ -107,5 +116,16 @@ public class MovieFragment extends Fragment implements RecyclerViewClick {
         intent.putExtra(String.valueOf(R.string.detail_item_id), homeId);
         intent.putExtra(String.valueOf(R.string.detail_item_type), "movie");
         startActivity(intent);
+    }
+
+    private void setSearchListener() {
+        componentSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), SearchActivity.class);
+                intent.putExtra(String.valueOf(R.string.search_type), AppProperties.movie);
+                startActivity(intent);
+            }
+        });
     }
 }
