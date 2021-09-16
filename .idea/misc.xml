@@ -3,13 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/silve/Documents/AndroidStudioProjects/GIT/android-movie-mini-project/app/src/main/res/layout/activity_detail_movie.xml" value="0.1796875" />
         <entry key="..\:/Users/silve/Documents/AndroidStudioProjects/GIT/android-movie-mini-project/app/src/main/res/layout/activity_main.xml" value="0.25729166666666664" />
         <entry key="..\:/Users/silve/Documents/AndroidStudioProjects/GIT/android-movie-mini-project/app/src/main/res/layout/activity_search.xml" value="0.15677083333333333" />
         <entry key="..\:/Users/silve/Documents/AndroidStudioProjects/GIT/android-movie-mini-project/app/src/main/res/layout/film_detail.xml" value="0.25729166666666664" />
         <entry key="..\:/Users/silve/Documents/AndroidStudioProjects/GIT/android-movie-mini-project/app/src/main/res/layout/film_search_detail.xml" value="0.15677083333333333" />
+        <entry key="..\:/Users/silve/Documents/AndroidStudioProjects/GIT/android-movie-mini-project/app/src/main/res/layout/fragment_favourite.xml" value="0.1796875" />
         <entry key="..\:/Users/silve/Documents/AndroidStudioProjects/GIT/android-movie-mini-project/app/src/main/res/layout/fragment_home.xml" value="0.25729166666666664" />
         <entry key="..\:/Users/silve/Documents/AndroidStudioProjects/GIT/android-movie-mini-project/app/src/main/res/layout/fragment_movie.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/silve/Documents/AndroidStudioProjects/GIT/android-movie-mini-project/app/src/main/res/layout/fragment_tv.xml" value="0.21927083333333333" />
+<<<<<<< HEAD
+        <entry key="..\:/Users/silve/Documents/AndroidStudioProjects/GIT/android-movie-mini-project/app/src/main/res/layout/loading_dialog.xml" value="0.1796875" />
+=======
+>>>>>>> master
         <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/drawable-anydpi/ic_arrow_back_black.xml" value="0.2203125" />
         <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/drawable-anydpi/ic_heart.xml" value="0.2203125" />
         <entry key="..\:/android-training/android-movie-mini-project/app/src/main/res/drawable-anydpi/ic_movie.xml" value="0.2203125" />

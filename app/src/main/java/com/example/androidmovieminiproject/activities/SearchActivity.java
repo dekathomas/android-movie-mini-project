@@ -172,6 +172,7 @@ public class SearchActivity extends BaseActivity implements RecyclerViewClick {
             public boolean onQueryTextSubmit(String name) {
                 if (searchType.equals(AppProperties.tv)) {
 //                    tvAdapter.getFilter().filter(name);
+                    viewModel.searchTvByName(name);
                 } else if (searchType.equals(AppProperties.movie)) {
 //                    movieAdapter.getFilter().filter(name);
                     viewModel.searchMovieByName(name);
