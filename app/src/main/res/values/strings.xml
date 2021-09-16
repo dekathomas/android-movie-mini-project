@@ -47,12 +47,13 @@
     <string name="search_placeholder">Search your favourite film</string>
     <string name="search_placeholder_tv">Search your favourite TV series</string>
     <string name="search_placeholder_movie">Search your favourite movie</string>
+    <string name="search_empty">Sorry, movie you are searching for is empty</string>
+    <string name="search_empty_suggection">Please try another movie name</string>
 
     <!-- Information -->
     <string name="information_hello">Hello Fellas!</string>
     <string name="information_thank_you">Thank you for using our application! This application is built for project of our training activity. If you have some suggestions to make this application better, please contact us!</string>
     <string name="information_developer">Introduce our developer</string>
-
 
     <!-- Information -->
     <string name="profile_setting">Setting</string>

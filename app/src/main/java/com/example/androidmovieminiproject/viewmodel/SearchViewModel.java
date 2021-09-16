@@ -13,6 +13,7 @@ import com.example.androidmovieminiproject.repository.MovieRepository;
 import com.example.androidmovieminiproject.repository.TvRepository;
 import com.example.androidmovieminiproject.utility.AlertDialog;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SearchViewModel extends AndroidViewModel {
@@ -76,13 +77,13 @@ public class SearchViewModel extends AndroidViewModel {
     public void searchMovieByName(String name) {
         movieRepository.searchMovieByName(name, new MovieRepository.requestCallback() {
             @Override
-            public void onSuccess(List<MovieDetail> movieDetail) {
-                movieList.postValue(movieDetail);
+            public void onSuccess(List<MovieDetail> movieDetailList) {
+                movieList.postValue(movieDetailList);
             }
 
             @Override
             public void onFailed(String message) {
-                movieList.postValue(null);
+                movieList.postValue(new ArrayList<>());
             }
         });
     }
@@ -96,7 +97,7 @@ public class SearchViewModel extends AndroidViewModel {
 
             @Override
             public void onFailed(String message) {
-                tvList.postValue(null);
+                tvList.postValue(new ArrayList<>());
             }
         });
     }

@@ -29,4 +29,6 @@
     <string name="login">Masuk</string>
     <string name="profile_setting">Pengaturan</string>
     <string name="profile_information">Informasi</string>
+    <string name="search_empty">Maaf, film yang anda cari tidak ada</string>
+    <string name="search_empty_suggection">Cobalah nama film yang lain</string>
 </resources>

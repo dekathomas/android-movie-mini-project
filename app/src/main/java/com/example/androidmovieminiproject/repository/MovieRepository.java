@@ -9,6 +9,7 @@ import com.example.androidmovieminiproject.model.Movie.MovieList;
 import com.example.androidmovieminiproject.api.RetrofitService;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -80,26 +81,20 @@ public class MovieRepository {
                 if (listMovieDetail.size() > 0) {
                     callback.onSuccess(listMovieDetail);
                 } else {
-                    // TODO if there is no data, search through API
-                    callback.onSuccess(null);
+                    callback.onSuccess(new ArrayList<>());
                 }
             }
         });
     }
 
     public void searchMovieByName(String name, requestCallback callback) {
-        // Search movie from DB first
         AppDatabase.executorService.execute(new Runnable() {
             @Override
             public void run() {
                 List<MovieDetail> listMovieDetail = movieDao.searchByName(name);
-                System.out.println("===============================================");
-                System.out.println("SEARCH FROM DB");
                 if (listMovieDetail.size() > 0) {
                     callback.onSuccess(listMovieDetail);
                 } else {
-                    System.out.println("gaada nih, cari di API DONG");
-                    // If not found, find via API
                     searchMovieByNameFromAPI(name, callback);
                 }
             }
@@ -114,11 +109,9 @@ public class MovieRepository {
                 @Override
                 public void onResponse(Call<MovieList> call, Response<MovieList> response) {
                     if (response.body().getMovieDetailList().size() > 0) {
-                        System.out.println("Nah ketemu nih di API");
                         callback.onSuccess(response.body().getMovieDetailList());
                     } else {
-                    System.out.println("di API juga kagak ada COK");
-                        callback.onSuccess(null);
+                        callback.onSuccess(new ArrayList<>());
                     }
                 }
 

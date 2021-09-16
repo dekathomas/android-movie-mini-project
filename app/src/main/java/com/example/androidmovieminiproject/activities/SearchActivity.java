@@ -48,8 +48,6 @@ public class SearchActivity extends BaseActivity implements RecyclerViewClick {
         initVariables();
         setPlaceholderOfInputText();
         setEventListener();
-
-//        getFilmList();
     }
 
     private void initVariables() {
@@ -73,24 +71,6 @@ public class SearchActivity extends BaseActivity implements RecyclerViewClick {
             placeholder = getString(R.string.search_placeholder_movie);
             searchViewInput.setQueryHint(placeholder);
         }
-    }
-
-    private void getFilmList() {
-        if (searchType.equalsIgnoreCase(AppProperties.tv)) {
-            getTvListFromDB();
-        } else if (searchType.equalsIgnoreCase(AppProperties.movie)) {
-            getMovieListFromDB();
-        }
-    }
-
-    private void getTvListFromDB() {
-        viewModel.getTvListFromDB();
-        initRecyclerView(AppProperties.tv);
-    }
-
-    private void getMovieListFromDB() {
-        viewModel.getMovieListFromDB();
-        initRecyclerView(AppProperties.movie);
     }
 
     private void initRecyclerView(String type) {
@@ -171,10 +151,9 @@ public class SearchActivity extends BaseActivity implements RecyclerViewClick {
             @Override
             public boolean onQueryTextSubmit(String name) {
                 if (searchType.equals(AppProperties.tv)) {
-//                    tvAdapter.getFilter().filter(name);
                     viewModel.searchTvByName(name);
+                    initRecyclerView(AppProperties.tv);
                 } else if (searchType.equals(AppProperties.movie)) {
-//                    movieAdapter.getFilter().filter(name);
                     viewModel.searchMovieByName(name);
                     initRecyclerView(AppProperties.movie);
                 }

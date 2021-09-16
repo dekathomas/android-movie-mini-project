@@ -30,16 +30,16 @@ public class UserLoginViewModel extends AndroidViewModel {
                 if (user != null) {
                     SessionManager.getInstance()
                         .startUserSession(getApplication(), user.getFullName());
-                    userDetail.setValue(user);
+                    userDetail.postValue(user);
                 } else {
-                    userDetail.setValue(null);
+                    userDetail.postValue(null);
                 }
             }
 
             @Override
             public void onFailed(String message) {
                 AlertDialog.error(getApplication(), String.valueOf(R.string.error_general));
-                userDetail.setValue(null);
+                userDetail.postValue(null);
             }
         });
     }
