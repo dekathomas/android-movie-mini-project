@@ -17,6 +17,7 @@ import retrofit2.Response;
 
 public class MovieRepository {
     private final MovieDao movieDao;
+    private MovieRepository movieRepository;
 
     public MovieRepository(Application application) {
         AppDatabase database = AppDatabase.getInstance(application);
@@ -81,7 +82,20 @@ public class MovieRepository {
                     callback.onSuccess(listMovieDetail);
                 } else {
                     // TODO if there is no data, search through API
-                    callback.onSuccess(null);
+//                    callback.onSuccess(null);
+                    RetrofitService.getAPI()
+                            .getSearchMovies("a")
+                            .enqueue(new Callback<MovieList>() {
+                                @Override
+                                public void onResponse(Call<MovieList> call, Response<MovieList> response) {
+                                    callback.onSuccess(response.body().getMovieDetailList());
+                                }
+
+                                @Override
+                                public void onFailure(Call<MovieList> call, Throwable t) {
+                                    callback.onSuccess(null);
+                                }
+                            });
                 }
             }
         });
