@@ -43,6 +43,6 @@
 
     <!-- Information -->
     <string name="information_hello">Hello Fellas!</string>
-    <string name="information_thank_you">Thank you for using our application! This application is built for project of our training activity. If there are some suggestion for make this application better, please contact us!</string>
+    <string name="information_thank_you">Thank you for using our application! This application is built for project of our training activity. If you have some suggestions to make this application better, please contact us!</string>
 
 </resources>
