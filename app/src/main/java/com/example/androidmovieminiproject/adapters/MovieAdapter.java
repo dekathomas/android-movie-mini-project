@@ -43,7 +43,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         MovieDetail movieDetail = movieList.get(position);
-        String posterUrl = ListAPI.URL_ORIGINAL_IMAGE.concat(movieDetail.getPosterPath());
+        String posterUrl = movieDetail.getPosterPath() != null ?
+                ListAPI.URL_ORIGINAL_IMAGE.concat(movieDetail.getPosterPath()) :
+                ListAPI.URL_ORIGINAL_IMAGE.concat("/wwemzKWzjKYJFfCeiB57q3r4Bcm.png");
 
         Glide.with(holder.itemView)
                 .load(posterUrl)

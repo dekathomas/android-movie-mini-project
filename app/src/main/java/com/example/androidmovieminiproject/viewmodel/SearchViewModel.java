@@ -72,4 +72,26 @@ public class SearchViewModel extends AndroidViewModel {
 
         return movieList.getValue().get(position);
     }
+
+    public void searchMovieByName(String name) {
+        movieRepository.searchMovieByName(name, new MovieRepository.requestCallback() {
+            @Override
+            public void onSuccess(List<MovieDetail> movieDetail) {
+                movieList.postValue(movieDetail);
+            }
+
+            @Override
+            public void onFailed(String message) {
+                movieList.postValue(null);
+            }
+        });
+    }
+
+    public void insertMovieToDB(MovieDetail movieDetail) {
+        movieRepository.insertMovieDetail(movieDetail);
+    }
+
+    public void insertTvToDB(TvDetail tvDetail) {
+        tvRepository.insertTvDetail(tvDetail);
+    }
 }

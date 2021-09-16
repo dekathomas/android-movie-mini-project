@@ -129,7 +129,9 @@ public class DetailMovieActivity extends BaseActivity {
     }
 
     private void setTvDetail(TvDetail tvDetail) {
-        String posterUrl = ListAPI.URL_ORIGINAL_IMAGE.concat(tvDetail.getBackdropPath());
+        String posterUrl = tvDetail.getBackdropPath() != null ?
+                ListAPI.URL_ORIGINAL_IMAGE.concat(tvDetail.getBackdropPath()) :
+                ListAPI.URL_ORIGINAL_IMAGE.concat("/wwemzKWzjKYJFfCeiB57q3r4Bcm.png");
         Glide.with(this)
                 .load(posterUrl)
                 .centerCrop()
@@ -152,7 +154,9 @@ public class DetailMovieActivity extends BaseActivity {
 
 
     private void setHomeDetail(MovieDetail movieDetail) {
-        String posterUrl = ListAPI.URL_ORIGINAL_IMAGE.concat(movieDetail.getBackdropPath());
+        String posterUrl = movieDetail.getBackdropPath() != null ?
+                ListAPI.URL_ORIGINAL_IMAGE.concat(movieDetail.getBackdropPath()) :
+                ListAPI.URL_ORIGINAL_IMAGE.concat("/wwemzKWzjKYJFfCeiB57q3r4Bcm.png");
         Glide.with(this)
                 .load(posterUrl)
                 .centerCrop()

@@ -44,7 +44,9 @@ public class TvAdapter extends RecyclerView.Adapter<TvAdapter.ViewHolder> implem
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         TvDetail tvDetail = tvList.get(position);
-        String posterUrl = ListAPI.URL_ORIGINAL_IMAGE.concat(tvDetail.getPosterPath());
+        String posterUrl = tvDetail.getPosterPath() != null ?
+                ListAPI.URL_ORIGINAL_IMAGE.concat(tvDetail.getPosterPath()) :
+                ListAPI.URL_ORIGINAL_IMAGE.concat("/wwemzKWzjKYJFfCeiB57q3r4Bcm.png");
 
         Glide.with(holder.itemView)
                 .load(posterUrl)

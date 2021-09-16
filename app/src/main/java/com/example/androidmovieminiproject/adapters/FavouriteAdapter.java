@@ -38,7 +38,9 @@ public class FavouriteAdapter extends RecyclerView.Adapter<FavouriteAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Favourite favourite = favouriteList.get(position);
-        String posterUrl = ListAPI.URL_ORIGINAL_IMAGE.concat(favourite.getPosterUrl());
+        String posterUrl = favourite.getPosterUrl() != null ?
+                ListAPI.URL_ORIGINAL_IMAGE.concat(favourite.getPosterUrl()) :
+                ListAPI.URL_ORIGINAL_IMAGE.concat("/wwemzKWzjKYJFfCeiB57q3r4Bcm.png");
 
         Glide.with(holder.itemView)
                 .load(posterUrl)

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Movie;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -48,7 +49,7 @@ public class SearchActivity extends BaseActivity implements RecyclerViewClick {
         setPlaceholderOfInputText();
         setEventListener();
 
-        getFilmList();
+//        getFilmList();
     }
 
     private void initVariables() {
@@ -103,6 +104,10 @@ public class SearchActivity extends BaseActivity implements RecyclerViewClick {
     private void getTvList(GridLayoutManager gridLayoutManager) {
         viewModel.tvList.observe(this, tvDetails -> {
             if (tvDetails != null && tvDetails.size() > 0) {
+                for (TvDetail tvDetail : tvDetails) {
+                    viewModel.insertTvToDB(tvDetail);
+                }
+
                 tvAdapter = new TvAdapter(tvDetails, this);
                 recyclerView.setAdapter(tvAdapter);
                 recyclerView.setLayoutManager(gridLayoutManager);
@@ -113,9 +118,11 @@ public class SearchActivity extends BaseActivity implements RecyclerViewClick {
 
     private void getMovieList(GridLayoutManager gridLayoutManager) {
         viewModel.movieList.observe(this, movieDetailList -> {
-            System.out.println("KOSONG COKKK");
-            System.out.println(movieDetailList);
             if (movieDetailList != null && movieDetailList.size() > 0) {
+                for (MovieDetail movieDetail : movieDetailList) {
+                    viewModel.insertMovieToDB(movieDetail);
+                }
+
                 movieAdapter = new MovieAdapter(movieDetailList, this,"");
                 recyclerView.setAdapter(movieAdapter);
                 recyclerView.setLayoutManager(gridLayoutManager);
@@ -161,9 +168,11 @@ public class SearchActivity extends BaseActivity implements RecyclerViewClick {
             @Override
             public boolean onQueryTextSubmit(String name) {
                 if (searchType.equals(AppProperties.tv)) {
-                    tvAdapter.getFilter().filter(name);
+//                    tvAdapter.getFilter().filter(name);
                 } else if (searchType.equals(AppProperties.movie)) {
-                    movieAdapter.getFilter().filter(name);
+//                    movieAdapter.getFilter().filter(name);
+                    viewModel.searchMovieByName(name);
+                    initRecyclerView(AppProperties.movie);
                 }
                 return false;
             }
