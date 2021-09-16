@@ -86,7 +86,7 @@ public class FavouriteFragment extends Fragment implements RecyclerViewClick {
     }
 
     @Override
-    public void onItemClick(int position) {
+    public void onItemClick(int position, String type) {
         getFavouriteById(position);
     }
 

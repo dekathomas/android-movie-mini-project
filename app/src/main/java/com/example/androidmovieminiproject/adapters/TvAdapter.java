@@ -63,7 +63,7 @@ public class TvAdapter extends RecyclerView.Adapter<TvAdapter.ViewHolder> {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.onItemClick(getAbsoluteAdapterPosition());
+                    listener.onItemClick(getAbsoluteAdapterPosition(), "");
                 }
             });
         }

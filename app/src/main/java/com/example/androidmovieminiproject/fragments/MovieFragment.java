@@ -62,7 +62,8 @@ public class MovieFragment extends Fragment implements RecyclerViewClick {
 
         movieViewModel.mutablePopularMovieList.observe(getActivity(), movieDetails -> {
             insertMovieDetailToDatabase(movieDetails);
-            movieAdapter = new MovieAdapter(movieDetails, this);
+            System.out.println("========================= INI POPULAR MOVIES COI ==========================");
+            movieAdapter = new MovieAdapter(movieDetails, this, "popular");
             popularRecyclerView.setAdapter(movieAdapter);
             popularRecyclerView.setLayoutManager(gridLayoutManager);
             movieAdapter.notifyDataSetChanged();
@@ -78,7 +79,8 @@ public class MovieFragment extends Fragment implements RecyclerViewClick {
 
         movieViewModel.mutableUpcomingMovieList.observe(getActivity(), movieDetails -> {
             insertMovieDetailToDatabase(movieDetails);
-            movieAdapter = new MovieAdapter(movieDetails, this);
+            System.out.println("========================= INI UPCOMING MOVIES COI ==========================");
+            movieAdapter = new MovieAdapter(movieDetails, this, "upcoming");
             upcomingRecyclerView.setAdapter(movieAdapter);
             upcomingRecyclerView.setLayoutManager(gridLayoutManager);
             movieAdapter.notifyDataSetChanged();
@@ -95,8 +97,8 @@ public class MovieFragment extends Fragment implements RecyclerViewClick {
     }
 
     @Override
-    public void onItemClick(int position){
-        MovieDetail movieDetail = movieViewModel.getHome(position);
+    public void onItemClick(int position, String type){
+        MovieDetail movieDetail = movieViewModel.getMovieDetail(position, type);
         goToDetailPage(movieDetail.getId());
     }
 

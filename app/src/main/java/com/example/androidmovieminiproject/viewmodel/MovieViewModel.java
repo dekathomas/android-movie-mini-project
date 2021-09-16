@@ -19,7 +19,8 @@ public class MovieViewModel extends AndroidViewModel {
     private final MovieRepository movieRepository;
     public MutableLiveData<List<MovieDetail>> mutablePopularMovieList;
     public MutableLiveData<List<MovieDetail>> mutableUpcomingMovieList;
-    public List<MovieDetail> movieList = new ArrayList<>();
+    public List<MovieDetail> moviePopularList = new ArrayList<>();
+    public List<MovieDetail> movieUpcomingList = new ArrayList<>();
 
     public MovieViewModel(@NonNull Application application) {
         super(application);
@@ -33,7 +34,7 @@ public class MovieViewModel extends AndroidViewModel {
             @Override
             public void onSuccess(List<MovieDetail> movieDetailList) {
                 if (movieDetailList.size() != 0) {
-                    movieList.addAll(movieDetailList);
+                    moviePopularList.addAll(movieDetailList);
                     mutablePopularMovieList.setValue(movieDetailList);
                 }
                 else {
@@ -54,7 +55,7 @@ public class MovieViewModel extends AndroidViewModel {
             @Override
             public void onSuccess(List<MovieDetail> movieDetailList) {
                 if (movieDetailList.size() != 0) {
-                    movieList.addAll(movieDetailList);
+                    movieUpcomingList.addAll(movieDetailList);
                     mutableUpcomingMovieList.setValue(movieDetailList);
                 }
                 else {
@@ -70,12 +71,18 @@ public class MovieViewModel extends AndroidViewModel {
         });
     }
 
-    public MovieDetail getHome(int position) {
-        if (movieList.size() == 0) {
-            return null;
-        }
+    public MovieDetail getMovieDetail(int position, String movieType) {
+        return movieType.equalsIgnoreCase("popular")
+                ? getPopularMovieDetail(position)
+                : getUpcomingMovieDetail(position);
+    }
 
-        return movieList.get(position);
+    private MovieDetail getPopularMovieDetail(int position) {
+        return moviePopularList.size() > 0 ? moviePopularList.get(position) : null;
+    }
+
+    private MovieDetail getUpcomingMovieDetail(int position) {
+        return movieUpcomingList.size() > 0 ? movieUpcomingList.get(position) : null;
     }
 
     public void insertHomeDetail(MovieDetail movieDetail) {

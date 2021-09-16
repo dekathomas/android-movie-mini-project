@@ -19,10 +19,12 @@ import java.util.List;
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
     private final List<MovieDetail> movieList;
     private RecyclerViewClick listener;
+    private String adapterType;
 
-    public MovieAdapter(List<MovieDetail> movieList, RecyclerViewClick listener) {
+    public MovieAdapter(List<MovieDetail> movieList, RecyclerViewClick listener, String adapterType) {
         this.movieList = movieList;
         this.listener = listener;
+        this.adapterType = adapterType;
     }
 
     @NonNull
@@ -37,7 +39,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         MovieDetail movieDetail = movieList.get(position);
         String posterUrl = ListAPI.URL_ORIGINAL_IMAGE.concat(movieDetail.getPosterPath());
-
+        System.out.println("position: " + position);
         Glide.with(holder.itemView)
                 .load(posterUrl)
                 .centerCrop()
@@ -61,7 +63,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.onItemClick(getAbsoluteAdapterPosition());
+                    listener.onItemClick(getAbsoluteAdapterPosition(), adapterType);
                 }
             });
         }
