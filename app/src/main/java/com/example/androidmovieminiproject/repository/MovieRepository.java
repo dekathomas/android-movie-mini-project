@@ -17,7 +17,6 @@ import retrofit2.Response;
 
 public class MovieRepository {
     private final MovieDao movieDao;
-    private MovieRepository movieRepository;
 
     public MovieRepository(Application application) {
         AppDatabase database = AppDatabase.getInstance(application);
@@ -32,35 +31,35 @@ public class MovieRepository {
     public void getPopularMovieList(requestCallback callback) {
         RetrofitService retrofitService = new RetrofitService();
         retrofitService.getAPI()
-            .getHomeMovies("popular")
-            .enqueue(new Callback<MovieList>() {
-                @Override
-                public void onResponse(Call<MovieList> call, Response<MovieList> response) {
-                    callback.onSuccess(response.body().getMovieDetailList());
-                }
+                .getHomeMovies("popular")
+                .enqueue(new Callback<MovieList>() {
+                    @Override
+                    public void onResponse(Call<MovieList> call, Response<MovieList> response) {
+                        callback.onSuccess(response.body().getMovieDetailList());
+                    }
 
-                @Override
-                public void onFailure(Call<MovieList> call, Throwable t) {
-                    callback.onFailed(t.getMessage());
-                }
-            });
+                    @Override
+                    public void onFailure(Call<MovieList> call, Throwable t) {
+                        callback.onFailed(t.getMessage());
+                    }
+                });
     }
 
     public void getUpcomingMovieList(requestCallback callback) {
         RetrofitService retrofitService = new RetrofitService();
         retrofitService.getAPI()
-            .getHomeMovies("upcoming")
-            .enqueue(new Callback<MovieList>() {
-                @Override
-                public void onResponse(Call<MovieList> call, Response<MovieList> response) {
-                    callback.onSuccess(response.body().getMovieDetailList());
-                }
+                .getHomeMovies("upcoming")
+                .enqueue(new Callback<MovieList>() {
+                    @Override
+                    public void onResponse(Call<MovieList> call, Response<MovieList> response) {
+                        callback.onSuccess(response.body().getMovieDetailList());
+                    }
 
-                @Override
-                public void onFailure(Call<MovieList> call, Throwable t) {
-                    callback.onFailed(t.getMessage());
-                }
-            });
+                    @Override
+                    public void onFailure(Call<MovieList> call, Throwable t) {
+                        callback.onFailed(t.getMessage());
+                    }
+                });
     }
 
     public void insertMovieDetail(MovieDetail movieDetail) {
@@ -82,20 +81,7 @@ public class MovieRepository {
                     callback.onSuccess(listMovieDetail);
                 } else {
                     // TODO if there is no data, search through API
-//                    callback.onSuccess(null);
-                    RetrofitService.getAPI()
-                            .getSearchMovies("a")
-                            .enqueue(new Callback<MovieList>() {
-                                @Override
-                                public void onResponse(Call<MovieList> call, Response<MovieList> response) {
-                                    callback.onSuccess(response.body().getMovieDetailList());
-                                }
-
-                                @Override
-                                public void onFailure(Call<MovieList> call, Throwable t) {
-                                    callback.onSuccess(null);
-                                }
-                            });
+                    callback.onSuccess(null);
                 }
             }
         });
@@ -123,23 +109,23 @@ public class MovieRepository {
     private void searchMovieByNameFromAPI(String name, requestCallback callback) {
         RetrofitService retrofitService = new RetrofitService();
         retrofitService.getAPI()
-            .searchMovieByName(name)
-            .enqueue(new Callback<MovieList>() {
-                @Override
-                public void onResponse(Call<MovieList> call, Response<MovieList> response) {
-                    if (response.body().getMovieDetailList().size() > 0) {
-                        System.out.println("Nah ketemu nih di API");
-                        callback.onSuccess(response.body().getMovieDetailList());
-                    } else {
-                    System.out.println("di API juga kagak ada COK");
-                        callback.onSuccess(null);
+                .searchMovieByName(name)
+                .enqueue(new Callback<MovieList>() {
+                    @Override
+                    public void onResponse(Call<MovieList> call, Response<MovieList> response) {
+                        if (response.body().getMovieDetailList().size() > 0) {
+                            System.out.println("Nah ketemu nih di API");
+                            callback.onSuccess(response.body().getMovieDetailList());
+                        } else {
+                            System.out.println("di API juga kagak ada COK");
+                            callback.onSuccess(null);
+                        }
                     }
-                }
 
-                @Override
-                public void onFailure(Call<MovieList> call, Throwable t) {
-                    callback.onFailed(t.getMessage());
-                }
-            });
+                    @Override
+                    public void onFailure(Call<MovieList> call, Throwable t) {
+                        callback.onFailed(t.getMessage());
+                    }
+                });
     }
 }
