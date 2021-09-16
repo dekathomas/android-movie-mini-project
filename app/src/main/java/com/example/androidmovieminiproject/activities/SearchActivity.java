@@ -59,6 +59,9 @@ public class SearchActivity extends BaseActivity implements RecyclerViewClick {
         searchViewInput = findViewById(R.id.searchViewInput);
         viewModel = new ViewModelProvider(this).get(SearchViewModel.class);
         recyclerView = findViewById(R.id.filmSearchRecylerView);
+
+        searchViewInput.requestFocus();
+        searchViewInput.requestFocusFromTouch();
     }
 
     private void setPlaceholderOfInputText() {
