@@ -80,6 +80,7 @@ public class MovieRepository {
                 if (listMovieDetail.size() > 0) {
                     callback.onSuccess(listMovieDetail);
                 } else {
+                    // TODO if there is no data, search through API
                     callback.onSuccess(null);
                 }
             }
