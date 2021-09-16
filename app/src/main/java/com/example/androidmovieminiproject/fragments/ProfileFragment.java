@@ -16,12 +16,14 @@ import android.widget.TextView;
 
 import com.example.androidmovieminiproject.R;
 import com.example.androidmovieminiproject.activities.LoginActivity;
+import com.example.androidmovieminiproject.utility.LoadingDialog;
 import com.example.androidmovieminiproject.viewmodel.UserLoginViewModel;
 
 public class ProfileFragment extends Fragment {
     private TextView profileName;
     private Button logoutButton;
     private UserLoginViewModel viewModel;
+    private LoadingDialog loading;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        loading = new LoadingDialog(getActivity());
         viewModel = new ViewModelProvider(this).get(UserLoginViewModel.class);
         profileName = getActivity().findViewById(R.id.profileName);
         logoutButton = getActivity().findViewById(R.id.logoutBotton);
@@ -54,11 +57,13 @@ public class ProfileFragment extends Fragment {
     }
 
     private void logout() {
+        loading.show();
         viewModel.logout();
         goToLoginPage();
     }
 
     private void goToLoginPage() {
+        loading.hide();
         Intent intent = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent);
     }

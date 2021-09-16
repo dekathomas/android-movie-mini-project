@@ -1,16 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/movieFragment"
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/primary">
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/component_search_box"/>
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="MoviePage"
-        android:gravity="center"
-        android:textColor="#FFF"/>
+        android:layout_marginTop="30dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/popularMovieText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/popular_movie"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                app:layout_constraintBaseline_toTopOf="parent" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/popularMovieRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/popularMovieText"
+                tools:ignore="SpeakableTextPresentCheck"
+                tools:listitem="@layout/film_detail" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/ongoingMovieText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_bold"
+                android:text="@string/ongoing_movie"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintTop_toBottomOf="@id/popularMovieRecyclerView" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/upcomingMovieRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@+id/ongoingMovieText"
+                tools:ignore="SpeakableTextPresentCheck"
+                tools:listitem="@layout/film_detail" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>
+

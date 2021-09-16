@@ -1,12 +1,10 @@
 package com.example.androidmovieminiproject.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
@@ -15,17 +13,16 @@ import com.bumptech.glide.Glide;
 import com.example.androidmovieminiproject.R;
 import com.example.androidmovieminiproject.database.ListAPI;
 import com.example.androidmovieminiproject.model.Favourite;
-import com.example.androidmovieminiproject.model.Home.HomeDetail;
 import com.example.androidmovieminiproject.model.Movie.MovieDetail;
 import com.example.androidmovieminiproject.model.TV.TvDetail;
-import com.example.androidmovieminiproject.utility.AlertDialog;
 import com.example.androidmovieminiproject.utility.LoadingDialog;
+import com.example.androidmovieminiproject.utility.AppProperties;
 import com.example.androidmovieminiproject.viewmodel.FavouriteViewModel;
-import com.example.androidmovieminiproject.viewmodel.MovieDetailViewModel;
+import com.example.androidmovieminiproject.viewmodel.FilmDetailViewModel;
 
 public class DetailMovieActivity extends BaseActivity {
 
-    private MovieDetailViewModel viewModel;
+    private FilmDetailViewModel viewModel;
     private FavouriteViewModel favouriteViewModel;
     private Favourite favourite;
 
@@ -60,7 +57,7 @@ public class DetailMovieActivity extends BaseActivity {
     }
 
     private void initVariable() {
-        viewModel = new ViewModelProvider(this).get(MovieDetailViewModel.class);
+        viewModel = new ViewModelProvider(this).get(FilmDetailViewModel.class);
         favouriteViewModel = new ViewModelProvider(this).get(FavouriteViewModel.class);
         poster = findViewById(R.id.movieDetailBackdrop);
         name = findViewById(R.id.movieDetailName);
@@ -79,13 +76,13 @@ public class DetailMovieActivity extends BaseActivity {
 
         if (type.equalsIgnoreCase("tv")) {
             getTvDetail(id);
-        } else if (type.equalsIgnoreCase("home")) {
-            getHomeDetail(id);
+        } else if (type.equalsIgnoreCase("movie")) {
+            getMovieDetail(id);
         }
     }
 
     private void getTvDetail(int id) {
-        viewModel.findTvDetailById(id, "tv")
+        viewModel.findTvDetailById(id)
             .observe(this, tvDetail -> {
                 if (tvDetail != null) {
                     favourite = setFavouriteFromTvDetail(tvDetail);
@@ -94,8 +91,8 @@ public class DetailMovieActivity extends BaseActivity {
             });
     }
 
-    private void getHomeDetail(int id) {
-        viewModel.findHomeDetailById(id, "home")
+    private void getMovieDetail(int id) {
+        viewModel.findHomeDetailById(id)
                 .observe(this, homeDetail -> {
                     if (homeDetail != null) {
                         favourite = setFavouriteFromHomeDetail(homeDetail);
@@ -112,17 +109,19 @@ public class DetailMovieActivity extends BaseActivity {
         favourite.setPosterUrl(tvDetail.getPosterPath());
         favourite.setVoteAverage(tvDetail.getVoteAverage());
         favourite.setVoteCount(tvDetail.getVoteCount());
+        favourite.setType(AppProperties.tv);
         return favourite;
     }
 
-    private Favourite setFavouriteFromHomeDetail(HomeDetail homeDetail) {
+    private Favourite setFavouriteFromHomeDetail(MovieDetail movieDetail) {
         Favourite favourite = new Favourite();
-        favourite.setItemId(homeDetail.getId());
-        favourite.setBackdropUrl(homeDetail.getBackdropPath());
-        favourite.setName(homeDetail.getName());
-        favourite.setPosterUrl(homeDetail.getPosterPath());
-        favourite.setVoteAverage(homeDetail.getVoteAverage());
-        favourite.setVoteCount(homeDetail.getVoteCount());
+        favourite.setItemId(movieDetail.getId());
+        favourite.setBackdropUrl(movieDetail.getBackdropPath());
+        favourite.setName(movieDetail.getTitle());
+        favourite.setPosterUrl(movieDetail.getPosterPath());
+        favourite.setVoteAverage(movieDetail.getVoteAverage());
+        favourite.setVoteCount(movieDetail.getVoteCount());
+        favourite.setType(AppProperties.movie);
         return favourite;
     }
 
@@ -149,8 +148,8 @@ public class DetailMovieActivity extends BaseActivity {
     }
 
 
-    private void setHomeDetail(HomeDetail homeDetail) {
-        String posterUrl = ListAPI.URL_ORIGINAL_IMAGE.concat(homeDetail.getBackdropPath());
+    private void setHomeDetail(MovieDetail movieDetail) {
+        String posterUrl = ListAPI.URL_ORIGINAL_IMAGE.concat(movieDetail.getBackdropPath());
         Glide.with(this)
                 .load(posterUrl)
                 .centerCrop()
@@ -159,12 +158,12 @@ public class DetailMovieActivity extends BaseActivity {
                 .fallback(R.drawable.default_image)
                 .into(poster);
 
-        name.setText(homeDetail.getName());
-        language.setText(homeDetail.getOriginalLanguage());
-        popularity.setText(homeDetail.getPopularity());
-        voteAverage.setText(homeDetail.getVoteAverage());
-        voteCount.setText(homeDetail.getVoteCount());
-        overview.setText(homeDetail.getOverview());
+        name.setText(movieDetail.getTitle());
+        language.setText(movieDetail.getOriginalLanguage());
+        popularity.setText(movieDetail.getPopularity());
+        voteAverage.setText(movieDetail.getVoteAverage());
+        voteCount.setText(movieDetail.getVoteCount());
+        overview.setText(movieDetail.getOverview());
 
         checkIsFavourite();
 
@@ -179,7 +178,7 @@ public class DetailMovieActivity extends BaseActivity {
                 for (int i = 0; i < favourites.size(); i++) {
                     if (favourites.get(i).getItemId() == favourite.getItemId()) {
                         favouriteToggle.setChecked(true);
-                        favourite.setId(favourites.get(i).getId());
+                        favourite.setItemId(favourites.get(i).getItemId());
                         break;
                     }
                 }

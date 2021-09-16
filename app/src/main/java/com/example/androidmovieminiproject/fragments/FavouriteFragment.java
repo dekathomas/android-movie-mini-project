@@ -22,6 +22,7 @@ import com.example.androidmovieminiproject.model.Favourite;
 import com.example.androidmovieminiproject.utility.LoadingDialog;
 import com.example.androidmovieminiproject.utility.RecyclerViewClick;
 import com.example.androidmovieminiproject.viewmodel.FavouriteViewModel;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,23 +87,25 @@ public class FavouriteFragment extends Fragment implements RecyclerViewClick {
     }
 
     @Override
-    public void onItemClick(int position) {
+    public void onItemClick(int position, String type) {
         getFavouriteById(position);
     }
 
     private void getFavouriteById(int position) {
         for (int i = 0; i < favouriteList.size(); i++) {
             if (position == i) {
-                goToDetailPage(favouriteList.get(i).getItemId());
+                int itemId = favouriteList.get(i).getItemId();
+                String type = favouriteList.get(i).getType();
+                goToDetailPage(itemId, type);
                 break;
             }
         }
     }
 
-    private void goToDetailPage(int tvId) {
+    private void goToDetailPage(int itemId, String type) {
         Intent intent = new Intent(getContext(), DetailMovieActivity.class);
-        intent.putExtra(String.valueOf(R.string.detail_item_id), tvId);
-        intent.putExtra(String.valueOf(R.string.detail_item_type), "tv");
+        intent.putExtra(String.valueOf(R.string.detail_item_id), itemId);
+        intent.putExtra(String.valueOf(R.string.detail_item_type), type);
         startActivity(intent);
     }
 
@@ -115,10 +118,13 @@ public class FavouriteFragment extends Fragment implements RecyclerViewClick {
         favouriteEmptyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frameLayout, new MovieFragment())
-                .commitNow();
+                gotoMoviePage();
             }
         });
+    }
+
+    private void gotoMoviePage() {
+        BottomNavigationView bottomMenu = getActivity().findViewById(R.id.bottomMenu);
+        bottomMenu.setSelectedItemId(R.id.firstMenuButton);
     }
 }

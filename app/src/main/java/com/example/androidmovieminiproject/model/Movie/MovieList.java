@@ -1,4 +1,4 @@
-package com.example.androidmovieminiproject.model.Home;
+package com.example.androidmovieminiproject.model.Movie;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -7,7 +7,7 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class HomeMovieList {
+public class MovieList {
     @SerializedName("results")
-    private List<HomeDetail> homeDetailList;
+    private List<MovieDetail> movieDetailList;
 }

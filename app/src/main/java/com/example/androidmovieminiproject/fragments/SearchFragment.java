@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androidmovieminiproject.R;
-import com.example.androidmovieminiproject.adapters.HomeAdapter;
-import com.example.androidmovieminiproject.model.Home.HomeDetail;
 
 
 public class SearchFragment extends Fragment {

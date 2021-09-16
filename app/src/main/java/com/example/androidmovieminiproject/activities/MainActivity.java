@@ -1,17 +1,14 @@
 package com.example.androidmovieminiproject.activities;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.graphics.Movie;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.androidmovieminiproject.fragments.FavouriteFragment;
-import com.example.androidmovieminiproject.fragments.HomeFragment;
-import com.example.androidmovieminiproject.R;
 import com.example.androidmovieminiproject.fragments.MovieFragment;
+import com.example.androidmovieminiproject.R;
 import com.example.androidmovieminiproject.fragments.ProfileFragment;
 import com.example.androidmovieminiproject.fragments.TvFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -28,7 +25,7 @@ public class MainActivity extends BaseActivity {
          */
         getSupportActionBar().hide();
 
-        loadFragment(new HomeFragment());
+        loadFragment(new MovieFragment());
 
         BottomNavigationView bottomMenu = findViewById(R.id.bottomMenu);
         bottomMenu.setOnNavigationItemSelectedListener(navListener);
@@ -42,7 +39,7 @@ public class MainActivity extends BaseActivity {
 
                     switch (item.getItemId()) {
                         case R.id.firstMenuButton:
-                            selectedFragment = new HomeFragment();
+                            selectedFragment = new MovieFragment();
                             break;
                         case R.id.secondMenuButton:
                             selectedFragment = new TvFragment();
@@ -54,7 +51,7 @@ public class MainActivity extends BaseActivity {
                             selectedFragment = new ProfileFragment();
                             break;
                         default:
-                            selectedFragment = new HomeFragment();
+                            selectedFragment = new MovieFragment();
                             break;
                     }
                     loadFragment(selectedFragment);
