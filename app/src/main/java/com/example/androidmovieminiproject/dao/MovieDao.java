@@ -21,6 +21,6 @@ public interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insert(MovieDetail movieDetail);
 
-    @Query("SELECT * FROM movie_detail WHERE title LIKE '%' + :name + '%'")
+    @Query("SELECT * FROM movie_detail WHERE title LIKE '%' || :name || '%'")
     public List<MovieDetail> searchByName(String name);
 }
