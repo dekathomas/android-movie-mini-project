@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="first_menu">Film</string>
+    <string name="third_menu">Favorit</string>
+    <string name="fourth_menu">Profil</string>
+    <string name="popular_movie">Populer</string>
+    <string name="ongoing_movie">Sedang Tayang</string>
+    <string name="popular_tv">Populer</string>
+    <string name="ongoing_tv">Sedang Tayang</string>
+    <string name="detail_recommendation">Rekomendasi</string>
+    <string name="detail_similar">Film yang sama</string>
+    <string name="favourite_title">Favorit</string>
+    <string name="empty_favourite">Oops kamu belum ada film favorit</string>
+    <string name="empty_suggestion_favourite">Yuk cek list film kami</string>
+    <string name="go_to_movie">Lihat Film</string>
+    <string name="error_general">Sistem bermasalah</string>
+    <string name="error_empty_field">Email dan password tidak boleh kosong</string>
+    <string name="error_wrong_auth">Email dan password salah</string>
+    <string name="search_placeholder">Cari film favorit mu</string>
+    <string name="search_placeholder_tv">Cari siaran TV favoritmu</string>
+    <string name="search_placeholder_movie">Carr film favoritmu</string>
+    <string name="information_hello">Hello Semuanya!</string>
+    <string name="information_thank_you">Terima kasih telah menggunakan aplikasi kami! Aplikasi ini dibuat untuk mini project dalam training. Jika kalian punya saran pengembangan untuk aplikasi ini, kabarin kami ya!</string>
+    <string name="detail_language">Bahasa</string>
+    <string name="detail_popularity">Popularitas</string>
+    <string name="detail_rating">Peringkat</string>
+    <string name="detail_description">Deskripsi</string>
+    <string name="information_developer">Perkenalkan pembuat aplikasi kami</string>
+    <string name="login">Masuk</string>
+    <string name="profile_setting">Pengaturan</string>
+    <string name="profile_information">Informasi</string>
+</resources>

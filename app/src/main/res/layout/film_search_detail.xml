@@ -28,7 +28,7 @@
             android:id="@+id/searchMovieName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView"
+            android:text="Movie"
             android:textSize="18dp"
             android:fontFamily="@font/roboto_bold"
             android:textColor="@color/white"/>
@@ -42,7 +42,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rating: "
+                android:text="@string/detail_rating"
+                android:textSize="14dp"
+                android:fontFamily="@font/roboto"
+                android:textColor="@color/disabled"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" : "
                 android:textSize="14dp"
                 android:fontFamily="@font/roboto"
                 android:textColor="@color/disabled"/>
@@ -67,7 +74,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Votes: "
+                android:text="@string/detail_votes"
+                android:textSize="14dp"
+                android:fontFamily="@font/roboto"
+                android:textColor="@color/disabled"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" : "
                 android:textSize="14dp"
                 android:fontFamily="@font/roboto"
                 android:textColor="@color/disabled"/>
@@ -87,7 +101,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Popularity: "
+                android:text="@string/detail_popularity"
+                android:textSize="14dp"
+                android:fontFamily="@font/roboto"
+                android:textColor="@color/disabled"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" : "
                 android:textSize="14dp"
                 android:fontFamily="@font/roboto"
                 android:textColor="@color/disabled"/>

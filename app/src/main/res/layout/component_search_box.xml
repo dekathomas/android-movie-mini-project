@@ -10,7 +10,6 @@
         android:layout_width="fill_parent"
         android:layout_height="50dp"
         android:background="@drawable/input_field_style"
-        android:hint="Search your film..."
         android:paddingRight="20dp"
         android:textColor="@color/white"
         android:textColorHint="@color/disabled"

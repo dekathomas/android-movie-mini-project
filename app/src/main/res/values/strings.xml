@@ -1,9 +1,11 @@
 <resources>
-    <string name="app_name">MOVAP</string>
+    <string name="app_name" translatable="false">MOVAP</string>
+
+    <string name="login">Login</string>
 
     <!-- Menu -->
     <string name="first_menu">Movie</string>
-    <string name="second_menu">TV</string>
+    <string name="second_menu" translatable="false">TV</string>
     <string name="third_menu">Favourite</string>
     <string name="fourth_menu">Profile</string>
 
@@ -14,13 +16,18 @@
     <string name="ongoing_tv">Ongoing TV</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
 
     <!-- Detail Page -->
     <string name="detail_recommendation">Recommendation</string>
     <string name="detail_similar">Similar Movies</string>
-    <string name="detail_website">Homepage</string>
-    <string name="detail_imdb">IMDB</string>
+    <string name="detail_website" translatable="false">Homepage</string>
+    <string name="detail_imdb" translatable="false">IMDB</string>
+    <string name="detail_language">Language</string>
+    <string name="detail_popularity">Popularity</string>
+    <string name="detail_rating">Rating</string>
+    <string name="detail_description">Description</string>
+    <string name="detail_votes" translatable="false">Votes</string>
 
     <!-- Favourite Page -->
     <string name="favourite_title">Favourite</string>
@@ -29,7 +36,7 @@
     <string name="go_to_movie">Go To Movie Page</string>
 
     <!-- Log String -->
-    <string name="logger_retrofit">RETROFIT LOGGER</string>
+    <string name="logger_retrofit" translatable="false">RETROFIT LOGGER</string>
 
     <!-- Toast -->
     <string name="error_general">System Error</string>
@@ -44,5 +51,11 @@
     <!-- Information -->
     <string name="information_hello">Hello Fellas!</string>
     <string name="information_thank_you">Thank you for using our application! This application is built for project of our training activity. If you have some suggestions to make this application better, please contact us!</string>
+    <string name="information_developer">Introduce our developer</string>
+
+
+    <!-- Information -->
+    <string name="profile_setting">Setting</string>
+    <string name="profile_information">Information</string>
 
 </resources>
