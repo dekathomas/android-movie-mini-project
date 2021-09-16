@@ -14,7 +14,7 @@ import java.util.List;
 public interface TvDao {
 
     @Query("SELECT * FROM tv_detail")
-    public List<TvDetail> getPopularList();
+    public List<TvDetail> findAll();
 
     @Query("SELECT * FROM tv_detail WHERE id = :id")
     public LiveData<TvDetail> findTvDetailById(int id);
@@ -22,5 +22,7 @@ public interface TvDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insert(TvDetail tvDetail);
 
+    @Query("SELECT * FROM tv_detail WHERE name LIKE '%' + :name + '%'")
+    public List<TvDetail> searchByName(String name);
 
 }

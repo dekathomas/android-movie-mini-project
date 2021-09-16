@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,13 +28,11 @@ import com.example.androidmovieminiproject.utility.RecyclerViewClick;
 
 import java.util.List;
 
-public class MovieFragment extends Fragment implements RecyclerViewClick {
-
+public class MovieFragment extends BaseFragment implements RecyclerViewClick {
     private RecyclerView popularRecyclerView;
     private RecyclerView upcomingRecyclerView;
     private MovieAdapter movieAdapter;
     private MovieViewModel movieViewModel;
-    private LoadingDialog loading;
     private ConstraintLayout componentSearch;
 
     @Override
@@ -50,16 +49,16 @@ public class MovieFragment extends Fragment implements RecyclerViewClick {
         initPopularRecylcerView();
         initUpcomingRecylcerView();
         setSearchListener();
+        showScrollView();
     }
 
     private void initVariables() {
-        loading = new LoadingDialog(getActivity());
         movieViewModel = new ViewModelProvider(getActivity()).get(MovieViewModel.class);
         popularRecyclerView = getActivity().findViewById(R.id.popularMovieRecyclerView);
         upcomingRecyclerView = getActivity().findViewById(R.id.upcomingMovieRecyclerView);
-        componentSearch = getActivity().findViewById(R.id.componentSearchBox);
+        componentSearch = getActivity().findViewById(R.id.componentMovieSearchBox);
 
-        loading.show();
+        initAnimationVariables(getActivity().findViewById(R.id.movieScrollView));
     }
 
     private void initViewModel() {
@@ -70,37 +69,37 @@ public class MovieFragment extends Fragment implements RecyclerViewClick {
     private void initPopularRecylcerView() {
         GridLayoutManager gridLayoutManager =
                 new GridLayoutManager(getActivity().getApplicationContext(), 3);
-
         movieViewModel.mutablePopularMovieList.observe(getActivity(), movieDetails -> {
-            insertMovieDetailToDatabase(movieDetails);
-            System.out.println("========================= INI POPULAR MOVIES COI ==========================");
-            movieAdapter = new MovieAdapter(movieDetails, this, "popular");
-            popularRecyclerView.setAdapter(movieAdapter);
-            popularRecyclerView.setLayoutManager(gridLayoutManager);
-            movieAdapter.notifyDataSetChanged();
-            loading.hide();
+            if (movieDetails != null && movieDetails.size() > 0) {
+                initRecyclerView(movieDetails, popularRecyclerView, gridLayoutManager, AppProperties.popularMovie);
+            }
         });
     }
 
     private void initUpcomingRecylcerView() {
         GridLayoutManager gridLayoutManager =
                 new GridLayoutManager(getActivity().getApplicationContext(), 3);
-
         movieViewModel.mutableUpcomingMovieList.observe(getActivity(), movieDetails -> {
-            insertMovieDetailToDatabase(movieDetails);
-            System.out.println("========================= INI UPCOMING MOVIES COI ==========================");
-            movieAdapter = new MovieAdapter(movieDetails, this, "upcoming");
-            upcomingRecyclerView.setAdapter(movieAdapter);
-            upcomingRecyclerView.setLayoutManager(gridLayoutManager);
-            movieAdapter.notifyDataSetChanged();
-            loading.hide();
+            if (movieDetails != null && movieDetails.size() > 0) {
+                initRecyclerView(movieDetails, upcomingRecyclerView, gridLayoutManager, AppProperties.upcomingMovie);
+            }
         });
+    }
+
+    private void initRecyclerView(List<MovieDetail> movieDetailList, RecyclerView recyclerView,
+          GridLayoutManager gridLayoutManager, String adapterType
+    ) {
+        insertMovieDetailToDatabase(movieDetailList);
+        movieAdapter = new MovieAdapter(movieDetailList, this, adapterType);
+        recyclerView.setAdapter(movieAdapter);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        movieAdapter.notifyDataSetChanged();
     }
 
     private void insertMovieDetailToDatabase(List<MovieDetail> movieList) {
         if (movieList.size() > 0) {
             for (MovieDetail movieDetail : movieList) {
-                movieViewModel.insertHomeDetail(movieDetail);
+                movieViewModel.insertMovieDetail(movieDetail);
             }
         }
     }
@@ -108,13 +107,16 @@ public class MovieFragment extends Fragment implements RecyclerViewClick {
     @Override
     public void onItemClick(int position, String type){
         MovieDetail movieDetail = movieViewModel.getMovieDetail(position, type);
-        goToDetailPage(movieDetail.getId());
+
+        if (movieDetail != null) {
+            goToDetailPage(movieDetail.getId());
+        }
     }
 
     private void goToDetailPage(int homeId) {
         Intent intent = new Intent(getContext(), DetailMovieActivity.class);
-        intent.putExtra(String.valueOf(R.string.detail_item_id), homeId);
-        intent.putExtra(String.valueOf(R.string.detail_item_type), "movie");
+        intent.putExtra(AppProperties.detailItemId, homeId);
+        intent.putExtra(AppProperties.detailItemType, AppProperties.movie);
         startActivity(intent);
     }
 
@@ -123,7 +125,7 @@ public class MovieFragment extends Fragment implements RecyclerViewClick {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), SearchActivity.class);
-                intent.putExtra(String.valueOf(R.string.search_type), AppProperties.movie);
+                intent.putExtra(AppProperties.searchType, AppProperties.movie);
                 startActivity(intent);
             }
         });

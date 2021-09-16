@@ -19,6 +19,7 @@ import com.example.androidmovieminiproject.R;
 import com.example.androidmovieminiproject.activities.DetailMovieActivity;
 import com.example.androidmovieminiproject.adapters.FavouriteAdapter;
 import com.example.androidmovieminiproject.model.Favourite;
+import com.example.androidmovieminiproject.utility.AppProperties;
 import com.example.androidmovieminiproject.utility.LoadingDialog;
 import com.example.androidmovieminiproject.utility.RecyclerViewClick;
 import com.example.androidmovieminiproject.viewmodel.FavouriteViewModel;
@@ -27,11 +28,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavouriteFragment extends Fragment implements RecyclerViewClick {
+public class FavouriteFragment extends BaseFragment implements RecyclerViewClick {
     private RecyclerView recyclerView;
     private FavouriteViewModel favouriteViewModel;
     private FavouriteAdapter adapter;
-    private LoadingDialog loading;
     private LinearLayout emptyFavourite;
     private List<Favourite> favouriteList;
     private Button favouriteEmptyButton;
@@ -45,8 +45,8 @@ public class FavouriteFragment extends Fragment implements RecyclerViewClick {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         initVariable();
-        initViewModel();
         initRecyclerView();
         setFavData();
     }
@@ -54,18 +54,14 @@ public class FavouriteFragment extends Fragment implements RecyclerViewClick {
     private void initVariable() {
         emptyFavourite = getActivity().findViewById(R.id.emptyFavourite);
         favouriteEmptyButton = getActivity().findViewById(R.id.favouriteEmptyButton);
-
-        loading = new LoadingDialog(getActivity());
-        loading.show();
-    }
-
-    private void initViewModel() {
         favouriteViewModel = new ViewModelProvider(getActivity()).get(FavouriteViewModel.class);
+        recyclerView = getActivity().findViewById(R.id.favouriteRecyclerView);
+
+        initAnimationVariables(getActivity().findViewById(R.id.favouriteScrollView));
     }
 
     private void initRecyclerView() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        recyclerView = getActivity().findViewById(R.id.favouriteRecyclerView);
         recyclerView.setLayoutManager(layoutManager);
     }
 
@@ -83,7 +79,7 @@ public class FavouriteFragment extends Fragment implements RecyclerViewClick {
                     emptyFavSection();
                 }
             });
-        loading.hide();
+        showScrollView();
     }
 
     @Override
@@ -104,8 +100,8 @@ public class FavouriteFragment extends Fragment implements RecyclerViewClick {
 
     private void goToDetailPage(int itemId, String type) {
         Intent intent = new Intent(getContext(), DetailMovieActivity.class);
-        intent.putExtra(String.valueOf(R.string.detail_item_id), itemId);
-        intent.putExtra(String.valueOf(R.string.detail_item_type), type);
+        intent.putExtra(AppProperties.detailItemId, itemId);
+        intent.putExtra(AppProperties.detailItemType, type);
         startActivity(intent);
     }
 

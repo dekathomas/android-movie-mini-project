@@ -74,7 +74,7 @@
             android:backgroundTint="#FFF"
             android:paddingTop="14dp"
             android:paddingBottom="14dp"
-            android:text="Login"
+            android:text="@string/login"
             android:fontFamily="@font/roboto"
             android:textAllCaps="false"
             android:textColor="@color/primary"

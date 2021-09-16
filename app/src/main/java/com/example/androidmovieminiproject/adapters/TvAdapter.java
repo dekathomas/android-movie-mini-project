@@ -1,6 +1,5 @@
 package com.example.androidmovieminiproject.adapters;
 
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,23 +15,22 @@ import com.bumptech.glide.Glide;
 import com.example.androidmovieminiproject.R;
 import com.example.androidmovieminiproject.database.ListAPI;
 import com.example.androidmovieminiproject.model.TV.TvDetail;
+import com.example.androidmovieminiproject.utility.AppProperties;
 import com.example.androidmovieminiproject.utility.RecyclerViewClick;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class TvAdapter extends RecyclerView.Adapter<TvAdapter.ViewHolder> implements Filterable {
     private List<TvDetail> tvList;
+    private List<TvDetail> tvListFull;
     private RecyclerViewClick listener;
-    private List<TvDetail> tvListCopy;
 
     public TvAdapter(List<TvDetail> tvList, RecyclerViewClick listener) {
         this.tvList = tvList;
-        tvListCopy = new ArrayList<>(tvList);
-//        tvListCopy.addAll(tvList);
         this.listener = listener;
-
+        this.tvListFull = new ArrayList<>(tvList);
+        System.out.println("CALL THIS ADAPTER");
     }
 
     @NonNull
@@ -62,40 +60,6 @@ public class TvAdapter extends RecyclerView.Adapter<TvAdapter.ViewHolder> implem
         return tvList.size();
     }
 
-    @Override
-    public Filter getFilter() {
-        return tvListFilter;
-    }
-
-    private Filter tvListFilter = new Filter() {
-        @Override
-        protected FilterResults performFiltering(CharSequence charSequence) {
-            List<TvDetail> filteredList = new ArrayList<>();
-            if(charSequence == null || charSequence.length() == 0){
-                filteredList.addAll(tvListCopy);
-            } else {
-                String filterPattern = charSequence.toString().toLowerCase().trim();
-                for(TvDetail list : tvListCopy){
-                    if(list.getName().toLowerCase().contains(filterPattern)){
-                        filteredList.add(list);
-                    }
-                }
-            }
-
-            FilterResults results = new FilterResults();
-            results.values = filteredList;
-            return results;
-        }
-
-        @Override
-        protected void publishResults(CharSequence charSequence, FilterResults results) {
-            tvList.clear();
-            tvList.addAll((List) results.values);
-            notifyDataSetChanged();
-        }
-    };
-
-
     public class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
 
@@ -106,28 +70,44 @@ public class TvAdapter extends RecyclerView.Adapter<TvAdapter.ViewHolder> implem
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.onItemClick(getAbsoluteAdapterPosition(), "");
+                    listener.onItemClick(getAbsoluteAdapterPosition(), AppProperties.tv);
                 }
             });
         }
     }
 
+    @Override
+    public Filter getFilter() {
+        return filterTv;
+    }
 
-//    public void filter(CharSequence charSequence){
-//        ArrayList<TvDetail> tempList= new ArrayList<>();
-//        if (!TextUtils.isEmpty(charSequence)){
-//            for (TvDetail tvDetail : tvList){
-//                if(tvDetail.getName().toLowerCase().contains(charSequence)){
-//                    tempList.add(tvDetail);
-//                }
-//            }
-//        } else {
-//            tempList.addAll(tvListCopy);
-//        }
-//        tvList.clear();
-//        tvList.addAll(tempList);
-//        notifyDataSetChanged();
-//        tempList.clear();
-//    }
+    private Filter filterTv = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<TvDetail> filteredTv = new ArrayList<>();
 
+            if (charSequence == null || charSequence.length() == 0) {
+                filteredTv.addAll(tvListFull);
+            } else {
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+                for (TvDetail tv : tvListFull) {
+                    if (tv.getName().toLowerCase().contains(filterPattern)) {
+                        System.out.println(tv.getName());
+                        filteredTv.add(tv);
+                    }
+                }
+            }
+
+            FilterResults result = new FilterResults();
+            result.values = filteredTv;
+            return result;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            tvList.clear();
+            tvList.addAll((List) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 }

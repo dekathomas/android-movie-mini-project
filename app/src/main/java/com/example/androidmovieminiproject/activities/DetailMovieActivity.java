@@ -1,5 +1,6 @@
 package com.example.androidmovieminiproject.activities;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -19,6 +20,7 @@ import com.example.androidmovieminiproject.utility.LoadingDialog;
 import com.example.androidmovieminiproject.utility.AppProperties;
 import com.example.androidmovieminiproject.viewmodel.FavouriteViewModel;
 import com.example.androidmovieminiproject.viewmodel.FilmDetailViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class DetailMovieActivity extends BaseActivity {
 
@@ -34,6 +36,7 @@ public class DetailMovieActivity extends BaseActivity {
     private TextView voteCount;
     private TextView overview;
     private ToggleButton favouriteToggle;
+    private FloatingActionButton componentButtonBack;
 
     private LoadingDialog loading;
 
@@ -41,10 +44,6 @@ public class DetailMovieActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_movie);
-        getSupportActionBar().hide();
-
-        loading = new LoadingDialog(DetailMovieActivity.this);
-        loading.show();
     }
 
     @Override
@@ -67,12 +66,16 @@ public class DetailMovieActivity extends BaseActivity {
         voteCount = findViewById(R.id.movieDetailVoteCount);
         overview = findViewById(R.id.movieDetailDescription);
         favouriteToggle = findViewById(R.id.favouriteToggleButton);
+        componentButtonBack = findViewById(R.id.componentButtonBack);
+        loading = new LoadingDialog(DetailMovieActivity.this);
+
+        loading.show();
     }
 
     private void setContentToView() {
         Intent intent = getIntent();
-        int id = intent.getIntExtra(String.valueOf(R.string.detail_item_id), 0);
-        String type = intent.getStringExtra(String.valueOf(R.string.detail_item_type));
+        int id = intent.getIntExtra(AppProperties.detailItemId, 0);
+        String type = intent.getStringExtra(AppProperties.detailItemType);
 
         if (type.equalsIgnoreCase("tv")) {
             getTvDetail(id);
@@ -170,16 +173,16 @@ public class DetailMovieActivity extends BaseActivity {
         loading.hide();
     }
 
-
-
     private void checkIsFavourite() {
         favouriteViewModel.getAll()
             .observe(this, favourites -> {
-                for (int i = 0; i < favourites.size(); i++) {
-                    if (favourites.get(i).getItemId() == favourite.getItemId()) {
-                        favouriteToggle.setChecked(true);
-                        favourite.setItemId(favourites.get(i).getItemId());
-                        break;
+                if (favourites != null & favourites.size() > 0) {
+                    for (int i = 0; i < favourites.size(); i++) {
+                        if (favourites.get(i).getItemId() == favourite.getItemId()) {
+                            favouriteToggle.setChecked(true);
+                            favourite.setItemId(favourites.get(i).getItemId());
+                            break;
+                        }
                     }
                 }
             });
@@ -199,5 +202,17 @@ public class DetailMovieActivity extends BaseActivity {
                 }
             }
         });
+
+        componentButtonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

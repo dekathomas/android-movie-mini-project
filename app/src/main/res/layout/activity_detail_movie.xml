@@ -74,7 +74,7 @@
                             android:textColor="@color/disabled"
                             android:fontFamily="@font/roboto"
                             android:textSize="14sp"
-                            android:text="Language" />
+                            android:text="@string/detail_language" />
                         <TextView
                             android:id="@+id/movieDetailLanguage"
                             android:layout_width="wrap_content"
@@ -96,7 +96,7 @@
                             android:textColor="@color/disabled"
                             android:fontFamily="@font/roboto"
                             android:textSize="14sp"
-                            android:text="Popularity" />
+                            android:text="@string/detail_popularity" />
                         <TextView
                             android:id="@+id/movieDetailPopularity"
                             android:layout_width="wrap_content"
@@ -130,7 +130,7 @@
                                 android:textColor="@color/white"
                                 android:fontFamily="@font/roboto"
                                 android:textSize="18sp"
-                                android:text="Rating" />
+                                android:text="@string/detail_rating" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -258,8 +258,8 @@ kalau cukup waktu coba tanya mentor bisa pake detail gak-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-<!--    TODO kalau sempet waktu cari tau bisa back gmna-->
-    <!--<RelativeLayout
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -271,6 +271,6 @@ kalau cukup waktu coba tanya mentor bisa pake detail gak-->
             layout="@layout/component_button_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-    </RelativeLayout>-->
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 

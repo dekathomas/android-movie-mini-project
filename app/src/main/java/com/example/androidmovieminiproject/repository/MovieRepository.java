@@ -57,7 +57,7 @@ public class MovieRepository {
             });
     }
 
-    public void insertHomeDetail(MovieDetail movieDetail) {
+    public void insertMovieDetail(MovieDetail movieDetail) {
         AppDatabase.executorService.execute(new Runnable() {
             @Override
             public void run() {
@@ -69,5 +69,20 @@ public class MovieRepository {
     public interface requestCallback {
         void onSuccess(List<MovieDetail> movieDetail);
         void onFailed(String message);
+    }
+
+    public void getMovieListFromDB(requestCallback callback) {
+        AppDatabase.executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                List<MovieDetail> listMovieDetail = movieDao.findAll();
+
+                if (listMovieDetail.size() > 0) {
+                    callback.onSuccess(listMovieDetail);
+                } else {
+                    callback.onSuccess(null);
+                }
+            }
+        });
     }
 }

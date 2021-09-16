@@ -85,8 +85,8 @@ public class MovieViewModel extends AndroidViewModel {
         return movieUpcomingList.size() > 0 ? movieUpcomingList.get(position) : null;
     }
 
-    public void insertHomeDetail(MovieDetail movieDetail) {
-        movieRepository.insertHomeDetail(movieDetail);
+    public void insertMovieDetail(MovieDetail movieDetail) {
+        movieRepository.insertMovieDetail(movieDetail);
     }
 
 }

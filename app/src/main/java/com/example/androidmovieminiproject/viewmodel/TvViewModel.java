@@ -29,7 +29,7 @@ public class TvViewModel extends AndroidViewModel {
         tvRepository.getAllPopularTv(new TvRepository.requestCallback() {
             @Override
             public void onSuccess(List<TvDetail> tvDetailList) {
-                if (tvDetailList.size() != 0) {
+                if (tvDetailList != null && tvDetailList.size() != 0) {
                     tvList.setValue(tvDetailList);
                 }
                 else {
@@ -46,7 +46,7 @@ public class TvViewModel extends AndroidViewModel {
     }
 
     public TvDetail getTv(int position) {
-        if (tvList.getValue().size() == 0) {
+        if (tvList == null || tvList.getValue().size() == 0) {
             return null;
         }
 

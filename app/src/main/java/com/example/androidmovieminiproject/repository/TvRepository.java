@@ -52,4 +52,34 @@ public class TvRepository {
             }
         });
     }
+
+    public void searchTv(String name, requestCallback callback) {
+        AppDatabase.executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                List<TvDetail> listTvDetail = tvDao.searchByName(name);
+
+                if (listTvDetail.size() > 0) {
+                    callback.onSuccess(listTvDetail);
+                } else {
+                    callback.onSuccess(null);
+                }
+            }
+        });
+    }
+
+    public void getTvListFromDB(requestCallback callback) {
+        AppDatabase.executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                List<TvDetail> listTvDetail = tvDao.findAll();
+
+                if (listTvDetail.size() > 0) {
+                    callback.onSuccess(listTvDetail);
+                } else {
+                    callback.onSuccess(null);
+                }
+            }
+        });
+    }
 }
