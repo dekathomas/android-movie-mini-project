@@ -24,6 +24,11 @@ public class MovieRepository {
         movieDao = database.homeDao();
     }
 
+    public interface requestCallback {
+        void onSuccess(List<MovieDetail> movieDetail);
+        void onFailed(String message);
+    }
+
     public void getPopularMovieList(requestCallback callback) {
         RetrofitService retrofitService = new RetrofitService();
         retrofitService.getAPI()
@@ -67,11 +72,6 @@ public class MovieRepository {
         });
     }
 
-    public interface requestCallback {
-        void onSuccess(List<MovieDetail> movieDetail);
-        void onFailed(String message);
-    }
-
     public void getMovieListFromDB(requestCallback callback) {
         AppDatabase.executorService.execute(new Runnable() {
             @Override
@@ -99,5 +99,47 @@ public class MovieRepository {
                 }
             }
         });
+    }
+
+    public void searchMovieByName(String name, requestCallback callback) {
+        // Search movie from DB first
+        AppDatabase.executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                List<MovieDetail> listMovieDetail = movieDao.searchByName(name);
+                System.out.println("===============================================");
+                System.out.println("SEARCH FROM DB");
+                if (listMovieDetail.size() > 0) {
+                    callback.onSuccess(listMovieDetail);
+                } else {
+                    System.out.println("gaada nih, cari di API DONG");
+                    // If not found, find via API
+                    searchMovieByNameFromAPI(name, callback);
+                }
+            }
+        });
+    }
+
+    private void searchMovieByNameFromAPI(String name, requestCallback callback) {
+        RetrofitService retrofitService = new RetrofitService();
+        retrofitService.getAPI()
+            .searchMovieByName(name)
+            .enqueue(new Callback<MovieList>() {
+                @Override
+                public void onResponse(Call<MovieList> call, Response<MovieList> response) {
+                    if (response.body().getMovieDetailList().size() > 0) {
+                        System.out.println("Nah ketemu nih di API");
+                        callback.onSuccess(response.body().getMovieDetailList());
+                    } else {
+                    System.out.println("di API juga kagak ada COK");
+                        callback.onSuccess(null);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<MovieList> call, Throwable t) {
+                    callback.onFailed(t.getMessage());
+                }
+            });
     }
 }

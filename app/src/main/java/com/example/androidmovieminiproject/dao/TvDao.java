@@ -22,7 +22,7 @@ public interface TvDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void insert(TvDetail tvDetail);
 
-    @Query("SELECT * FROM tv_detail WHERE name LIKE '%' + :name + '%'")
+    @Query("SELECT * FROM tv_detail WHERE name LIKE '%' || :name || '%'")
     public List<TvDetail> searchByName(String name);
 
 }
