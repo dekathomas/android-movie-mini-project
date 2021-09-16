@@ -5,6 +5,7 @@ import android.app.Application;
 import com.example.androidmovieminiproject.api.RetrofitService;
 import com.example.androidmovieminiproject.dao.TvDao;
 import com.example.androidmovieminiproject.database.AppDatabase;
+import com.example.androidmovieminiproject.model.Movie.MovieList;
 import com.example.androidmovieminiproject.model.TV.TvDetail;
 import com.example.androidmovieminiproject.model.TV.TvList;
 
@@ -62,10 +63,32 @@ public class TvRepository {
                 if (listTvDetail.size() > 0) {
                     callback.onSuccess(listTvDetail);
                 } else {
-                    callback.onSuccess(null);
+//                    callback.onSuccess(null);
+                    searchTvByNameFromAPI(name, callback);
                 }
             }
         });
+    }
+
+    private void searchTvByNameFromAPI(String name, requestCallback callback) {
+        RetrofitService retrofitService = new RetrofitService();
+        retrofitService.getAPI()
+                .searchTvByName(name)
+                .enqueue(new Callback<TvList>() {
+                    @Override
+                    public void onResponse(Call<TvList> call, Response<TvList> response) {
+                        if (response.body().getTvPopularList().size() > 0) {
+                            callback.onSuccess(response.body().getTvPopularList());
+                        } else {
+                            callback.onSuccess(null);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<TvList> call, Throwable t) {
+                        callback.onFailed(t.getMessage());
+                    }
+                });
     }
 
     public void getTvListFromDB(requestCallback callback) {

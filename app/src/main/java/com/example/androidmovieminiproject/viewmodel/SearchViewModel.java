@@ -87,6 +87,20 @@ public class SearchViewModel extends AndroidViewModel {
         });
     }
 
+    public void searchTvByName(String name){
+        tvRepository.searchTv(name, new TvRepository.requestCallback() {
+            @Override
+            public void onSuccess(List<TvDetail> tvDetail) {
+                tvList.postValue(tvDetail);
+            }
+
+            @Override
+            public void onFailed(String message) {
+                tvList.postValue(null);
+            }
+        });
+    }
+
     public void insertMovieToDB(MovieDetail movieDetail) {
         movieRepository.insertMovieDetail(movieDetail);
     }
