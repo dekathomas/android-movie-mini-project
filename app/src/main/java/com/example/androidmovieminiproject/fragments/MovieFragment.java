@@ -48,6 +48,7 @@ public class MovieFragment extends BaseFragment implements RecyclerViewClick {
         initViewModel();
         initPopularRecylcerView();
         initUpcomingRecylcerView();
+
         setSearchListener();
         showScrollView();
     }

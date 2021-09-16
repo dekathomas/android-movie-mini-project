@@ -77,6 +77,7 @@ public class TvRepository {
                 if (listTvDetail.size() > 0) {
                     callback.onSuccess(listTvDetail);
                 } else {
+                    // TODO if there is no data, search through API
                     callback.onSuccess(null);
                 }
             }

@@ -17,12 +17,12 @@ import java.util.List;
 
 public class TvViewModel extends AndroidViewModel {
     private final TvRepository tvRepository;
-    public MutableLiveData<List<TvDetail>> tvList;
+    public MutableLiveData<List<TvDetail>> tvList = new MutableLiveData<>();;
 
     public TvViewModel(@NonNull Application application) {
         super(application);
+
         tvRepository = new TvRepository(application);
-        tvList = new MutableLiveData<>();
     }
 
     public void getAllTvPopular() {
@@ -30,17 +30,17 @@ public class TvViewModel extends AndroidViewModel {
             @Override
             public void onSuccess(List<TvDetail> tvDetailList) {
                 if (tvDetailList != null && tvDetailList.size() != 0) {
-                    tvList.setValue(tvDetailList);
+                    tvList.postValue(tvDetailList);
                 }
                 else {
-                    tvList.setValue(null);
+                    tvList.postValue(null);
                 }
             }
 
             @Override
             public void onFailed(String message) {
                 AlertDialog.error(getApplication(), String.valueOf(R.string.error_general));
-                tvList.setValue(null);
+                tvList.postValue(null);
             }
         });
     }

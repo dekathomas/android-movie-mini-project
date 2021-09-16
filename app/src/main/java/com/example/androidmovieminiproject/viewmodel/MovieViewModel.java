@@ -17,16 +17,15 @@ import java.util.List;
 
 public class MovieViewModel extends AndroidViewModel {
     private final MovieRepository movieRepository;
-    public MutableLiveData<List<MovieDetail>> mutablePopularMovieList;
-    public MutableLiveData<List<MovieDetail>> mutableUpcomingMovieList;
+    public MutableLiveData<List<MovieDetail>> mutablePopularMovieList = new MutableLiveData<>();;
+    public MutableLiveData<List<MovieDetail>> mutableUpcomingMovieList = new MutableLiveData<>();;
     public List<MovieDetail> moviePopularList = new ArrayList<>();
     public List<MovieDetail> movieUpcomingList = new ArrayList<>();
 
     public MovieViewModel(@NonNull Application application) {
         super(application);
+
         movieRepository = new MovieRepository(application);
-        mutablePopularMovieList = new MutableLiveData<>();
-        mutableUpcomingMovieList = new MutableLiveData<>();
     }
 
     public void getPopularMovieList() {
@@ -35,17 +34,17 @@ public class MovieViewModel extends AndroidViewModel {
             public void onSuccess(List<MovieDetail> movieDetailList) {
                 if (movieDetailList.size() != 0) {
                     moviePopularList.addAll(movieDetailList);
-                    mutablePopularMovieList.setValue(movieDetailList);
+                    mutablePopularMovieList.postValue(movieDetailList);
                 }
                 else {
-                    mutablePopularMovieList.setValue(null);
+                    mutablePopularMovieList.postValue(null);
                 }
             }
 
             @Override
             public void onFailed(String message) {
                 AlertDialog.error(getApplication(), String.valueOf(R.string.error_general));
-                mutablePopularMovieList.setValue(null);
+                mutablePopularMovieList.postValue(null);
             }
         });
     }
@@ -56,17 +55,17 @@ public class MovieViewModel extends AndroidViewModel {
             public void onSuccess(List<MovieDetail> movieDetailList) {
                 if (movieDetailList.size() != 0) {
                     movieUpcomingList.addAll(movieDetailList);
-                    mutableUpcomingMovieList.setValue(movieDetailList);
+                    mutableUpcomingMovieList.postValue(movieDetailList);
                 }
                 else {
-                    mutableUpcomingMovieList.setValue(null);
+                    mutableUpcomingMovieList.postValue(null);
                 }
             }
 
             @Override
             public void onFailed(String message) {
                 AlertDialog.error(getApplication(), String.valueOf(R.string.error_general));
-                mutableUpcomingMovieList.setValue(null);
+                mutableUpcomingMovieList.postValue(null);
             }
         });
     }
