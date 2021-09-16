@@ -93,16 +93,18 @@ public class FavouriteFragment extends Fragment implements RecyclerViewClick {
     private void getFavouriteById(int position) {
         for (int i = 0; i < favouriteList.size(); i++) {
             if (position == i) {
-                goToDetailPage(favouriteList.get(i).getItemId());
+                int itemId = favouriteList.get(i).getItemId();
+                String type = favouriteList.get(i).getType();
+                goToDetailPage(itemId, type);
                 break;
             }
         }
     }
 
-    private void goToDetailPage(int tvId) {
+    private void goToDetailPage(int itemId, String type) {
         Intent intent = new Intent(getContext(), DetailMovieActivity.class);
-        intent.putExtra(String.valueOf(R.string.detail_item_id), tvId);
-        intent.putExtra(String.valueOf(R.string.detail_item_type), "tv");
+        intent.putExtra(String.valueOf(R.string.detail_item_id), itemId);
+        intent.putExtra(String.valueOf(R.string.detail_item_type), type);
         startActivity(intent);
     }
 

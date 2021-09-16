@@ -7,7 +7,7 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class TvPopularList {
+public class TvList {
     @SerializedName("results")
     private List<TvDetail> tvPopularList;
 }

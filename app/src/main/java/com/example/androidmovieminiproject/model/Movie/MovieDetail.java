@@ -1,5 +1,6 @@
 package com.example.androidmovieminiproject.model.Movie;
 
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -8,44 +9,40 @@ import com.google.gson.annotations.SerializedName;
 
 import lombok.Data;
 
-@Data
 @Entity(tableName = "movie_detail")
+@Data
 public class MovieDetail {
-    @PrimaryKey(autoGenerate = false)
-    @ColumnInfo(name = "id")
+    @PrimaryKey
     @SerializedName("id")
-    private int movieId;
+    private Integer id;
 
-    @ColumnInfo(name = "backdrop_path")
     @SerializedName("backdrop_path")
-    private String posterUrl;
+    @ColumnInfo(name = "backdrop_path")
+    private String backdropPath;
 
-    @ColumnInfo(name = "title")
-    @SerializedName("title")
-    private String movieName;
-
-    @ColumnInfo(name = "release_date")
-    @SerializedName("release_date")
-    private String releaseDate;
-
-    private String genre;
-
-    @ColumnInfo(name = "vote_average")
-    @SerializedName("vote_average")
-    private Double rating;
-
-    @ColumnInfo(name = "homepage")
     @SerializedName("homepage")
-    private String websiteUrl;
+    private String homepage;
 
-    @ColumnInfo(name = "imdb_id")
-    @SerializedName("imdb_id")
-    private String imdbId;
-
-    @ColumnInfo(name = "overview")
     @SerializedName("overview")
-    private String description;
+    private String overview;
 
-    /*private List<RecommendationMovie> recommendationMovies;
-    private List<RecommendationMovie> similarMovies;*/
+    @SerializedName("poster_path")
+    @ColumnInfo(name = "poster_path")
+    private String posterPath;
+
+    @SerializedName("vote_average")
+    @ColumnInfo(name = "vote_average")
+    private String voteAverage;
+
+    @SerializedName("original_language")
+    public String originalLanguage;
+
+    @SerializedName("popularity")
+    public String popularity;
+
+    @SerializedName("title")
+    public String title;
+
+    @SerializedName("vote_count")
+    public String voteCount;
 }

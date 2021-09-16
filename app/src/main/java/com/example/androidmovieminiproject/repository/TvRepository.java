@@ -2,15 +2,12 @@ package com.example.androidmovieminiproject.repository;
 
 import android.app.Application;
 
-import androidx.lifecycle.LiveData;
-
 import com.example.androidmovieminiproject.api.RetrofitService;
 import com.example.androidmovieminiproject.dao.TvDao;
 import com.example.androidmovieminiproject.database.AppDatabase;
 import com.example.androidmovieminiproject.model.TV.TvDetail;
-import com.example.androidmovieminiproject.model.TV.TvPopularList;
+import com.example.androidmovieminiproject.model.TV.TvList;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -34,14 +31,14 @@ public class TvRepository {
         RetrofitService retrofitService = new RetrofitService();
         retrofitService.getAPI()
             .getTvList("popular", 1)
-            .enqueue(new Callback<TvPopularList>() {
+            .enqueue(new Callback<TvList>() {
                 @Override
-                public void onResponse(Call<TvPopularList> call, Response<TvPopularList> response) {
+                public void onResponse(Call<TvList> call, Response<TvList> response) {
                     callback.onSuccess(response.body().getTvPopularList());
                 }
 
                 @Override
-                public void onFailure(Call<TvPopularList> call, Throwable t) {
+                public void onFailure(Call<TvList> call, Throwable t) {
                     callback.onFailed(t.getMessage());
                 }
             });

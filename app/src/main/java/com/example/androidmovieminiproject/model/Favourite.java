@@ -9,9 +9,7 @@ import lombok.Data;
 @Entity(tableName = "favourite")
 @Data
 public class Favourite {
-    @PrimaryKey(autoGenerate = true)
-    private int id;
-
+    @PrimaryKey()
     @ColumnInfo(name = "item_id")
     private int itemId;
 
@@ -29,5 +27,8 @@ public class Favourite {
 
     @ColumnInfo(name = "vote_count")
     private String voteCount;
+
+    @ColumnInfo(name = "type")
+    private String type;
 
 }

@@ -1,34 +1,26 @@
 package com.example.androidmovieminiproject.adapters;
 
-import android.content.Context;
-import android.graphics.Movie;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.AsyncDifferConfig;
-import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.androidmovieminiproject.R;
-import com.example.androidmovieminiproject.model.Home.HomeDetail;
 import com.example.androidmovieminiproject.model.Movie.MovieDetail;
-import com.example.androidmovieminiproject.model.MovieModelClass;
 import com.example.androidmovieminiproject.database.ListAPI;
 import com.example.androidmovieminiproject.utility.RecyclerViewClick;
 
 import java.util.List;
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
-    private final List<HomeDetail> movieList;
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
+    private final List<MovieDetail> movieList;
     private RecyclerViewClick listener;
 
-    public HomeAdapter(List<HomeDetail> movieList, RecyclerViewClick listener) {
+    public MovieAdapter(List<MovieDetail> movieList, RecyclerViewClick listener) {
         this.movieList = movieList;
         this.listener = listener;
     }
@@ -43,8 +35,8 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        HomeDetail homeDetail = movieList.get(position);
-        String posterUrl = ListAPI.URL_ORIGINAL_IMAGE.concat(homeDetail.getPosterPath());
+        MovieDetail movieDetail = movieList.get(position);
+        String posterUrl = ListAPI.URL_ORIGINAL_IMAGE.concat(movieDetail.getPosterPath());
 
         Glide.with(holder.itemView)
                 .load(posterUrl)
