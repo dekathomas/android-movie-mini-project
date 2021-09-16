@@ -3,6 +3,8 @@ package com.example.androidmovieminiproject.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -14,10 +16,12 @@ import com.example.androidmovieminiproject.model.Movie.MovieDetail;
 import com.example.androidmovieminiproject.database.ListAPI;
 import com.example.androidmovieminiproject.utility.RecyclerViewClick;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> implements Filterable {
     private final List<MovieDetail> movieList;
+    private final List<MovieDetail> movieListFull;
     private RecyclerViewClick listener;
     private String adapterType;
 
@@ -25,6 +29,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         this.movieList = movieList;
         this.listener = listener;
         this.adapterType = adapterType;
+        this.movieListFull = movieList;
     }
 
     @NonNull
@@ -53,6 +58,41 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     public int getItemCount() {
         return movieList.size();
     }
+
+    @Override
+    public Filter getFilter() {
+        return filterMovie;
+    }
+
+    private Filter filterMovie = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence charSequence) {
+            List<MovieDetail> filteredTv = new ArrayList<>();
+
+            if (charSequence == null || charSequence.length() == 0) {
+                filteredTv.addAll(movieListFull);
+            } else {
+                String filterPattern = charSequence.toString().toLowerCase().trim();
+                for (MovieDetail movie : movieListFull) {
+                    if (movie.getTitle().toLowerCase().contains(filterPattern)) {
+                        System.out.println(movie.getTitle());
+                        filteredTv.add(movie);
+                    }
+                }
+            }
+
+            FilterResults result = new FilterResults();
+            result.values = filteredTv;
+            return result;
+        }
+
+        @Override
+        protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+            movieList.clear();
+            movieList.addAll((List) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;

@@ -56,7 +56,7 @@ public class MovieFragment extends BaseFragment implements RecyclerViewClick {
         movieViewModel = new ViewModelProvider(getActivity()).get(MovieViewModel.class);
         popularRecyclerView = getActivity().findViewById(R.id.popularMovieRecyclerView);
         upcomingRecyclerView = getActivity().findViewById(R.id.upcomingMovieRecyclerView);
-        componentSearch = getActivity().findViewById(R.id.componentSearchBox);
+        componentSearch = getActivity().findViewById(R.id.componentMovieSearchBox);
 
         initAnimationVariables(getActivity().findViewById(R.id.movieScrollView));
     }
@@ -99,7 +99,7 @@ public class MovieFragment extends BaseFragment implements RecyclerViewClick {
     private void insertMovieDetailToDatabase(List<MovieDetail> movieList) {
         if (movieList.size() > 0) {
             for (MovieDetail movieDetail : movieList) {
-                movieViewModel.insertHomeDetail(movieDetail);
+                movieViewModel.insertMovieDetail(movieDetail);
             }
         }
     }

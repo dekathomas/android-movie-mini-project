@@ -51,7 +51,7 @@ public class TvFragment extends BaseFragment implements RecyclerViewClick {
     }
 
     private void initVariables() {
-        componentSearch = getActivity().findViewById(R.id.componentSearchBox);
+        componentSearch = getActivity().findViewById(R.id.componentTvSearchBox);
         tvViewModel = new ViewModelProvider(getActivity()).get(TvViewModel.class);
         recyclerView = getActivity().findViewById(R.id.tvPopularRecyclerView);
 
