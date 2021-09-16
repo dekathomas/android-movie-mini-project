@@ -1,6 +1,8 @@
 package com.example.androidmovieminiproject.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.widget.ImageView;
 import com.example.androidmovieminiproject.R;
 import com.example.androidmovieminiproject.adapters.TvAdapter;
 import com.example.androidmovieminiproject.model.TV.TvDetail;
+import com.example.androidmovieminiproject.utility.RecyclerViewClick;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +30,16 @@ public class SearchActivity extends BaseActivity {
     private String searchType;
     private TvAdapter tvAdapter;
     private List<TvDetail> tvList;
+
+    private void setUpRecyclerView(){
+        RecyclerView recyclerView = findViewById(R.id.filmSearchRecylerView);
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        tvAdapter = new TvAdapter(tvList, (RecyclerViewClick) this);
+
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(tvAdapter);
+    }
 
 
     @Override
@@ -61,6 +74,8 @@ public class SearchActivity extends BaseActivity {
         }
     }
 
+
+
     public void setEventListener() {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +94,10 @@ public class SearchActivity extends BaseActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String textSearch = inputSearchText.getText().toString();
                 Log.d("TAGhere", textSearch);
-                tvAdapter.filter(charSequence);
+                Log.d("TAGCS", charSequence.toString());
+//                tvAdapter.filter(charSequence);
+                tvAdapter.getFilter().filter(charSequence);
+
             }
 
             @Override

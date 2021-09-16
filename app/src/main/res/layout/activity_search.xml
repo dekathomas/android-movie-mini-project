@@ -45,7 +45,8 @@
                 android:textColor="@color/white"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                android:textColorHint="@color/disabled" />
+                android:textColorHint="@color/disabled"
+                />
             <ImageButton
                 android:id="@+id/searchClearText"
                 android:layout_width="20dp"
