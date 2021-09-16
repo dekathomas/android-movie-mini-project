@@ -160,7 +160,11 @@ public class SearchActivity extends BaseActivity implements RecyclerViewClick {
         searchViewInput.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String name) {
-                tvAdapter.getFilter().filter(name);
+                if (searchType.equals(AppProperties.tv)) {
+                    tvAdapter.getFilter().filter(name);
+                } else if (searchType.equals(AppProperties.movie)) {
+                    movieAdapter.getFilter().filter(name);
+                }
                 return false;
             }
 
