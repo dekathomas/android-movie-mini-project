@@ -21,17 +21,17 @@ import com.example.androidmovieminiproject.activities.SearchActivity;
 import com.example.androidmovieminiproject.adapters.TvAdapter;
 import com.example.androidmovieminiproject.model.TV.TvDetail;
 import com.example.androidmovieminiproject.utility.AlertDialog;
+import com.example.androidmovieminiproject.utility.AppProperties;
 import com.example.androidmovieminiproject.utility.LoadingDialog;
 import com.example.androidmovieminiproject.utility.RecyclerViewClick;
 import com.example.androidmovieminiproject.viewmodel.TvViewModel;
 
 import java.util.List;
 
-public class TvFragment extends Fragment implements RecyclerViewClick {
+public class TvFragment extends BaseFragment implements RecyclerViewClick {
     private RecyclerView recyclerView;
     private TvAdapter tvAdapter;
     private TvViewModel tvViewModel;
-    private LoadingDialog loading;
     private ConstraintLayout componentSearch;
 
     @Override
@@ -47,15 +47,15 @@ public class TvFragment extends Fragment implements RecyclerViewClick {
         initViewModel();
         initPopularRecylcerView();
         setSearchListener();
+        showScrollView();
     }
 
     private void initVariables() {
         componentSearch = getActivity().findViewById(R.id.componentSearchBox);
         tvViewModel = new ViewModelProvider(getActivity()).get(TvViewModel.class);
         recyclerView = getActivity().findViewById(R.id.tvPopularRecyclerView);
-        loading = new LoadingDialog(getActivity());
 
-        loading.show();
+        initAnimationVariables(getActivity().findViewById(R.id.tvScrollView));
     }
 
     private void initViewModel() {
@@ -67,13 +67,14 @@ public class TvFragment extends Fragment implements RecyclerViewClick {
                 new GridLayoutManager(getActivity().getApplicationContext(), 3);
 
         tvViewModel.tvList.observe(getActivity(), tvDetails -> {
-            insertTvDetailToDatabase(tvDetails);
+            if (tvDetails != null && tvDetails.size() > 0) {
+                insertTvDetailToDatabase(tvDetails);
 
-            tvAdapter = new TvAdapter(tvDetails, this);
-            recyclerView.setAdapter(tvAdapter);
-            recyclerView.setLayoutManager(gridLayoutManager);
-            tvAdapter.notifyDataSetChanged();
-            loading.hide();
+                tvAdapter = new TvAdapter(tvDetails, this);
+                recyclerView.setAdapter(tvAdapter);
+                recyclerView.setLayoutManager(gridLayoutManager);
+                tvAdapter.notifyDataSetChanged();
+            }
         });
     }
 
@@ -86,13 +87,16 @@ public class TvFragment extends Fragment implements RecyclerViewClick {
     @Override
     public void onItemClick(int position, String type) {
         TvDetail tvDetail = tvViewModel.getTv(position);
-        goToDetailPage(tvDetail.getId());
+
+        if (tvDetail != null) {
+            goToDetailPage(tvDetail.getId());
+        }
     }
 
     private void goToDetailPage(int tvId) {
         Intent intent = new Intent(getContext(), DetailMovieActivity.class);
-        intent.putExtra(String.valueOf(R.string.detail_item_id), tvId);
-        intent.putExtra(String.valueOf(R.string.detail_item_type), "tv");
+        intent.putExtra(AppProperties.detailItemId, tvId);
+        intent.putExtra(AppProperties.detailItemType, AppProperties.tv);
         startActivity(intent);
     }
 
@@ -101,7 +105,7 @@ public class TvFragment extends Fragment implements RecyclerViewClick {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), SearchActivity.class);
-                intent.putExtra(String.valueOf(R.string.search_type), "tv");
+                intent.putExtra(AppProperties.searchType, "tv");
                 startActivity(intent);
             }
         });

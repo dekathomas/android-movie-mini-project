@@ -20,11 +20,6 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /**
-         * Hide title bar
-         */
-        getSupportActionBar().hide();
-
         loadFragment(new MovieFragment());
 
         BottomNavigationView bottomMenu = findViewById(R.id.bottomMenu);
@@ -49,9 +44,6 @@ public class MainActivity extends BaseActivity {
                             break;
                         case R.id.fourthMenuButton:
                             selectedFragment = new ProfileFragment();
-                            break;
-                        default:
-                            selectedFragment = new MovieFragment();
                             break;
                     }
                     loadFragment(selectedFragment);

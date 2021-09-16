@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.androidmovieminiproject.R;
+import com.example.androidmovieminiproject.utility.AppProperties;
 
 public class SearchActivity extends BaseActivity {
     private EditText inputSearchText;
@@ -22,7 +23,6 @@ public class SearchActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
-        getSupportActionBar().hide();
     }
 
     @Override
@@ -36,7 +36,7 @@ public class SearchActivity extends BaseActivity {
 
     private void initVariables() {
         Intent intent = getIntent();
-        searchType = intent.getStringExtra(String.valueOf(R.string.search_type));
+        searchType = intent.getStringExtra(AppProperties.searchType);
         inputSearchText = findViewById(R.id.searchInput);
         clearSearch = findViewById(R.id.searchClearText);
         backButton = findViewById(R.id.searchBackPage);

@@ -258,8 +258,8 @@ kalau cukup waktu coba tanya mentor bisa pake detail gak-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-<!--    TODO kalau sempet waktu cari tau bisa back gmna-->
-    <!--<RelativeLayout
+
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -271,6 +271,6 @@ kalau cukup waktu coba tanya mentor bisa pake detail gak-->
             layout="@layout/component_button_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-    </RelativeLayout>-->
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
 

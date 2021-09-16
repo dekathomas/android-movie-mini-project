@@ -39,7 +39,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         MovieDetail movieDetail = movieList.get(position);
         String posterUrl = ListAPI.URL_ORIGINAL_IMAGE.concat(movieDetail.getPosterPath());
-        System.out.println("position: " + position);
+
         Glide.with(holder.itemView)
                 .load(posterUrl)
                 .centerCrop()

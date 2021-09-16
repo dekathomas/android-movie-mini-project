@@ -32,18 +32,17 @@
     <string name="logger_retrofit">RETROFIT LOGGER</string>
 
     <!-- Toast -->
-    <string name="error_general">Terjadi kesalahan pada sistem</string>
-    <string name="error_empty_field">Email dan password harus diisi</string>
-    <string name="error_wrong_auth">Email atau password salah</string>
-
-    <!-- Intent -->
-    <string name="detail_item_id">Detail Item Id</string>
-    <string name="detail_item_type">Detail Item Type</string>
-    <string name="search_type">Search Type</string>
+    <string name="error_general">System Error</string>
+    <string name="error_empty_field">Email and password must not be null</string>
+    <string name="error_wrong_auth">Email or password is wrong</string>
 
     <!-- Search -->
     <string name="search_placeholder">Search your favourite film</string>
     <string name="search_placeholder_tv">Search your favourite TV series</string>
     <string name="search_placeholder_movie">Search your favourite movie</string>
+
+    <!-- Information -->
+    <string name="information_hello">Hello Fellas!</string>
+    <string name="information_thank_you">Thank you for using our application! This application is built for project of our training activity. If there are some suggestion for make this application better, please contact us!</string>
 
 </resources>
