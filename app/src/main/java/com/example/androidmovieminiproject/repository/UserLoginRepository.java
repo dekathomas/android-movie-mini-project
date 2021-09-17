@@ -2,8 +2,6 @@ package com.example.androidmovieminiproject.repository;
 
 import android.app.Application;
 
-import androidx.lifecycle.LiveData;
-
 import com.example.androidmovieminiproject.api.RetrofitService;
 import com.example.androidmovieminiproject.dao.UserDetailDao;
 import com.example.androidmovieminiproject.database.AppDatabase;
@@ -17,7 +15,6 @@ import retrofit2.Response;
 public class UserLoginRepository {
     private final RetrofitService retrofit;
     private final UserDetailDao userDetailDao;
-    private LiveData<UserDetail> userDetailLiveData;
 
     public UserLoginRepository(Application application) {
         AppDatabase database = AppDatabase.getInstance(application);

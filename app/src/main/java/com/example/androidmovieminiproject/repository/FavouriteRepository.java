@@ -4,7 +4,6 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.androidmovieminiproject.api.RetrofitService;
 import com.example.androidmovieminiproject.dao.FavouriteDao;
 import com.example.androidmovieminiproject.database.AppDatabase;
 import com.example.androidmovieminiproject.model.Favourite;

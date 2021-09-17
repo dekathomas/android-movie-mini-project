@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -20,7 +19,6 @@ import com.example.androidmovieminiproject.activities.DetailMovieActivity;
 import com.example.androidmovieminiproject.adapters.FavouriteAdapter;
 import com.example.androidmovieminiproject.model.Favourite;
 import com.example.androidmovieminiproject.utility.AppProperties;
-import com.example.androidmovieminiproject.utility.LoadingDialog;
 import com.example.androidmovieminiproject.utility.RecyclerViewClick;
 import com.example.androidmovieminiproject.viewmodel.FavouriteViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

@@ -1,6 +1,5 @@
 package com.example.androidmovieminiproject.viewmodel;
 
-
 import android.app.Application;
 
 import androidx.annotation.NonNull;

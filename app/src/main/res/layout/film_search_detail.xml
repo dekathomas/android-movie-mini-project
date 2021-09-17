@@ -5,7 +5,7 @@
     android:background="@color/primary"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="10dp">
+    android:layout_marginBottom="10dp">
 
     <ImageView
         android:id="@+id/searchMovieImage"
@@ -57,7 +57,7 @@
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_marginRight="5dp"
-                android:background="@drawable/star_rating"/>
+                android:background="@drawable/ic_star"/>
             <TextView
                 android:id="@+id/searchMovieVoteAverage"
                 android:layout_width="wrap_content"
