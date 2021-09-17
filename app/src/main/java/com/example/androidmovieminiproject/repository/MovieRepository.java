@@ -108,7 +108,7 @@ public class MovieRepository {
             .enqueue(new Callback<MovieList>() {
                 @Override
                 public void onResponse(Call<MovieList> call, Response<MovieList> response) {
-                    if (response.body().getMovieDetailList().size() > 0) {
+                    if (response.isSuccessful() && response.body().getMovieDetailList().size() > 0) {
                         callback.onSuccess(response.body().getMovieDetailList());
                     } else {
                         callback.onSuccess(new ArrayList<>());

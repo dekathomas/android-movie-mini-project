@@ -2,6 +2,11 @@
     <string name="app_name" translatable="false">MOVAP</string>
 
     <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="loading">Loading</string>
+
+    <string name="english">English</string>
+    <string name="indonesia">Indonesian</string>
 
     <!-- Menu -->
     <string name="first_menu">Movie</string>
@@ -58,5 +63,8 @@
     <!-- Information -->
     <string name="profile_setting">Setting</string>
     <string name="profile_information">Information</string>
+
+    <!-- Setting -->
+    <string name="setting_change_language">Change Language</string>
 
 </resources>
