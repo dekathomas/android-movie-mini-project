@@ -79,8 +79,6 @@ public class MovieFragment extends BaseFragment implements RecyclerViewClick {
             }
 
             if (!isLoadingPopular && !isLoadingUpcoming) {
-                System.out.println("---------------------------------");
-                System.out.println("dari popular");
                 showScrollView();
             }
             movieViewModel.mutablePopularMovieList.removeObservers(getActivity());
@@ -98,8 +96,6 @@ public class MovieFragment extends BaseFragment implements RecyclerViewClick {
             }
 
             if (!isLoadingPopular && !isLoadingUpcoming) {
-                System.out.println("---------------------------------");
-                System.out.println("dari upcoming");
                 showScrollView();
             }
             movieViewModel.mutableUpcomingMovieList.removeObservers(getActivity());

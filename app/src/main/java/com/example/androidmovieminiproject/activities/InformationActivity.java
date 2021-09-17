@@ -37,11 +37,15 @@ public class InformationActivity extends BaseActivity {
     private void setButtonEvent() {
         dkLinkedin.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                goToLinkedinWebsite("https://bit.ly/ln-dk");
+            public void onClick(View view) { goToLinkedinWebsite("https://bit.ly/ln-dk");
             }
         });
 
+        davidLinkedin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { goToLinkedinWebsite("https://www.linkedin.com/in/david-triady-b07a98137");
+            }
+        });
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
