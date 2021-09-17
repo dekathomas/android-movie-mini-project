@@ -72,21 +72,6 @@ public class MovieRepository {
         });
     }
 
-    public void getMovieListFromDB(requestCallback callback) {
-        AppDatabase.executorService.execute(new Runnable() {
-            @Override
-            public void run() {
-                List<MovieDetail> listMovieDetail = movieDao.findAll();
-
-                if (listMovieDetail.size() > 0) {
-                    callback.onSuccess(listMovieDetail);
-                } else {
-                    callback.onSuccess(new ArrayList<>());
-                }
-            }
-        });
-    }
-
     public void searchMovieByName(String name, requestCallback callback) {
         AppDatabase.executorService.execute(new Runnable() {
             @Override

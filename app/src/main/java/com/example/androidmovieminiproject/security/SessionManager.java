@@ -3,8 +3,6 @@ package com.example.androidmovieminiproject.security;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.androidmovieminiproject.model.User.UserDetail;
-
 import java.util.Calendar;
 import java.util.Date;
 

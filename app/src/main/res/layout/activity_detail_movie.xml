@@ -153,37 +153,6 @@
                     android:background="@color/white"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="15dp"/>
-<!--    TODO ini mungkin gaada karna di list gaada urlnya,
-kalau cukup waktu coba tanya mentor bisa pake detail gak-->
-                <!--<LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="15dp"
-                    android:layout_marginBottom="25dp"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/homepageButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="#24253C"
-                        android:fontFamily="@font/roboto"
-                        android:text="@string/detail_website"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:textSize="12sp" />
-                    <Button
-                        android:id="@+id/imdbButton"
-                        android:layout_marginLeft="10dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:backgroundTint="#24253C"
-                        android:fontFamily="@font/roboto"
-                        android:text="@string/detail_imdb"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:textSize="12sp" />
-                </LinearLayout>-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -206,45 +175,6 @@ kalau cukup waktu coba tanya mentor bisa pake detail gak-->
                         android:textColor="@color/white"
                         android:layout_marginTop="5dp"/>
                 </LinearLayout>
-
-<!--                TODO kalau waktu cukup, gaskan-->
-                <!--<LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="30dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/detail_recommendation"
-                        android:textSize="16sp"
-                        android:layout_marginBottom="5dp"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/roboto_bold"/>
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/movieDetailRecommendationRecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginTop="30dp">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/detail_similar"
-                        android:textSize="16sp"
-                        android:layout_marginBottom="5dp"
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/roboto_bold"/>
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/movieDetailSimilarRecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>-->
             </LinearLayout>
 
             <include

@@ -12,10 +12,6 @@ import java.util.List;
 
 @Dao
 public interface TvDao {
-
-    @Query("SELECT * FROM tv_detail")
-    public List<TvDetail> findAll();
-
     @Query("SELECT * FROM tv_detail WHERE id = :id")
     public LiveData<TvDetail> findTvDetailById(int id);
 

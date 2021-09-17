@@ -20,9 +20,6 @@
     <string name="popular_tv">Popular TV</string>
     <string name="ongoing_tv">Ongoing TV</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-
     <!-- Detail Page -->
     <string name="detail_recommendation">Recommendation</string>
     <string name="detail_similar">Similar Movies</string>

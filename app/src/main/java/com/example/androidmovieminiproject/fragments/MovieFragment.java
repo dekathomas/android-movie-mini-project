@@ -10,8 +10,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,7 +21,6 @@ import com.example.androidmovieminiproject.adapters.MovieAdapter;
 import com.example.androidmovieminiproject.model.Movie.MovieDetail;
 import com.example.androidmovieminiproject.utility.AppProperties;
 import com.example.androidmovieminiproject.viewmodel.MovieViewModel;
-import com.example.androidmovieminiproject.utility.LoadingDialog;
 import com.example.androidmovieminiproject.utility.RecyclerViewClick;
 
 import java.util.List;

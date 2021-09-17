@@ -9,8 +9,4 @@ public class AlertDialog {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
-    public static void success(Context context, String message) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-    }
-
 }

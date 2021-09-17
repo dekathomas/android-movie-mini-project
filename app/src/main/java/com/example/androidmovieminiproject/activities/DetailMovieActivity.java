@@ -1,6 +1,5 @@
 package com.example.androidmovieminiproject.activities;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;

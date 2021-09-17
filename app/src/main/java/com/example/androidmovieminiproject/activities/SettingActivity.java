@@ -1,6 +1,5 @@
 package com.example.androidmovieminiproject.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import android.app.Activity;
@@ -15,7 +14,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.example.androidmovieminiproject.R;
-import com.example.androidmovieminiproject.fragments.ProfileFragment;
 import com.example.androidmovieminiproject.security.SessionManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 

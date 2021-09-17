@@ -5,7 +5,6 @@ import android.app.Application;
 import com.example.androidmovieminiproject.api.RetrofitService;
 import com.example.androidmovieminiproject.dao.TvDao;
 import com.example.androidmovieminiproject.database.AppDatabase;
-import com.example.androidmovieminiproject.model.Movie.MovieList;
 import com.example.androidmovieminiproject.model.TV.TvDetail;
 import com.example.androidmovieminiproject.model.TV.TvList;
 
@@ -63,7 +62,6 @@ public class TvRepository {
                 if (listTvDetail.size() > 0) {
                     callback.onSuccess(listTvDetail);
                 } else {
-//                    callback.onSuccess(null);
                     searchTvByNameFromAPI(name, callback);
                 }
             }
@@ -89,21 +87,5 @@ public class TvRepository {
                         callback.onFailed(t.getMessage());
                     }
                 });
-    }
-
-    public void getTvListFromDB(requestCallback callback) {
-        AppDatabase.executorService.execute(new Runnable() {
-            @Override
-            public void run() {
-                List<TvDetail> listTvDetail = tvDao.findAll();
-
-                if (listTvDetail.size() > 0) {
-                    callback.onSuccess(listTvDetail);
-                } else {
-                    // TODO if there is no data, search through API
-                    callback.onSuccess(null);
-                }
-            }
-        });
     }
 }

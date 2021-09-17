@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.se.omapi.Session;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;

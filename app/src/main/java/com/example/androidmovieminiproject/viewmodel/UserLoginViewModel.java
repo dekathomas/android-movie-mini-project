@@ -1,7 +1,6 @@
 package com.example.androidmovieminiproject.viewmodel;
 
 import android.app.Application;
-import android.se.omapi.Session;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -9,7 +8,6 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.androidmovieminiproject.R;
 import com.example.androidmovieminiproject.model.User.UserDetail;
-import com.example.androidmovieminiproject.model.User.UserLogin;
 import com.example.androidmovieminiproject.repository.UserLoginRepository;
 import com.example.androidmovieminiproject.security.SessionManager;
 import com.example.androidmovieminiproject.utility.AlertDialog;
