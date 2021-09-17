@@ -22,20 +22,6 @@ public class RetrofitService {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
-        // for interceptor
-        /*OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .addInterceptor(logging)
-                .build();
-                .addInterceptor(new Interceptor() {
-                    @Override
-                    public Response intercept(Chain chain) throws IOException {
-                        Request newRequest = chain.request().newBuilder()
-                                .header("Authorization", ListAPI.ACCESS_TOKEN)
-                                .build();
-                        return chain.proceed(newRequest);
-                    }
-                })
-                .build();*/
 
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
