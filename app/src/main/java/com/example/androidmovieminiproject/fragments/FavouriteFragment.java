@@ -66,20 +66,20 @@ public class FavouriteFragment extends BaseFragment implements RecyclerViewClick
     }
 
     private void setFavData() {
-        favouriteViewModel.getAll()
-            .observe(getActivity(), favourites -> {
-                if (favourites != null && favourites.size() > 0) {
-                    favouriteList = favourites;
-                    for (Favourite favourite : favourites) {
-                        adapter = new FavouriteAdapter(favourites, this);
-                        recyclerView.setAdapter(adapter);
-                        adapter.notifyDataSetChanged();
-                    }
-                } else {
-                    emptyFavSection();
+        favouriteViewModel.getAll().observe(getActivity(), favourites -> {
+            if (favourites != null && favourites.size() > 0) {
+                favouriteList = favourites;
+                for (Favourite favourite : favourites) {
+                    adapter = new FavouriteAdapter(favourites, this);
+                    recyclerView.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
                 }
-            });
-        showScrollView();
+            } else {
+                emptyFavSection();
+            }
+            favouriteViewModel.getAll().removeObservers(getActivity());
+            showScrollView();
+        });
     }
 
     @Override

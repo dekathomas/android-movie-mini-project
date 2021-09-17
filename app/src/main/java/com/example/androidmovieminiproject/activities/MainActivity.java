@@ -12,6 +12,7 @@ import com.example.androidmovieminiproject.R;
 import com.example.androidmovieminiproject.fragments.ProfileFragment;
 import com.example.androidmovieminiproject.fragments.TvFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends BaseActivity {
 
@@ -24,6 +25,13 @@ public class MainActivity extends BaseActivity {
 
         BottomNavigationView bottomMenu = findViewById(R.id.bottomMenu);
         bottomMenu.setOnNavigationItemSelectedListener(navListener);
+
+        bottomMenu.setOnItemReselectedListener(new NavigationBarView.OnItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem item) {
+                // make this one empty, so selected menu will not be able to reselect
+            }
+        });
     }
 
     private final BottomNavigationView.OnNavigationItemSelectedListener navListener =

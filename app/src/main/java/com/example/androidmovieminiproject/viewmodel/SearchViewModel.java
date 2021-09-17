@@ -28,36 +28,6 @@ public class SearchViewModel extends AndroidViewModel {
         movieRepository = new MovieRepository(application);
     }
 
-    public void getTvListFromDB() {
-        tvRepository.getTvListFromDB(new TvRepository.requestCallback() {
-            @Override
-            public void onSuccess(List<TvDetail> tvDetail) {
-                tvList.postValue(tvDetail);
-            }
-
-            @Override
-            public void onFailed(String message) {
-                AlertDialog.error(getApplication(), String.valueOf(R.string.error_general));
-                tvList.postValue(null);
-            }
-        });
-    }
-
-    public void getMovieListFromDB() {
-        movieRepository.getMovieListFromDB(new MovieRepository.requestCallback() {
-            @Override
-            public void onSuccess(List<MovieDetail> movieDetail) {
-                movieList.postValue(movieDetail);
-            }
-
-            @Override
-            public void onFailed(String message) {
-                AlertDialog.error(getApplication(), String.valueOf(R.string.error_general));
-                movieList.postValue(null);
-            }
-        });
-    }
-
     public TvDetail getDetailTvFromDB(int position) {
         if (tvList == null && tvList.getValue().size() == 0) {
             return null;

@@ -47,7 +47,6 @@ public class TvFragment extends BaseFragment implements RecyclerViewClick {
         initViewModel();
         initPopularRecylcerView();
         setSearchListener();
-        showScrollView();
     }
 
     private void initVariables() {
@@ -75,6 +74,9 @@ public class TvFragment extends BaseFragment implements RecyclerViewClick {
                 recyclerView.setLayoutManager(gridLayoutManager);
                 tvAdapter.notifyDataSetChanged();
             }
+
+            tvViewModel.tvList.removeObservers(getActivity());
+            showScrollView();
         });
     }
 

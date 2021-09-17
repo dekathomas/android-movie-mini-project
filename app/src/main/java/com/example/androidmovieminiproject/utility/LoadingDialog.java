@@ -9,14 +9,14 @@ import com.example.androidmovieminiproject.R;
 
 public class LoadingDialog {
     private final Activity activity;
-    private ProgressDialog dialog;
+    private final ProgressDialog dialog;
 
     public LoadingDialog(Activity activity) {
         this.activity = activity;
+        this.dialog = new ProgressDialog(activity);
     }
 
     public void show() {
-        dialog = new ProgressDialog(activity);
         dialog.show();
         dialog.setContentView(R.layout.loading_dialog);
         dialog.setCancelable(false);

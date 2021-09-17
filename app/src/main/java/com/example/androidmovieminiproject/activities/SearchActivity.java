@@ -15,6 +15,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.example.androidmovieminiproject.R;
 import com.example.androidmovieminiproject.adapters.MovieAdapter;
@@ -22,6 +23,7 @@ import com.example.androidmovieminiproject.adapters.TvAdapter;
 import com.example.androidmovieminiproject.model.Movie.MovieDetail;
 import com.example.androidmovieminiproject.model.TV.TvDetail;
 import com.example.androidmovieminiproject.utility.AppProperties;
+import com.example.androidmovieminiproject.utility.LoadingDialog;
 import com.example.androidmovieminiproject.utility.RecyclerViewClick;
 import com.example.androidmovieminiproject.viewmodel.SearchViewModel;
 
@@ -30,6 +32,8 @@ public class SearchActivity extends BaseActivity implements RecyclerViewClick {
     private TvAdapter tvAdapter;
     private MovieAdapter movieAdapter;
     private SearchViewModel viewModel;
+    private LinearLayout emptyLayout;
+    private LoadingDialog loading;
 
     private ImageView backButton;
     private String searchType;
@@ -57,9 +61,8 @@ public class SearchActivity extends BaseActivity implements RecyclerViewClick {
         searchViewInput = findViewById(R.id.searchViewInput);
         viewModel = new ViewModelProvider(this).get(SearchViewModel.class);
         recyclerView = findViewById(R.id.filmSearchRecylerView);
-
-        searchViewInput.requestFocus();
-        searchViewInput.requestFocusFromTouch();
+        emptyLayout = findViewById(R.id.emptySearch);
+        loading = new LoadingDialog(this);
     }
 
     private void setPlaceholderOfInputText() {
@@ -87,6 +90,9 @@ public class SearchActivity extends BaseActivity implements RecyclerViewClick {
     private void getTvList(GridLayoutManager gridLayoutManager) {
         viewModel.tvList.observe(this, tvDetails -> {
             if (tvDetails != null && tvDetails.size() > 0) {
+                emptyLayout.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+
                 for (TvDetail tvDetail : tvDetails) {
                     viewModel.insertTvToDB(tvDetail);
                 }
@@ -95,13 +101,19 @@ public class SearchActivity extends BaseActivity implements RecyclerViewClick {
                 recyclerView.setAdapter(tvAdapter);
                 recyclerView.setLayoutManager(gridLayoutManager);
                 tvAdapter.notifyDataSetChanged();
+            } else {
+                emptyLayout.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
             }
+            loading.hide();
         });
     }
 
     private void getMovieList(GridLayoutManager gridLayoutManager) {
         viewModel.movieList.observe(this, movieDetailList -> {
             if (movieDetailList != null && movieDetailList.size() > 0) {
+                emptyLayout.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
                 for (MovieDetail movieDetail : movieDetailList) {
                     viewModel.insertMovieToDB(movieDetail);
                 }
@@ -110,7 +122,11 @@ public class SearchActivity extends BaseActivity implements RecyclerViewClick {
                 recyclerView.setAdapter(movieAdapter);
                 recyclerView.setLayoutManager(gridLayoutManager);
                 movieAdapter.notifyDataSetChanged();
+            } else {
+                emptyLayout.setVisibility(View.VISIBLE);
+                recyclerView.setVisibility(View.GONE);
             }
+            loading.hide();
         });
     }
 
@@ -150,6 +166,7 @@ public class SearchActivity extends BaseActivity implements RecyclerViewClick {
         searchViewInput.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String name) {
+                loading.show();
                 if (searchType.equals(AppProperties.tv)) {
                     viewModel.searchTvByName(name);
                     initRecyclerView(AppProperties.tv);

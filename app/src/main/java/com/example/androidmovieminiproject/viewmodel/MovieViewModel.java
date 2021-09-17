@@ -17,8 +17,8 @@ import java.util.List;
 
 public class MovieViewModel extends AndroidViewModel {
     private final MovieRepository movieRepository;
-    public MutableLiveData<List<MovieDetail>> mutablePopularMovieList = new MutableLiveData<>();;
-    public MutableLiveData<List<MovieDetail>> mutableUpcomingMovieList = new MutableLiveData<>();;
+    public final MutableLiveData<List<MovieDetail>> mutablePopularMovieList = new MutableLiveData<>();;
+    public final MutableLiveData<List<MovieDetail>> mutableUpcomingMovieList = new MutableLiveData<>();;
     public List<MovieDetail> moviePopularList = new ArrayList<>();
     public List<MovieDetail> movieUpcomingList = new ArrayList<>();
 

@@ -35,6 +35,9 @@ public class MovieFragment extends BaseFragment implements RecyclerViewClick {
     private MovieViewModel movieViewModel;
     private ConstraintLayout componentSearch;
 
+    private Boolean isLoadingUpcoming;
+    private Boolean isLoadingPopular;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_movie, container, false);
@@ -43,17 +46,18 @@ public class MovieFragment extends BaseFragment implements RecyclerViewClick {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         initVariables();
         initViewModel();
         initPopularRecylcerView();
         initUpcomingRecylcerView();
 
         setSearchListener();
-        showScrollView();
     }
 
     private void initVariables() {
+        isLoadingUpcoming = true;
+        isLoadingPopular = true;
+
         movieViewModel = new ViewModelProvider(getActivity()).get(MovieViewModel.class);
         popularRecyclerView = getActivity().findViewById(R.id.popularMovieRecyclerView);
         upcomingRecyclerView = getActivity().findViewById(R.id.upcomingMovieRecyclerView);
@@ -70,20 +74,38 @@ public class MovieFragment extends BaseFragment implements RecyclerViewClick {
     private void initPopularRecylcerView() {
         GridLayoutManager gridLayoutManager =
                 new GridLayoutManager(getActivity().getApplicationContext(), 3);
+
         movieViewModel.mutablePopularMovieList.observe(getActivity(), movieDetails -> {
             if (movieDetails != null && movieDetails.size() > 0) {
                 initRecyclerView(movieDetails, popularRecyclerView, gridLayoutManager, AppProperties.popularMovie);
+                isLoadingPopular = false;
             }
+
+            if (!isLoadingPopular && !isLoadingUpcoming) {
+                System.out.println("---------------------------------");
+                System.out.println("dari popular");
+                showScrollView();
+            }
+            movieViewModel.mutablePopularMovieList.removeObservers(getActivity());
         });
     }
 
     private void initUpcomingRecylcerView() {
         GridLayoutManager gridLayoutManager =
                 new GridLayoutManager(getActivity().getApplicationContext(), 3);
+
         movieViewModel.mutableUpcomingMovieList.observe(getActivity(), movieDetails -> {
             if (movieDetails != null && movieDetails.size() > 0) {
                 initRecyclerView(movieDetails, upcomingRecyclerView, gridLayoutManager, AppProperties.upcomingMovie);
+                isLoadingUpcoming = false;
             }
+
+            if (!isLoadingPopular && !isLoadingUpcoming) {
+                System.out.println("---------------------------------");
+                System.out.println("dari upcoming");
+                showScrollView();
+            }
+            movieViewModel.mutableUpcomingMovieList.removeObservers(getActivity());
         });
     }
 
