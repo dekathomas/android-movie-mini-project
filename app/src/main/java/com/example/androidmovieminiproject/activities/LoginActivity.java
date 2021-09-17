@@ -42,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                TODO coba benerin nanti, kayaknya harus synchronous
                 loading.show();
                 login();
             }

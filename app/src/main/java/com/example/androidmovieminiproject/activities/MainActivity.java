@@ -29,7 +29,6 @@ public class MainActivity extends BaseActivity {
         bottomMenu.setOnItemReselectedListener(new NavigationBarView.OnItemReselectedListener() {
             @Override
             public void onNavigationItemReselected(@NonNull MenuItem item) {
-                // make this one empty, so selected menu will not be able to reselect
             }
         });
     }

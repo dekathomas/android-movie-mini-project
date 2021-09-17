@@ -40,7 +40,6 @@ public class TvDetail {
     @ColumnInfo(name = "backdrop_path")
     private String backdropPath;
 
-    // TODO gatau bakal berguna gak nanti
     @SerializedName("homepage")
     private String homepage;
 
