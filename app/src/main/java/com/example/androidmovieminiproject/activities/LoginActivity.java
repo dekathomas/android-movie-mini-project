@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,8 +15,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.androidmovieminiproject.R;
+import com.example.androidmovieminiproject.security.SessionManager;
+import com.example.androidmovieminiproject.utility.LanguageHelper;
 import com.example.androidmovieminiproject.utility.LoadingDialog;
 import com.example.androidmovieminiproject.viewmodel.UserLoginViewModel;
+
+import java.util.Locale;
 
 public class LoginActivity extends AppCompatActivity {
     private UserLoginViewModel viewModel;
@@ -27,7 +33,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        getSupportActionBar().hide();
+
+        String language = SessionManager.getInstance().getLanguage(this);
+        if (language != null && language != "") {
+            changeLanguage(language);
+        }
     }
 
     @Override
@@ -62,17 +72,30 @@ public class LoginActivity extends AppCompatActivity {
 
         viewModel.login(email, password);
         viewModel.userDetail.observe(this, user -> {
+            loading.hide();
             if (user != null) {
                 goToMainPage();
             } else {
-                loading.hide();
-                Toast.makeText(this, R.string.error_general, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.error_wrong_auth, Toast.LENGTH_SHORT).show();
             }
+            viewModel.userDetail.removeObservers(this);
         });
     }
 
     private void goToMainPage() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+
+
+    private void changeLanguage(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+
+        Resources resources = getResources();
+        Configuration configuration = resources.getConfiguration();
+        configuration.setLocale(locale);
+        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
     }
 }

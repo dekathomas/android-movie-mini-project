@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.example.androidmovieminiproject.R;
 import com.example.androidmovieminiproject.activities.InformationActivity;
 import com.example.androidmovieminiproject.activities.LoginActivity;
+import com.example.androidmovieminiproject.activities.SettingActivity;
 import com.example.androidmovieminiproject.utility.LoadingDialog;
 import com.example.androidmovieminiproject.viewmodel.UserLoginViewModel;
 
@@ -24,6 +25,7 @@ public class ProfileFragment extends BaseFragment {
     private TextView profileName;
     private Button logoutButton;
     private Button informationButton;
+    private Button settingButton;
     private UserLoginViewModel viewModel;
 
     @Override
@@ -45,6 +47,7 @@ public class ProfileFragment extends BaseFragment {
         profileName = getActivity().findViewById(R.id.profileName);
         logoutButton = getActivity().findViewById(R.id.logoutBotton);
         informationButton = getActivity().findViewById(R.id.informationButton);
+        settingButton = getActivity().findViewById(R.id.settingButton);
 
         initAnimationVariables(getActivity().findViewById(R.id.profileFragment));
     }
@@ -68,6 +71,14 @@ public class ProfileFragment extends BaseFragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), InformationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        settingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), SettingActivity.class);
                 startActivity(intent);
             }
         });

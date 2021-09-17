@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.SettingActivity"
+    android:background="@color/primary"
+    android:padding="20dp">
+
+    <include
+        android:id="@+id/changeLanguageBackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/component_button_back"/>
+
+    <TextView
+        android:id="@+id/changeLanguageTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_bold"
+        android:textSize="24sp"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/changeLanguageBackButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="@string/setting_change_language"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroupChanegLanguage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/changeLanguageTitle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+        <RadioButton
+            android:id="@+id/radioButtonEnglish"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:button="@android:color/transparent"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="@string/english"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:rippleColor="@color/primary"
+            android:textSize="14sp"
+            android:background="@drawable/radio_button_selected_state"/>
+        <RadioButton
+            android:id="@+id/radioButtonIndonesian"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:button="@android:color/transparent"
+            android:checked="true"
+            android:padding="10dp"
+            android:text="@string/indonesia"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            app:rippleColor="@color/primary"
+            android:textSize="14sp"
+            android:background="@drawable/radio_button_unselected_state"/>
+    </RadioGroup>
+</androidx.constraintlayout.widget.ConstraintLayout>

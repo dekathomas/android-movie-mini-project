@@ -12,6 +12,7 @@ public class SessionManager {
     public static final String SESSION_PREFERENCE = "SESSION_PREFERENCE";
     public static final String SESSION_EXPIRY_TIME = "SESSION_EXPIRY_TIME";
     public static final String SESSION_USER_NAME = "SESSION_USER_NAME";
+    private static final String APPLICATION_LANGUAGE = "APLICATION_LANGUAGE";
     private static SessionManager INSTANCE;
 
     public static SessionManager getInstance(){
@@ -37,7 +38,7 @@ public class SessionManager {
         editor.apply();
     }
 
-    public Boolean isSessionActive(Context context){
+    public Boolean isSessionActive(Context context) {
         Date sessionExpiresAt = new Date(getExpiryDateFromPreference(context));
         return !new Date().after(sessionExpiresAt);
     }
@@ -56,6 +57,20 @@ public class SessionManager {
         SharedPreferences.Editor editor =
                 context.getSharedPreferences(SESSION_PREFERENCE, Context.MODE_PRIVATE).edit();
         editor.clear();
+        editor.apply();
+    }
+
+    public String getLanguage(Context context) {
+        return context.getSharedPreferences(SESSION_PREFERENCE, Context.MODE_PRIVATE)
+                .getString(APPLICATION_LANGUAGE, "");
+    }
+
+    public void saveLanguage(Context context, String language) {
+        SharedPreferences.Editor editor = context
+            .getSharedPreferences(SESSION_PREFERENCE, Context.MODE_PRIVATE)
+            .edit();
+
+        editor.putString(APPLICATION_LANGUAGE, language);
         editor.apply();
     }
 

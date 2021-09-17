@@ -31,4 +31,9 @@
     <string name="profile_information">Informasi</string>
     <string name="search_empty">Maaf, film yang anda cari tidak ada</string>
     <string name="search_empty_suggection">Cobalah nama film yang lain</string>
+    <string name="loading">Memuat</string>
+    <string name="english">Inggris</string>
+    <string name="indonesia">Indonesia</string>
+    <string name="setting_change_language">Ganti Bahasa</string>
+    <string name="logout">Keluar</string>
 </resources>
