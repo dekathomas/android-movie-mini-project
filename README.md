@@ -3,6 +3,9 @@
 This project is an assignment from my android training. I was given an assignment to make a simple android project using Java with theme of movie catalog.
 The API is from [TMDB API](https://www.themoviedb.org/settings/api).
 
+![Image Screenshot](screenshot_images/Screenshot_35.png)
+![Image Screenshot](screenshot_images/Screenshot_36.png)
+
 Features available in this application are:
 - Login & Logout
 - Movie and TV List
